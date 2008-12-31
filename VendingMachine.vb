@@ -78,6 +78,7 @@ Public Class VendingMachine
     Friend WithEvents ProductName_2 As System.Windows.Forms.Label
     Friend WithEvents ProductName_1 As System.Windows.Forms.Label
     Friend WithEvents MsgTimer As System.Windows.Forms.Timer
+    Friend WithEvents DoneTimer As System.Windows.Forms.Timer
     Friend WithEvents PrintError As System.Drawing.Printing.PrintDocument
     'Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents cboComPort As System.Windows.Forms.ComboBox
@@ -162,6 +163,7 @@ Public Class VendingMachine
         Me.RotateTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.MsgTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.DoneTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PrintError = New System.Drawing.Printing.PrintDocument()
         Me.cboComPort = New System.Windows.Forms.ComboBox()
         Me.picOpen = New System.Windows.Forms.PictureBox()
@@ -410,6 +412,11 @@ Public Class VendingMachine
         'MsgTimer
         '
         Me.MsgTimer.Interval = 3000
+        '
+        '
+        'DoneTimer
+        '
+        Me.DoneTimer.Interval = 1500
         '
         'PrintError
         '
@@ -2191,7 +2198,7 @@ Public Class VendingMachine
             PIC_6.Visible = False
             'Me.Show()
             PictureBox1.Visible = False
-            appobject.SendBytes = "done"
+            DoneTimer.Enabled = True 'appobject.SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
             PrepareEndTransaction()
@@ -3279,6 +3286,11 @@ Public Class VendingMachine
         'End If
         MsgTimer.Enabled = True
         MessageBox.Show("販賣機餘額不足，請領取收據至櫃檯兌換找零" & oweMoney & "元。", "餘額不足", MessageBoxButtons.OK)
+    End Sub
+
+    Private Sub DoneTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DoneTimer.Tick
+        appobject.SendBytes = "done"
+        DoneTimer.Enabled = False
     End Sub
 
     Private Sub MsgTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MsgTimer.Tick
