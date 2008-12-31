@@ -908,7 +908,7 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer0.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer0.Name = "AxWindowsMediaPlayer0"
         Me.AxWindowsMediaPlayer0.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer0.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(1024, 768)
+        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(100, 100)
         Me.AxWindowsMediaPlayer0.TabIndex = 1000
         Me.AxWindowsMediaPlayer0.TabStop = False
         '
@@ -1047,7 +1047,7 @@ Public Class VendingMachine
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 15)
         Me.BackColor = System.Drawing.Color.Black
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(821, 594)
+        Me.ClientSize = New System.Drawing.Size(1024, 768)
         Me.ControlBox = False
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Btn4)
