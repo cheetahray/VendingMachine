@@ -1582,6 +1582,103 @@ Public Class VendingMachine
 
     End Sub
 
+    Private Sub PrepareEndTransaction()
+
+        Select Case appobject.ProductNum
+            Case 1
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerA_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerA_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerA_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerA_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerA_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerA_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+            Case 2
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerB_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerB_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerB_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerB_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerB_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerB_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+            Case 3
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerC_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerC_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerC_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerC_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerC_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerC_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+            Case 4
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerD_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerD_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerD_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerD_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerD_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerD_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+            Case 5
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerE_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerE_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerE_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerE_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerE_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerE_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+            Case 6
+                Select Case checkPos(appobject.ProductNum)
+                    Case 1
+                        AxWindowsMediaPlayerF_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 2
+                        AxWindowsMediaPlayerF_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 3
+                        AxWindowsMediaPlayerF_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 4
+                        AxWindowsMediaPlayerF_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 5
+                        AxWindowsMediaPlayerF_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    Case 6
+                        AxWindowsMediaPlayerF_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                End Select
+        End Select
+
+    End Sub
+
     Private Sub EndTransaction()
 
         Select Case appobject.ProductNum
@@ -1589,162 +1686,126 @@ Public Class VendingMachine
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerA_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerA_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerA_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerA_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerA_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerA_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerA_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerA_6.Ctlcontrols.play()
                 End Select
             Case 2
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerB_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerB_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerB_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerB_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerB_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerB_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerB_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerB_6.Ctlcontrols.play()
                 End Select
             Case 3
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerC_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerC_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerC_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerC_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerC_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerC_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerC_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerC_6.Ctlcontrols.play()
                 End Select
             Case 4
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerD_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerD_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerD_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerD_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerD_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerD_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerD_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerD_6.Ctlcontrols.play()
                 End Select
             Case 5
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerE_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerE_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerE_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerE_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerE_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerE_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerE_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerE_6.Ctlcontrols.play()
                 End Select
             Case 6
                 Select Case checkPos(appobject.ProductNum)
                     Case 1
                         AxWindowsMediaPlayerF_1.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_1.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "1.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_1.Ctlcontrols.play()
                     Case 2
                         AxWindowsMediaPlayerF_2.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_2.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "2.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_2.Ctlcontrols.play()
                     Case 3
                         AxWindowsMediaPlayerF_3.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_3.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "3.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_3.Ctlcontrols.play()
                     Case 4
                         AxWindowsMediaPlayerF_4.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_4.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "4.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_4.Ctlcontrols.play()
                     Case 5
                         AxWindowsMediaPlayerF_5.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_5.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "5.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_5.Ctlcontrols.play()
                     Case 6
                         AxWindowsMediaPlayerF_6.settings.setMode("loop", True)
-                        AxWindowsMediaPlayerF_6.URL = Application.StartupPath & "\" & list_Pic(appobject.ProductNum - 1) & "6.wmv" '& appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
                         AxWindowsMediaPlayerF_6.Ctlcontrols.play()
                 End Select
         End Select
@@ -2133,6 +2194,7 @@ Public Class VendingMachine
             PictureBox1.Visible = False
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
+            PrepareEndTransaction()
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "ª¬ºA")
         End If
 
