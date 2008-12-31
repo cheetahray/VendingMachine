@@ -47,6 +47,7 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member data.
     '
+    Dim NoRandom As Integer
     Public RaySix(6), tmpSix(6), FirstSix(6) As SixRandom
     ' The class' associated finite state machine.
     Private _fsm As AppClassContext
@@ -72,6 +73,7 @@ Public NotInheritable Class AppClass
             tmpSix(ctr) = New SixRandom
             RayBol(ctr) = False
         Next
+        NoRandom = 5
         '_isAcceptable = False
         _fsm = New AppClassContext(Me)
         _fsm.EnterStartState()
@@ -134,17 +136,58 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub arrangecombine()
-        Dim p As Integer
-        For ctr As Integer = 0 To 5
-            p = rand.NextDouble() * 5
-            While RayBol(p) = True
+        If NoRandom > 0 Then
+            Select Case NoRandom
+                Case 1
+                    RayPos(0) = 6
+                    RayPos(1) = 1
+                    RayPos(2) = 2
+                    RayPos(3) = 3
+                    RayPos(4) = 4
+                    RayPos(5) = 5
+                Case 2
+                    RayPos(0) = 5
+                    RayPos(1) = 6
+                    RayPos(2) = 1
+                    RayPos(3) = 2
+                    RayPos(4) = 3
+                    RayPos(5) = 4
+                Case 3
+                    RayPos(0) = 4
+                    RayPos(1) = 5
+                    RayPos(2) = 6
+                    RayPos(3) = 1
+                    RayPos(4) = 2
+                    RayPos(5) = 3
+                Case 4
+                    RayPos(0) = 3
+                    RayPos(1) = 4
+                    RayPos(2) = 5
+                    RayPos(3) = 6
+                    RayPos(4) = 1
+                    RayPos(5) = 2
+                Case 5
+                    RayPos(0) = 2
+                    RayPos(1) = 3
+                    RayPos(2) = 4
+                    RayPos(3) = 5
+                    RayPos(4) = 6
+                    RayPos(5) = 1
+            End Select
+            NoRandom = NoRandom - 1
+        Else
+            Dim p As Integer
+            For ctr As Integer = 0 To 5
                 p = rand.NextDouble() * 5
-            End While
-            RayBol(p) = True
-            tmpSix(ctr).wmv = FirstSix(p).wmv
-            tmpSix(ctr).btn = FirstSix(p).btn
-            RayPos(ctr) = p + 1
-        Next
+                While RayBol(p) = True
+                    p = rand.NextDouble() * 5
+                End While
+                RayBol(p) = True
+                tmpSix(ctr).wmv = FirstSix(p).wmv
+                tmpSix(ctr).btn = FirstSix(p).btn
+                RayPos(ctr) = p + 1
+            Next
+        End If
     End Sub
 
     Public Sub playagain()
