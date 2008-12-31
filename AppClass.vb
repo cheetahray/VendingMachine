@@ -47,7 +47,7 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member data.
     '
-    Public RaySix(6), tmpSix(6) As SixRandom
+    Public RaySix(6), tmpSix(6), FirstSix(6) As SixRandom
     ' The class' associated finite state machine.
     Private _fsm As AppClassContext
     Dim rand As New Random()
@@ -67,6 +67,7 @@ Public NotInheritable Class AppClass
     Public Sub New()
         For ctr As Integer = 0 To 5
             RaySix(ctr) = New SixRandom
+            FirstSix(ctr) = New SixRandom
             RayPos(ctr) = ctr + 1
             tmpSix(ctr) = New SixRandom
             RayBol(ctr) = False
@@ -140,8 +141,8 @@ Public NotInheritable Class AppClass
                 p = rand.NextDouble() * 5
             End While
             RayBol(p) = True
-            tmpSix(ctr).wmv = RaySix(p).wmv
-            tmpSix(ctr).btn = RaySix(p).btn
+            tmpSix(ctr).wmv = FirstSix(p).wmv
+            tmpSix(ctr).btn = FirstSix(p).btn
             RayPos(ctr) = p + 1
         Next
     End Sub

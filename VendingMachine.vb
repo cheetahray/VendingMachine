@@ -248,7 +248,6 @@ Public Class VendingMachine
         Me.Label2.Size = New System.Drawing.Size(96, 14)
         Me.Label2.TabIndex = 48
         Me.Label2.Text = "Money Returned:"
-        Me.Label2.Visible = False
         '
         'MoneyDepositTB
         '
@@ -535,7 +534,7 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer0.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer0.Name = "AxWindowsMediaPlayer0"
         Me.AxWindowsMediaPlayer0.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer0.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(1, 1)
+        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(1024, 768)
         Me.AxWindowsMediaPlayer0.TabIndex = 1000
         Me.AxWindowsMediaPlayer0.TabStop = False
         '
@@ -545,7 +544,7 @@ Public Class VendingMachine
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImage = Global.TermProject2.My.Resources.Resources.vendor
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(640, 480)
+        Me.ClientSize = New System.Drawing.Size(821, 594)
         Me.ControlBox = False
         Me.Controls.Add(Me.Price3)
         Me.Controls.Add(Me.ProductName_3)
@@ -587,6 +586,7 @@ Public Class VendingMachine
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Vending Machine"
         Me.TopMost = True
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -671,6 +671,10 @@ Public Class VendingMachine
         End If
         UdpTimer.Enabled = True
         RotateTimer.Enabled = True
+
+        For Each allcontrols As Control In Me.Controls
+            allcontrols.Cursor.Hide() 'New Cursor(Application.StartupPath & "\blank.cur")
+        Next
     End Sub
 
     'start mouse over behavior
@@ -946,7 +950,7 @@ Public Class VendingMachine
 
     Private Sub GlassAndMovie()
         appobject.ToNext()
-
+        Me.Hide()
         If comOpen Then
             SerialPort1.Write("1")
         End If
@@ -1000,7 +1004,7 @@ Public Class VendingMachine
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             appobject.Change()
-            PrintDocument1.Print()
+            'PrintDocument1.Print()
             RayStartCase(appobject.ProductNum, False)
             appobject.BackStart()
             CalculateChange(appobject.MoneyAvailable)
@@ -1013,7 +1017,6 @@ Public Class VendingMachine
             RotateTimer.Enabled = True
             Me.Show()
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
-            Me.Hide()
             AxWindowsMediaPlayer0.Visible = True
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "ª¬ºA")
         End If
@@ -1319,76 +1322,88 @@ Public Class VendingMachine
     Private Sub RayStartCase(ByVal n As Integer, ByVal isPos As Boolean)
         Select Case n
             Case 1
-                AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayer1.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
                 'ProductName_1.Text = list_Name(n - 1)
                 Price1.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(0).wmv = New Rectangle(AxWindowsMediaPlayer1.Location.X, AxWindowsMediaPlayer1.Location.Y _
+                    AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                    appobject.FirstSix(0).wmv = New Rectangle(AxWindowsMediaPlayer1.Location.X, AxWindowsMediaPlayer1.Location.Y _
                                               , AxWindowsMediaPlayer1.Size.Width, AxWindowsMediaPlayer1.Size.Height)
-                    appobject.RaySix(0).btn = New Rectangle(Btn1.Location.X, Btn1.Location.Y _
+                    appobject.FirstSix(0).btn = New Rectangle(Btn1.Location.X, Btn1.Location.Y _
                                               , Btn1.Size.Width, Btn1.Size.Height)
+                Else
+                    AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
             Case 2
-                AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayer2.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
                 'ProductName_2.Text = list_Name(n - 1)
                 Price2.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(1).wmv = New Rectangle(AxWindowsMediaPlayer2.Location.X, AxWindowsMediaPlayer2.Location.Y _
+                    AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
+                    appobject.FirstSix(1).wmv = New Rectangle(AxWindowsMediaPlayer2.Location.X, AxWindowsMediaPlayer2.Location.Y _
                                               , AxWindowsMediaPlayer2.Size.Width, AxWindowsMediaPlayer2.Size.Height)
-                    appobject.RaySix(1).btn = New Rectangle(Btn2.Location.X, Btn2.Location.Y _
+                    appobject.FirstSix(1).btn = New Rectangle(Btn2.Location.X, Btn2.Location.Y _
                                               , Btn2.Size.Width, Btn2.Size.Height)
+                Else
+                    AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
             Case 3
-                AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayer3.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
                 'ProductName_3.Text = list_Name(n - 1)
                 Price3.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(2).wmv = New Rectangle(AxWindowsMediaPlayer3.Location.X, AxWindowsMediaPlayer3.Location.Y _
+                    AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
+                    appobject.FirstSix(2).wmv = New Rectangle(AxWindowsMediaPlayer3.Location.X, AxWindowsMediaPlayer3.Location.Y _
                                                              , AxWindowsMediaPlayer3.Size.Width, AxWindowsMediaPlayer3.Size.Height)
-                    appobject.RaySix(2).btn = New Rectangle(Btn3.Location.X, Btn3.Location.Y _
+                    appobject.FirstSix(2).btn = New Rectangle(Btn3.Location.X, Btn3.Location.Y _
                                                   , Btn3.Size.Width, Btn3.Size.Height)
+                Else
+                    AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
             Case 4
-                AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayer4.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
                 'ProductName_4.Text = list_Name(n - 1)
                 'Price4.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(3).wmv = New Rectangle(AxWindowsMediaPlayer4.Location.X, AxWindowsMediaPlayer4.Location.Y _
+                    AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
+                    appobject.FirstSix(3).wmv = New Rectangle(AxWindowsMediaPlayer4.Location.X, AxWindowsMediaPlayer4.Location.Y _
                                                   , AxWindowsMediaPlayer4.Size.Width, AxWindowsMediaPlayer4.Size.Height)
-                    appobject.RaySix(3).btn = New Rectangle(Btn4.Location.X, Btn4.Location.Y _
+                    appobject.FirstSix(3).btn = New Rectangle(Btn4.Location.X, Btn4.Location.Y _
                                                   , Btn4.Size.Width, Btn4.Size.Height)
+                Else
+                    AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
             Case 5
-                AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayer5.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
                 'ProductName_5.Text = list_Name(n - 1)
                 Price5.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(4).wmv = New Rectangle(AxWindowsMediaPlayer5.Location.X, AxWindowsMediaPlayer5.Location.Y _
+                    AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
+                    appobject.FirstSix(4).wmv = New Rectangle(AxWindowsMediaPlayer5.Location.X, AxWindowsMediaPlayer5.Location.Y _
                                                   , AxWindowsMediaPlayer5.Size.Width, AxWindowsMediaPlayer5.Size.Height)
-                    appobject.RaySix(4).btn = New Rectangle(Btn5.Location.X, Btn5.Location.Y _
+                    appobject.FirstSix(4).btn = New Rectangle(Btn5.Location.X, Btn5.Location.Y _
                                                   , Btn5.Size.Width, Btn5.Size.Height)
+                Else
+                    AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
             Case 6
-                AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayer6.settings.setMode("loop", True)
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
                 'ProductName_6.Text = list_Name(n - 1)
                 Price6.Text = list_Price(n - 1)
                 If isPos = True Then
-                    appobject.RaySix(5).wmv = New Rectangle(AxWindowsMediaPlayer6.Location.X, AxWindowsMediaPlayer6.Location.Y _
+                    AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
+                    appobject.FirstSix(5).wmv = New Rectangle(AxWindowsMediaPlayer6.Location.X, AxWindowsMediaPlayer6.Location.Y _
                                                             , AxWindowsMediaPlayer6.Size.Width, AxWindowsMediaPlayer6.Size.Height)
-                    appobject.RaySix(5).btn = New Rectangle(Btn6.Location.X, Btn6.Location.Y _
+                    appobject.FirstSix(5).btn = New Rectangle(Btn6.Location.X, Btn6.Location.Y _
                                                   , Btn6.Size.Width, Btn6.Size.Height)
+                Else
+                    AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & appobject.RayPos(n - 1) & ".wmv"
                 End If
                 'Case 7
                 'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
