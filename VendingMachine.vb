@@ -862,7 +862,6 @@ Public Class VendingMachine
         End If
         cboComPort.Items.AddRange(Portnames)
         cboComPort.Text = "COM11"
-        'cboBaudRate.Text = "9600"
 
         OpenComPort()
 
