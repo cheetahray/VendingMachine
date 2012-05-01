@@ -1,6 +1,8 @@
 'Term Project 2
 'Anupam Pandeya 07/23/06
-
+Imports System.Net
+Imports System.Net.Sockets
+Imports System.Text
 
 Public Class VendingMachine
     Inherits System.Windows.Forms.Form
@@ -10,6 +12,8 @@ Public Class VendingMachine
     Dim MoneyAvailable As Decimal = 0 ' Money deposited by user 
     Dim ItemCost As Decimal = 0.0       'Cost of the item
     Dim ItemQuantity As Integer = 0
+    Dim ReceiveBytes, SendBytes As String
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker     'Quantity of Items available
     Friend WithEvents Index6 As System.Windows.Forms.Label
     Friend WithEvents Pic_5 As System.Windows.Forms.PictureBox
     Friend WithEvents Pic_3 As System.Windows.Forms.PictureBox
@@ -49,11 +53,15 @@ Public Class VendingMachine
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
     Friend WithEvents picOpen As System.Windows.Forms.PictureBox
     Friend WithEvents cboComPort As System.Windows.Forms.ComboBox
+    Friend WithEvents UdpTimer As System.Windows.Forms.Timer
     'Quantity of Items available
     Dim objRandom As New System.Random( _
    CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
 
-
+    Private Class CSState
+        Public RemoteIpEndPoint As IPEndPoint
+        Public myUDPClient As UdpClient
+    End Class
 
 #Region " Windows Form Designer generated code "
 
@@ -159,6 +167,8 @@ Public Class VendingMachine
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.picOpen = New System.Windows.Forms.PictureBox()
         Me.cboComPort = New System.Windows.Forms.ComboBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.UdpTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2.SuspendLayout()
         CType(Me.Pic_10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pic_6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,18 +205,18 @@ Public Class VendingMachine
         Me.Panel2.Controls.Add(Me.Pic_7)
         Me.Panel2.Controls.Add(Me.Pic_8)
         Me.Panel2.Controls.Add(Me.Pic_9)
-        Me.Panel2.Location = New System.Drawing.Point(25, 301)
+        Me.Panel2.Location = New System.Drawing.Point(30, 347)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(700, 180)
+        Me.Panel2.Size = New System.Drawing.Size(840, 208)
         Me.Panel2.TabIndex = 31
         '
         'Price10
         '
         Me.Price10.AutoSize = True
         Me.Price10.BackColor = System.Drawing.Color.White
-        Me.Price10.Location = New System.Drawing.Point(598, 130)
+        Me.Price10.Location = New System.Drawing.Point(718, 150)
         Me.Price10.Name = "Price10"
-        Me.Price10.Size = New System.Drawing.Size(25, 13)
+        Me.Price10.Size = New System.Drawing.Size(32, 17)
         Me.Price10.TabIndex = 93
         Me.Price10.Text = "150"
         '
@@ -214,9 +224,9 @@ Public Class VendingMachine
         '
         Me.Price9.AutoSize = True
         Me.Price9.BackColor = System.Drawing.Color.White
-        Me.Price9.Location = New System.Drawing.Point(468, 130)
+        Me.Price9.Location = New System.Drawing.Point(562, 150)
         Me.Price9.Name = "Price9"
-        Me.Price9.Size = New System.Drawing.Size(19, 13)
+        Me.Price9.Size = New System.Drawing.Size(24, 17)
         Me.Price9.TabIndex = 92
         Me.Price9.Text = "50"
         '
@@ -224,9 +234,9 @@ Public Class VendingMachine
         '
         Me.Price8.AutoSize = True
         Me.Price8.BackColor = System.Drawing.Color.White
-        Me.Price8.Location = New System.Drawing.Point(312, 130)
+        Me.Price8.Location = New System.Drawing.Point(374, 150)
         Me.Price8.Name = "Price8"
-        Me.Price8.Size = New System.Drawing.Size(25, 13)
+        Me.Price8.Size = New System.Drawing.Size(32, 17)
         Me.Price8.TabIndex = 91
         Me.Price8.Text = "200"
         '
@@ -234,9 +244,9 @@ Public Class VendingMachine
         '
         Me.Price7.AutoSize = True
         Me.Price7.BackColor = System.Drawing.Color.White
-        Me.Price7.Location = New System.Drawing.Point(175, 133)
+        Me.Price7.Location = New System.Drawing.Point(210, 153)
         Me.Price7.Name = "Price7"
-        Me.Price7.Size = New System.Drawing.Size(19, 13)
+        Me.Price7.Size = New System.Drawing.Size(24, 17)
         Me.Price7.TabIndex = 91
         Me.Price7.Text = "50"
         '
@@ -244,18 +254,18 @@ Public Class VendingMachine
         '
         Me.Price6.AutoSize = True
         Me.Price6.BackColor = System.Drawing.Color.White
-        Me.Price6.Location = New System.Drawing.Point(27, 133)
+        Me.Price6.Location = New System.Drawing.Point(32, 153)
         Me.Price6.Name = "Price6"
-        Me.Price6.Size = New System.Drawing.Size(25, 13)
+        Me.Price6.Size = New System.Drawing.Size(32, 17)
         Me.Price6.TabIndex = 91
         Me.Price6.Text = "100"
         '
         'Pic_10
         '
         Me.Pic_10.Image = CType(resources.GetObject("Pic_10.Image"), System.Drawing.Image)
-        Me.Pic_10.Location = New System.Drawing.Point(588, 31)
+        Me.Pic_10.Location = New System.Drawing.Point(706, 36)
         Me.Pic_10.Name = "Pic_10"
-        Me.Pic_10.Size = New System.Drawing.Size(40, 64)
+        Me.Pic_10.Size = New System.Drawing.Size(48, 74)
         Me.Pic_10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Pic_10.TabIndex = 2
         Me.Pic_10.TabStop = False
@@ -263,18 +273,18 @@ Public Class VendingMachine
         'Pic_6
         '
         Me.Pic_6.Image = CType(resources.GetObject("Pic_6.Image"), System.Drawing.Image)
-        Me.Pic_6.Location = New System.Drawing.Point(22, 39)
+        Me.Pic_6.Location = New System.Drawing.Point(26, 45)
         Me.Pic_6.Name = "Pic_6"
-        Me.Pic_6.Size = New System.Drawing.Size(40, 56)
+        Me.Pic_6.Size = New System.Drawing.Size(48, 65)
         Me.Pic_6.TabIndex = 2
         Me.Pic_6.TabStop = False
         '
         'Pic_7
         '
         Me.Pic_7.Image = CType(resources.GetObject("Pic_7.Image"), System.Drawing.Image)
-        Me.Pic_7.Location = New System.Drawing.Point(166, 23)
+        Me.Pic_7.Location = New System.Drawing.Point(199, 27)
         Me.Pic_7.Name = "Pic_7"
-        Me.Pic_7.Size = New System.Drawing.Size(40, 72)
+        Me.Pic_7.Size = New System.Drawing.Size(48, 83)
         Me.Pic_7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Pic_7.TabIndex = 0
         Me.Pic_7.TabStop = False
@@ -282,18 +292,18 @@ Public Class VendingMachine
         'Pic_8
         '
         Me.Pic_8.Image = CType(resources.GetObject("Pic_8.Image"), System.Drawing.Image)
-        Me.Pic_8.Location = New System.Drawing.Point(315, 31)
+        Me.Pic_8.Location = New System.Drawing.Point(378, 36)
         Me.Pic_8.Name = "Pic_8"
-        Me.Pic_8.Size = New System.Drawing.Size(24, 64)
+        Me.Pic_8.Size = New System.Drawing.Size(29, 74)
         Me.Pic_8.TabIndex = 2
         Me.Pic_8.TabStop = False
         '
         'Pic_9
         '
         Me.Pic_9.Image = CType(resources.GetObject("Pic_9.Image"), System.Drawing.Image)
-        Me.Pic_9.Location = New System.Drawing.Point(455, 31)
+        Me.Pic_9.Location = New System.Drawing.Point(546, 36)
         Me.Pic_9.Name = "Pic_9"
-        Me.Pic_9.Size = New System.Drawing.Size(40, 56)
+        Me.Pic_9.Size = New System.Drawing.Size(48, 64)
         Me.Pic_9.TabIndex = 2
         Me.Pic_9.TabStop = False
         '
@@ -301,9 +311,9 @@ Public Class VendingMachine
         '
         Me.Pic_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.Pic_2.Image = CType(resources.GetObject("Pic_2.Image"), System.Drawing.Image)
-        Me.Pic_2.Location = New System.Drawing.Point(168, 37)
+        Me.Pic_2.Location = New System.Drawing.Point(202, 43)
         Me.Pic_2.Name = "Pic_2"
-        Me.Pic_2.Size = New System.Drawing.Size(48, 56)
+        Me.Pic_2.Size = New System.Drawing.Size(57, 64)
         Me.Pic_2.TabIndex = 0
         Me.Pic_2.TabStop = False
         '
@@ -321,18 +331,18 @@ Public Class VendingMachine
         Me.Panel1.Controls.Add(Me.Pic_1)
         Me.Panel1.Controls.Add(Me.Pic_2)
         Me.Panel1.Controls.Add(Me.Pic_4)
-        Me.Panel1.Location = New System.Drawing.Point(26, 26)
+        Me.Panel1.Location = New System.Drawing.Point(31, 30)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(700, 180)
+        Me.Panel1.Size = New System.Drawing.Size(840, 208)
         Me.Panel1.TabIndex = 25
         '
         'Price5
         '
         Me.Price5.AutoSize = True
         Me.Price5.BackColor = System.Drawing.Color.White
-        Me.Price5.Location = New System.Drawing.Point(599, 126)
+        Me.Price5.Location = New System.Drawing.Point(719, 145)
         Me.Price5.Name = "Price5"
-        Me.Price5.Size = New System.Drawing.Size(25, 13)
+        Me.Price5.Size = New System.Drawing.Size(32, 17)
         Me.Price5.TabIndex = 90
         Me.Price5.Text = "200"
         '
@@ -340,18 +350,18 @@ Public Class VendingMachine
         '
         Me.Price4.AutoSize = True
         Me.Price4.BackColor = System.Drawing.Color.White
-        Me.Price4.Location = New System.Drawing.Point(469, 126)
+        Me.Price4.Location = New System.Drawing.Point(563, 145)
         Me.Price4.Name = "Price4"
-        Me.Price4.Size = New System.Drawing.Size(19, 13)
+        Me.Price4.Size = New System.Drawing.Size(24, 17)
         Me.Price4.TabIndex = 89
         Me.Price4.Text = "50"
         '
         'Pic_5
         '
         Me.Pic_5.Image = CType(resources.GetObject("Pic_5.Image"), System.Drawing.Image)
-        Me.Pic_5.Location = New System.Drawing.Point(593, 26)
+        Me.Pic_5.Location = New System.Drawing.Point(712, 30)
         Me.Pic_5.Name = "Pic_5"
-        Me.Pic_5.Size = New System.Drawing.Size(32, 72)
+        Me.Pic_5.Size = New System.Drawing.Size(38, 83)
         Me.Pic_5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Pic_5.TabIndex = 2
         Me.Pic_5.TabStop = False
@@ -360,9 +370,9 @@ Public Class VendingMachine
         '
         Me.Price3.AutoSize = True
         Me.Price3.BackColor = System.Drawing.Color.White
-        Me.Price3.Location = New System.Drawing.Point(323, 126)
+        Me.Price3.Location = New System.Drawing.Point(388, 145)
         Me.Price3.Name = "Price3"
-        Me.Price3.Size = New System.Drawing.Size(25, 13)
+        Me.Price3.Size = New System.Drawing.Size(32, 17)
         Me.Price3.TabIndex = 88
         Me.Price3.Text = "100"
         '
@@ -370,9 +380,9 @@ Public Class VendingMachine
         '
         Me.Price2.AutoSize = True
         Me.Price2.BackColor = System.Drawing.Color.White
-        Me.Price2.Location = New System.Drawing.Point(182, 126)
+        Me.Price2.Location = New System.Drawing.Point(218, 145)
         Me.Price2.Name = "Price2"
-        Me.Price2.Size = New System.Drawing.Size(25, 13)
+        Me.Price2.Size = New System.Drawing.Size(32, 17)
         Me.Price2.TabIndex = 87
         Me.Price2.Text = "100"
         '
@@ -380,18 +390,18 @@ Public Class VendingMachine
         '
         Me.Price1.AutoSize = True
         Me.Price1.BackColor = System.Drawing.Color.White
-        Me.Price1.Location = New System.Drawing.Point(40, 127)
+        Me.Price1.Location = New System.Drawing.Point(48, 147)
         Me.Price1.Name = "Price1"
-        Me.Price1.Size = New System.Drawing.Size(19, 13)
+        Me.Price1.Size = New System.Drawing.Size(24, 17)
         Me.Price1.TabIndex = 86
         Me.Price1.Text = "50"
         '
         'Pic_3
         '
         Me.Pic_3.Image = CType(resources.GetObject("Pic_3.Image"), System.Drawing.Image)
-        Me.Pic_3.Location = New System.Drawing.Point(316, 26)
+        Me.Pic_3.Location = New System.Drawing.Point(379, 30)
         Me.Pic_3.Name = "Pic_3"
-        Me.Pic_3.Size = New System.Drawing.Size(40, 72)
+        Me.Pic_3.Size = New System.Drawing.Size(48, 83)
         Me.Pic_3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Pic_3.TabIndex = 2
         Me.Pic_3.TabStop = False
@@ -399,18 +409,18 @@ Public Class VendingMachine
         'Pic_1
         '
         Me.Pic_1.Image = CType(resources.GetObject("Pic_1.Image"), System.Drawing.Image)
-        Me.Pic_1.Location = New System.Drawing.Point(31, 34)
+        Me.Pic_1.Location = New System.Drawing.Point(37, 39)
         Me.Pic_1.Name = "Pic_1"
-        Me.Pic_1.Size = New System.Drawing.Size(32, 64)
+        Me.Pic_1.Size = New System.Drawing.Size(39, 74)
         Me.Pic_1.TabIndex = 2
         Me.Pic_1.TabStop = False
         '
         'Pic_4
         '
         Me.Pic_4.Image = CType(resources.GetObject("Pic_4.Image"), System.Drawing.Image)
-        Me.Pic_4.Location = New System.Drawing.Point(472, 26)
+        Me.Pic_4.Location = New System.Drawing.Point(566, 30)
         Me.Pic_4.Name = "Pic_4"
-        Me.Pic_4.Size = New System.Drawing.Size(24, 56)
+        Me.Pic_4.Size = New System.Drawing.Size(29, 65)
         Me.Pic_4.TabIndex = 2
         Me.Pic_4.TabStop = False
         '
@@ -419,10 +429,10 @@ Public Class VendingMachine
         Me.VendingMachineIMG.BackColor = System.Drawing.Color.AliceBlue
         Me.VendingMachineIMG.Cursor = System.Windows.Forms.Cursors.Help
         Me.VendingMachineIMG.Image = CType(resources.GetObject("VendingMachineIMG.Image"), System.Drawing.Image)
-        Me.VendingMachineIMG.Location = New System.Drawing.Point(-9, -23)
+        Me.VendingMachineIMG.Location = New System.Drawing.Point(-11, -27)
         Me.VendingMachineIMG.Margin = New System.Windows.Forms.Padding(0)
         Me.VendingMachineIMG.Name = "VendingMachineIMG"
-        Me.VendingMachineIMG.Size = New System.Drawing.Size(800, 610)
+        Me.VendingMachineIMG.Size = New System.Drawing.Size(960, 704)
         Me.VendingMachineIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.VendingMachineIMG.TabIndex = 24
         Me.VendingMachineIMG.TabStop = False
@@ -432,10 +442,10 @@ Public Class VendingMachine
         Me.MoneyReturnTB.BackColor = System.Drawing.Color.Maroon
         Me.MoneyReturnTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MoneyReturnTB.ForeColor = System.Drawing.Color.Silver
-        Me.MoneyReturnTB.Location = New System.Drawing.Point(809, 340)
+        Me.MoneyReturnTB.Location = New System.Drawing.Point(971, 392)
         Me.MoneyReturnTB.Name = "MoneyReturnTB"
         Me.MoneyReturnTB.ReadOnly = True
-        Me.MoneyReturnTB.Size = New System.Drawing.Size(104, 22)
+        Me.MoneyReturnTB.Size = New System.Drawing.Size(125, 26)
         Me.MoneyReturnTB.TabIndex = 47
         Me.MoneyReturnTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -443,9 +453,9 @@ Public Class VendingMachine
         '
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Maroon
-        Me.Label2.Location = New System.Drawing.Point(806, 320)
+        Me.Label2.Location = New System.Drawing.Point(967, 369)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 16)
+        Me.Label2.Size = New System.Drawing.Size(115, 19)
         Me.Label2.TabIndex = 48
         Me.Label2.Text = "Money Returned:"
         '
@@ -454,9 +464,9 @@ Public Class VendingMachine
         Me.dimeImg.BackColor = System.Drawing.Color.White
         Me.dimeImg.Cursor = System.Windows.Forms.Cursors.Hand
         Me.dimeImg.Image = CType(resources.GetObject("dimeImg.Image"), System.Drawing.Image)
-        Me.dimeImg.Location = New System.Drawing.Point(959, 433)
+        Me.dimeImg.Location = New System.Drawing.Point(1151, 500)
         Me.dimeImg.Name = "dimeImg"
-        Me.dimeImg.Size = New System.Drawing.Size(48, 48)
+        Me.dimeImg.Size = New System.Drawing.Size(57, 55)
         Me.dimeImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.dimeImg.TabIndex = 54
         Me.dimeImg.TabStop = False
@@ -467,9 +477,9 @@ Public Class VendingMachine
         Me.DollarBillImg.BackColor = System.Drawing.Color.White
         Me.DollarBillImg.Cursor = System.Windows.Forms.Cursors.Hand
         Me.DollarBillImg.Image = CType(resources.GetObject("DollarBillImg.Image"), System.Drawing.Image)
-        Me.DollarBillImg.Location = New System.Drawing.Point(809, 168)
+        Me.DollarBillImg.Location = New System.Drawing.Point(971, 194)
         Me.DollarBillImg.Name = "DollarBillImg"
-        Me.DollarBillImg.Size = New System.Drawing.Size(198, 82)
+        Me.DollarBillImg.Size = New System.Drawing.Size(237, 94)
         Me.DollarBillImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.DollarBillImg.TabIndex = 56
         Me.DollarBillImg.TabStop = False
@@ -479,9 +489,9 @@ Public Class VendingMachine
         Me.NickelImg.BackColor = System.Drawing.Color.White
         Me.NickelImg.Cursor = System.Windows.Forms.Cursors.Hand
         Me.NickelImg.Image = CType(resources.GetObject("NickelImg.Image"), System.Drawing.Image)
-        Me.NickelImg.Location = New System.Drawing.Point(894, 417)
+        Me.NickelImg.Location = New System.Drawing.Point(1073, 481)
         Me.NickelImg.Name = "NickelImg"
-        Me.NickelImg.Size = New System.Drawing.Size(64, 64)
+        Me.NickelImg.Size = New System.Drawing.Size(77, 74)
         Me.NickelImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.NickelImg.TabIndex = 55
         Me.NickelImg.TabStop = False
@@ -492,10 +502,10 @@ Public Class VendingMachine
         Me.MoneyDepositTB.BackColor = System.Drawing.Color.Silver
         Me.MoneyDepositTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MoneyDepositTB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.MoneyDepositTB.Location = New System.Drawing.Point(714, 512)
+        Me.MoneyDepositTB.Location = New System.Drawing.Point(857, 591)
         Me.MoneyDepositTB.Name = "MoneyDepositTB"
         Me.MoneyDepositTB.ReadOnly = True
-        Me.MoneyDepositTB.Size = New System.Drawing.Size(68, 26)
+        Me.MoneyDepositTB.Size = New System.Drawing.Size(81, 30)
         Me.MoneyDepositTB.TabIndex = 50
         Me.MoneyDepositTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -503,9 +513,9 @@ Public Class VendingMachine
         '
         Me.ChangeReturnBTN.BackColor = System.Drawing.Color.Silver
         Me.ChangeReturnBTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ChangeReturnBTN.Location = New System.Drawing.Point(714, 545)
+        Me.ChangeReturnBTN.Location = New System.Drawing.Point(857, 629)
         Me.ChangeReturnBTN.Name = "ChangeReturnBTN"
-        Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 35)
+        Me.ChangeReturnBTN.Size = New System.Drawing.Size(84, 40)
         Me.ChangeReturnBTN.TabIndex = 58
         Me.ChangeReturnBTN.Text = "退幣"
         Me.ChangeReturnBTN.UseVisualStyleBackColor = False
@@ -520,9 +530,9 @@ Public Class VendingMachine
         Me.Index6.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index6.Image = CType(resources.GetObject("Index6.Image"), System.Drawing.Image)
-        Me.Index6.Location = New System.Drawing.Point(36, 493)
+        Me.Index6.Location = New System.Drawing.Point(43, 569)
         Me.Index6.Name = "Index6"
-        Me.Index6.Size = New System.Drawing.Size(85, 32)
+        Me.Index6.Size = New System.Drawing.Size(102, 37)
         Me.Index6.TabIndex = 74
         Me.Index6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -532,9 +542,9 @@ Public Class VendingMachine
         Me.Index1.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index1.Image = CType(resources.GetObject("Index1.Image"), System.Drawing.Image)
-        Me.Index1.Location = New System.Drawing.Point(44, 225)
+        Me.Index1.Location = New System.Drawing.Point(53, 260)
         Me.Index1.Name = "Index1"
-        Me.Index1.Size = New System.Drawing.Size(84, 25)
+        Me.Index1.Size = New System.Drawing.Size(101, 28)
         Me.Index1.TabIndex = 61
         Me.Index1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -542,9 +552,9 @@ Public Class VendingMachine
         '
         Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn1.Image = CType(resources.GetObject("Btn1.Image"), System.Drawing.Image)
-        Me.Btn1.Location = New System.Drawing.Point(40, 254)
+        Me.Btn1.Location = New System.Drawing.Point(48, 293)
         Me.Btn1.Name = "Btn1"
-        Me.Btn1.Size = New System.Drawing.Size(93, 32)
+        Me.Btn1.Size = New System.Drawing.Size(112, 37)
         Me.Btn1.TabIndex = 86
         Me.Btn1.Visible = False
         '
@@ -554,9 +564,9 @@ Public Class VendingMachine
         Me.Index2.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index2.Image = CType(resources.GetObject("Index2.Image"), System.Drawing.Image)
-        Me.Index2.Location = New System.Drawing.Point(186, 225)
+        Me.Index2.Location = New System.Drawing.Point(223, 260)
         Me.Index2.Name = "Index2"
-        Me.Index2.Size = New System.Drawing.Size(84, 25)
+        Me.Index2.Size = New System.Drawing.Size(101, 28)
         Me.Index2.TabIndex = 87
         Me.Index2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -564,9 +574,9 @@ Public Class VendingMachine
         '
         Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn2.Image = CType(resources.GetObject("Btn2.Image"), System.Drawing.Image)
-        Me.Btn2.Location = New System.Drawing.Point(183, 254)
+        Me.Btn2.Location = New System.Drawing.Point(220, 293)
         Me.Btn2.Name = "Btn2"
-        Me.Btn2.Size = New System.Drawing.Size(93, 32)
+        Me.Btn2.Size = New System.Drawing.Size(111, 37)
         Me.Btn2.TabIndex = 88
         Me.Btn2.Visible = False
         '
@@ -576,9 +586,9 @@ Public Class VendingMachine
         Me.Index3.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index3.Image = CType(resources.GetObject("Index3.Image"), System.Drawing.Image)
-        Me.Index3.Location = New System.Drawing.Point(330, 225)
+        Me.Index3.Location = New System.Drawing.Point(396, 260)
         Me.Index3.Name = "Index3"
-        Me.Index3.Size = New System.Drawing.Size(84, 25)
+        Me.Index3.Size = New System.Drawing.Size(101, 28)
         Me.Index3.TabIndex = 89
         Me.Index3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -586,9 +596,9 @@ Public Class VendingMachine
         '
         Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn3.Image = CType(resources.GetObject("Btn3.Image"), System.Drawing.Image)
-        Me.Btn3.Location = New System.Drawing.Point(325, 254)
+        Me.Btn3.Location = New System.Drawing.Point(390, 293)
         Me.Btn3.Name = "Btn3"
-        Me.Btn3.Size = New System.Drawing.Size(93, 32)
+        Me.Btn3.Size = New System.Drawing.Size(112, 37)
         Me.Btn3.TabIndex = 90
         Me.Btn3.Visible = False
         '
@@ -598,9 +608,9 @@ Public Class VendingMachine
         Me.Index4.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index4.Image = CType(resources.GetObject("Index4.Image"), System.Drawing.Image)
-        Me.Index4.Location = New System.Drawing.Point(476, 225)
+        Me.Index4.Location = New System.Drawing.Point(571, 260)
         Me.Index4.Name = "Index4"
-        Me.Index4.Size = New System.Drawing.Size(84, 25)
+        Me.Index4.Size = New System.Drawing.Size(101, 28)
         Me.Index4.TabIndex = 91
         Me.Index4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -608,9 +618,9 @@ Public Class VendingMachine
         '
         Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn4.Image = CType(resources.GetObject("Btn4.Image"), System.Drawing.Image)
-        Me.Btn4.Location = New System.Drawing.Point(465, 254)
+        Me.Btn4.Location = New System.Drawing.Point(558, 293)
         Me.Btn4.Name = "Btn4"
-        Me.Btn4.Size = New System.Drawing.Size(93, 32)
+        Me.Btn4.Size = New System.Drawing.Size(112, 37)
         Me.Btn4.TabIndex = 92
         Me.Btn4.Visible = False
         '
@@ -620,9 +630,9 @@ Public Class VendingMachine
         Me.Index5.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index5.Image = CType(resources.GetObject("Index5.Image"), System.Drawing.Image)
-        Me.Index5.Location = New System.Drawing.Point(604, 225)
+        Me.Index5.Location = New System.Drawing.Point(725, 260)
         Me.Index5.Name = "Index5"
-        Me.Index5.Size = New System.Drawing.Size(84, 25)
+        Me.Index5.Size = New System.Drawing.Size(101, 28)
         Me.Index5.TabIndex = 93
         Me.Index5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -630,9 +640,9 @@ Public Class VendingMachine
         '
         Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn5.Image = CType(resources.GetObject("Btn5.Image"), System.Drawing.Image)
-        Me.Btn5.Location = New System.Drawing.Point(598, 253)
+        Me.Btn5.Location = New System.Drawing.Point(718, 292)
         Me.Btn5.Name = "Btn5"
-        Me.Btn5.Size = New System.Drawing.Size(93, 32)
+        Me.Btn5.Size = New System.Drawing.Size(111, 37)
         Me.Btn5.TabIndex = 94
         Me.Btn5.Visible = False
         '
@@ -640,9 +650,9 @@ Public Class VendingMachine
         '
         Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn6.Image = CType(resources.GetObject("Btn6.Image"), System.Drawing.Image)
-        Me.Btn6.Location = New System.Drawing.Point(34, 528)
+        Me.Btn6.Location = New System.Drawing.Point(41, 609)
         Me.Btn6.Name = "Btn6"
-        Me.Btn6.Size = New System.Drawing.Size(93, 32)
+        Me.Btn6.Size = New System.Drawing.Size(111, 37)
         Me.Btn6.TabIndex = 95
         Me.Btn6.Visible = False
         '
@@ -652,9 +662,9 @@ Public Class VendingMachine
         Me.Index7.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index7.Image = CType(resources.GetObject("Index7.Image"), System.Drawing.Image)
-        Me.Index7.Location = New System.Drawing.Point(179, 493)
+        Me.Index7.Location = New System.Drawing.Point(215, 569)
         Me.Index7.Name = "Index7"
-        Me.Index7.Size = New System.Drawing.Size(85, 32)
+        Me.Index7.Size = New System.Drawing.Size(102, 37)
         Me.Index7.TabIndex = 96
         Me.Index7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -662,9 +672,9 @@ Public Class VendingMachine
         '
         Me.Btn7.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn7.Image = CType(resources.GetObject("Btn7.Image"), System.Drawing.Image)
-        Me.Btn7.Location = New System.Drawing.Point(173, 528)
+        Me.Btn7.Location = New System.Drawing.Point(208, 609)
         Me.Btn7.Name = "Btn7"
-        Me.Btn7.Size = New System.Drawing.Size(93, 32)
+        Me.Btn7.Size = New System.Drawing.Size(111, 37)
         Me.Btn7.TabIndex = 97
         Me.Btn7.Visible = False
         '
@@ -674,9 +684,9 @@ Public Class VendingMachine
         Me.Index8.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index8.Image = CType(resources.GetObject("Index8.Image"), System.Drawing.Image)
-        Me.Index8.Location = New System.Drawing.Point(328, 493)
+        Me.Index8.Location = New System.Drawing.Point(394, 569)
         Me.Index8.Name = "Index8"
-        Me.Index8.Size = New System.Drawing.Size(85, 32)
+        Me.Index8.Size = New System.Drawing.Size(102, 37)
         Me.Index8.TabIndex = 98
         Me.Index8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -684,9 +694,9 @@ Public Class VendingMachine
         '
         Me.Btn8.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn8.Image = CType(resources.GetObject("Btn8.Image"), System.Drawing.Image)
-        Me.Btn8.Location = New System.Drawing.Point(324, 528)
+        Me.Btn8.Location = New System.Drawing.Point(389, 609)
         Me.Btn8.Name = "Btn8"
-        Me.Btn8.Size = New System.Drawing.Size(93, 32)
+        Me.Btn8.Size = New System.Drawing.Size(111, 37)
         Me.Btn8.TabIndex = 99
         Me.Btn8.Visible = False
         '
@@ -696,9 +706,9 @@ Public Class VendingMachine
         Me.Index9.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index9.Image = CType(resources.GetObject("Index9.Image"), System.Drawing.Image)
-        Me.Index9.Location = New System.Drawing.Point(474, 493)
+        Me.Index9.Location = New System.Drawing.Point(569, 569)
         Me.Index9.Name = "Index9"
-        Me.Index9.Size = New System.Drawing.Size(85, 32)
+        Me.Index9.Size = New System.Drawing.Size(102, 37)
         Me.Index9.TabIndex = 100
         Me.Index9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -706,9 +716,9 @@ Public Class VendingMachine
         '
         Me.Btn9.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn9.Image = CType(resources.GetObject("Btn9.Image"), System.Drawing.Image)
-        Me.Btn9.Location = New System.Drawing.Point(466, 528)
+        Me.Btn9.Location = New System.Drawing.Point(559, 609)
         Me.Btn9.Name = "Btn9"
-        Me.Btn9.Size = New System.Drawing.Size(93, 32)
+        Me.Btn9.Size = New System.Drawing.Size(112, 37)
         Me.Btn9.TabIndex = 101
         Me.Btn9.Visible = False
         '
@@ -718,9 +728,9 @@ Public Class VendingMachine
         Me.Index10.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Index10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Index10.Image = CType(resources.GetObject("Index10.Image"), System.Drawing.Image)
-        Me.Index10.Location = New System.Drawing.Point(602, 493)
+        Me.Index10.Location = New System.Drawing.Point(722, 569)
         Me.Index10.Name = "Index10"
-        Me.Index10.Size = New System.Drawing.Size(85, 32)
+        Me.Index10.Size = New System.Drawing.Size(102, 37)
         Me.Index10.TabIndex = 102
         Me.Index10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -728,9 +738,9 @@ Public Class VendingMachine
         '
         Me.Btn10.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn10.Image = CType(resources.GetObject("Btn10.Image"), System.Drawing.Image)
-        Me.Btn10.Location = New System.Drawing.Point(597, 528)
+        Me.Btn10.Location = New System.Drawing.Point(716, 609)
         Me.Btn10.Name = "Btn10"
-        Me.Btn10.Size = New System.Drawing.Size(93, 32)
+        Me.Btn10.Size = New System.Drawing.Size(112, 37)
         Me.Btn10.TabIndex = 103
         Me.Btn10.Visible = False
         '
@@ -739,9 +749,9 @@ Public Class VendingMachine
         Me.QuarterImg.BackColor = System.Drawing.Color.White
         Me.QuarterImg.Cursor = System.Windows.Forms.Cursors.Hand
         Me.QuarterImg.Image = CType(resources.GetObject("QuarterImg.Image"), System.Drawing.Image)
-        Me.QuarterImg.Location = New System.Drawing.Point(809, 409)
+        Me.QuarterImg.Location = New System.Drawing.Point(971, 472)
         Me.QuarterImg.Name = "QuarterImg"
-        Me.QuarterImg.Size = New System.Drawing.Size(80, 72)
+        Me.QuarterImg.Size = New System.Drawing.Size(96, 83)
         Me.QuarterImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.QuarterImg.TabIndex = 53
         Me.QuarterImg.TabStop = False
@@ -755,7 +765,7 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(795, 587)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(954, 677)
         Me.AxWindowsMediaPlayer1.TabIndex = 1000
         Me.AxWindowsMediaPlayer1.Visible = False
         '
@@ -764,9 +774,9 @@ Public Class VendingMachine
         Me.picOpen.BackColor = System.Drawing.SystemColors.Control
         Me.picOpen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.picOpen.InitialImage = CType(resources.GetObject("picOpen.InitialImage"), System.Drawing.Image)
-        Me.picOpen.Location = New System.Drawing.Point(895, 12)
+        Me.picOpen.Location = New System.Drawing.Point(1074, 14)
         Me.picOpen.Name = "picOpen"
-        Me.picOpen.Size = New System.Drawing.Size(20, 20)
+        Me.picOpen.Size = New System.Drawing.Size(24, 23)
         Me.picOpen.TabIndex = 1001
         Me.picOpen.TabStop = False
         '
@@ -774,14 +784,21 @@ Public Class VendingMachine
         '
         Me.cboComPort.FormattingEnabled = True
         Me.cboComPort.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4"})
-        Me.cboComPort.Location = New System.Drawing.Point(824, 12)
+        Me.cboComPort.Location = New System.Drawing.Point(989, 14)
         Me.cboComPort.Name = "cboComPort"
-        Me.cboComPort.Size = New System.Drawing.Size(65, 21)
+        Me.cboComPort.Size = New System.Drawing.Size(78, 24)
         Me.cboComPort.TabIndex = 1002
+        '
+        'BackgroundWorker1
+        '
+        '
+        'UdpTimer
+        '
+        Me.UdpTimer.Interval = 1000
         '
         'VendingMachine
         '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
+        Me.AutoScaleBaseSize = New System.Drawing.Size(6, 15)
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(1008, 730)
         Me.Controls.Add(Me.cboComPort)
@@ -823,6 +840,7 @@ Public Class VendingMachine
         Me.MaximizeBox = False
         Me.Name = "VendingMachine"
         Me.Text = "Vending Machine"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.Pic_10, System.ComponentModel.ISupportInitialize).EndInit()
@@ -861,11 +879,17 @@ Public Class VendingMachine
             Me.Close()
         End If
         cboComPort.Items.AddRange(Portnames)
-        cboComPort.Text = "COM11"
+        cboComPort.Text = "COM19"
 
         OpenComPort()
 
-
+        If BackgroundWorker1.IsBusy = False Then
+            Dim myObj As New CSState
+            myObj.myUDPClient = New UdpClient(12344)
+            myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("192.168.11.170"), 12345) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
+            BackgroundWorker1.RunWorkerAsync(myObj)
+        End If
+        UdpTimer.Enabled = True
     End Sub
 
     'start mouse over behavior
@@ -936,7 +960,7 @@ Public Class VendingMachine
 
         MoneyReturnTB.Text = MoneyAvailable.ToString("C")
         MoneyDepositTB.Text = ""
-
+	SendBytes = MoneyReturnTB.Text
         MoneyAvailable = 0.0
 
     End Sub
@@ -1212,7 +1236,7 @@ Public Class VendingMachine
         With SerialPort1
 
             .ParityReplace = &H3B                    ' replace ";" when parity error occurs
-            .PortName = "COM11"
+            .PortName = "COM19"
             .BaudRate = 9600
             .Parity = IO.Ports.Parity.None
             .DataBits = 8
@@ -1259,5 +1283,32 @@ Public Class VendingMachine
         comOpen = False
         picOpen.BackColor = Color.Red
 
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Dim myObj As CSState = CType(e.Argument, CSState)
+        While True
+            Try
+                If myObj.myUDPClient.Available > 0 Then
+                    ReceiveBytes = Encoding.GetEncoding(0).GetString(myObj.myUDPClient.Receive(myObj.RemoteIpEndPoint))
+                End If
+                If String.IsNullOrEmpty(SendBytes) = False Then
+                    Dim myBytes As Byte()
+                    myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
+                    myObj.myUDPClient.Send(myBytes, myBytes.Length, myObj.RemoteIpEndPoint)
+                    SendBytes = String.Empty
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString)
+            End Try
+        End While
+    End Sub
+
+    Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
+        If String.IsNullOrEmpty(ReceiveBytes) = False Then
+            MoneyDepositTB.Text = ReceiveBytes
+            MoneyAvailable += Integer.Parse(ReceiveBytes)
+            ReceiveBytes = String.Empty
+        End If
     End Sub
 End Class
