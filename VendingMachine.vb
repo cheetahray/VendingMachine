@@ -1305,8 +1305,7 @@ Public Class VendingMachine
 
     Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
         If String.IsNullOrEmpty(ReceiveBytes) = False Then
-            MoneyAvailable += Integer.Parse(ReceiveBytes)
-            MoneyDepositTB.Text = MoneyAvailable.ToString
+            ChangeMoney(0, Integer.Parse(ReceiveBytes) / 100, 0, 0, 0)
             ReceiveBytes = String.Empty
         End If
     End Sub
