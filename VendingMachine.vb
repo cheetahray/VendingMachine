@@ -884,7 +884,7 @@ Public Class VendingMachine
         If BackgroundWorker1.IsBusy = False Then
             Dim myObj As New CSState
             myObj.myUDPClient = New UdpClient(12344)
-            myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("192.168.11.170"), 12345) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
+            myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("127.0.0.1"), 0) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
             BackgroundWorker1.RunWorkerAsync(myObj)
         End If
         UdpTimer.Enabled = True
@@ -952,13 +952,13 @@ Public Class VendingMachine
             Exit Sub
         Else
             Dim num As Integer = AvailableMoney / 50
-            MsgBox(num, MsgBoxStyle.Information, "找錢")
+            SendBytes = num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
         End If
 
 
         MoneyReturnTB.Text = MoneyAvailable.ToString("C")
         MoneyDepositTB.Text = ""
-	SendBytes = MoneyReturnTB.Text
+
         MoneyAvailable = 0.0
 
     End Sub
@@ -1061,7 +1061,6 @@ Public Class VendingMachine
         Call ResetComponents()
 
         ResetMoneyReturnTimer.Enabled = False
-        SendBytes = "play"
         '撥放影片
         PlayMovie()
 
@@ -1157,28 +1156,28 @@ Public Class VendingMachine
     End Sub
 
     Private Sub PlayMovie()
-        'If (ProductNum = 1) Then AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+        If (ProductNum >= 1 And ProductNum <= 10) Then SendBytes = "play"
         Select Case ProductNum
             Case 1
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 2
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 3
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 4
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 5
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 6
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 7
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 8
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 9
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
             Case 10
-                AxWindowsMediaPlayer1.URL = "C:/Wildlife.wmv"
+                AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
         End Select
     End Sub
     '按鈕隱藏
@@ -1305,7 +1304,12 @@ Public Class VendingMachine
 
     Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
         If String.IsNullOrEmpty(ReceiveBytes) = False Then
-            ChangeMoney(0, Integer.Parse(ReceiveBytes) / 100, 0, 0, 0)
+            If ReceiveBytes = "100" Then
+                ChangeMoney(0, Integer.Parse(ReceiveBytes) / 100, 0, 0, 0)
+                SendBytes = "100ok"
+            ElseIf ReceiveBytes = "50" Then
+                ChangeMoney(Integer.Parse(ReceiveBytes) / 50, 0, 0, 0, 0)
+            End If
             ReceiveBytes = String.Empty
         End If
     End Sub
