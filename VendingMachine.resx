@@ -564,8 +564,8 @@
   <data name="VendingMachineIMG.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAAEsCAIAAABi1XKVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCwAA
-        CwsBbQSEtwAAF5ZJREFUeF7tmne/ZklVRovPRM4555xzVBExJ8RANhLEDCiCAioyBjDnhPqhuPT0dL/3
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCgAA
+        CwoBv0NmUwAAF5ZJREFUeF7tmne/ZklVRovPRM4555xzVBExJ8RANhLEDCiCAioyBjDnhPqhuPT0dL/3
         3jecOlW161m7nvnVHz0951TteuautatP18PKw99V/I8TcAJOQC6Bhx2r6EpYHk7ACayewLvLwwnDtnIC
         TiA8AYIaNP0V/r/KBzonEJmA1cBJ4BHvKReHheUE+iXAYUPz+BBZ1UU1aD7Q74c1sm16rasEbAdIAprk
         Q6uysLYlAGHDFoNyuGLZ31MeUT+24Rp8orEdIAmsiNmG7yyKsdSrYYdNAl7xnywwCShiAKV3dNlZ7BAg
@@ -2202,5 +2202,8 @@
   </metadata>
   <metadata name="UdpTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>198, 17</value>
+  </metadata>
+  <metadata name="PrintDocument1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 54</value>
   </metadata>
 </root>

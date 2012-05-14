@@ -54,6 +54,7 @@ Public Class VendingMachine
     Friend WithEvents picOpen As System.Windows.Forms.PictureBox
     Friend WithEvents cboComPort As System.Windows.Forms.ComboBox
     Friend WithEvents UdpTimer As System.Windows.Forms.Timer
+    Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
     'Quantity of Items available
     Dim objRandom As New System.Random( _
    CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
@@ -169,6 +170,7 @@ Public Class VendingMachine
         Me.cboComPort = New System.Windows.Forms.ComboBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.UdpTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Panel2.SuspendLayout()
         CType(Me.Pic_10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pic_6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -796,6 +798,9 @@ Public Class VendingMachine
         '
         Me.UdpTimer.Interval = 1000
         '
+        'PrintDocument1
+        '
+        '
         'VendingMachine
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 15)
@@ -1156,7 +1161,10 @@ Public Class VendingMachine
     End Sub
 
     Private Sub PlayMovie()
-        If (ProductNum >= 1 And ProductNum <= 10) Then SendBytes = "play"
+        If (ProductNum >= 1 And ProductNum <= 10) Then
+            SendBytes = "play"
+            PrintDocument1.Print()
+        End If
         Select Case ProductNum
             Case 1
                 AxWindowsMediaPlayer1.URL = "D:/Wildlife.wmv"
@@ -1261,7 +1269,7 @@ Public Class VendingMachine
             picOpen.BackColor = Color.Green
             cboComPort.Enabled = False
         End If
-        
+
     End Sub
     'Esc Ãö³¬
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, ByVal keyData As System.Windows.Forms.Keys) As Boolean
@@ -1318,5 +1326,9 @@ Public Class VendingMachine
             End If
             ReceiveBytes = String.Empty
         End If
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        e.Graphics.DrawImage(New Bitmap("C:\Documents and Settings\All Users\Documents\My Pictures\Qrcodegen_image1.png"), New Point(72, 100))
     End Sub
 End Class
