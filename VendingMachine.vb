@@ -1293,7 +1293,12 @@ Public Class VendingMachine
                 If String.IsNullOrEmpty(SendBytes) = False Then
                     Dim myBytes As Byte()
                     myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
-                    myObj.myUDPClient.Send(myBytes, myBytes.Length, myObj.RemoteIpEndPoint)
+                    If SendBytes = "play" Or SendBytes = "done" Then
+                        myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345))
+                        myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12346))
+                    Else
+                        myObj.myUDPClient.Send(myBytes, myBytes.Length, myObj.RemoteIpEndPoint)
+                    End If
                     SendBytes = String.Empty
                 End If
             Catch ex As Exception
@@ -1309,6 +1314,7 @@ Public Class VendingMachine
                 SendBytes = "100ok"
             ElseIf ReceiveBytes = "50" Then
                 ChangeMoney(Integer.Parse(ReceiveBytes) / 50, 0, 0, 0, 0)
+                SendBytes = "50ok"
             End If
             ReceiveBytes = String.Empty
         End If
