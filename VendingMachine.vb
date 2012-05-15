@@ -524,7 +524,7 @@ Public Class VendingMachine
         '
         'ResetMoneyReturnTimer
         '
-        Me.ResetMoneyReturnTimer.Interval = 1000
+        Me.ResetMoneyReturnTimer.Interval = 100
         '
         'Index6
         '
@@ -763,7 +763,7 @@ Public Class VendingMachine
         '
         Me.AxWindowsMediaPlayer1.AllowDrop = True
         Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(0, 0)
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(-41, 0)
         Me.AxWindowsMediaPlayer1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
@@ -956,7 +956,10 @@ Public Class VendingMachine
             MoneyDepositTB.Text = ""
             Exit Sub
         Else
+            MoneyDepositTB.Text = ""
             Dim num As Integer = AvailableMoney / 50
+            MoneyAvailable = AvailableMoney = 0
+            Btn_Visible()
             SendBytes = num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
         End If
 
@@ -986,6 +989,7 @@ Public Class VendingMachine
 
             CalculateChange(MoneyAvailable)
             ResetMoneyReturnTimer.Enabled = True
+            Btn_Visible()
 
         Else
             MsgBox("You do not have any deposited money to return", MsgBoxStyle.Exclamation, "Zero Balance")
@@ -1086,9 +1090,9 @@ Public Class VendingMachine
             If comOpen Then SerialPort1.Write("1")
             '«ö¶sÁôÂÃ
             'ButtonName.Visible = False
-            Btn_Visible()
+            'Btn_Visible()
 
-            CalculateChange(MoneyAvailable)
+            'CalculateChange(MoneyAvailable)
 
             ResetMoneyReturnTimer.Enabled = True
 
@@ -1163,7 +1167,7 @@ Public Class VendingMachine
     Private Sub PlayMovie()
         If (ProductNum >= 1 And ProductNum <= 10) Then
             SendBytes = "play"
-            PrintDocument1.Print()
+            'PrintDocument1.Print()
         End If
         Select Case ProductNum
             Case 1
@@ -1226,8 +1230,13 @@ Public Class VendingMachine
     Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
 
         If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            CalculateChange(MoneyAvailable)
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
+
+            'PrintDocument1.Print()
+
+
             ProductNum = 0
             SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
