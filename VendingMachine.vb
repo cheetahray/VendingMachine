@@ -1428,7 +1428,7 @@ Public Class VendingMachine
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
 
-            'PrintDocument1.Print()
+            PrintDocument1.Print()
 
 
             ProductNum = 0
@@ -1581,7 +1581,7 @@ Public Class VendingMachine
 
     Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
         Dim path As String = Application.StartupPath & "\" & list_Print(ProductNum - 1)
-        MsgBox(path)
+        'MsgBox(path)
         e.Graphics.DrawImage(New Bitmap(path), New Point(10, 10))
     End Sub
 
