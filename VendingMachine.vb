@@ -18,6 +18,7 @@ Public Class VendingMachine
     Dim list_Print As New ArrayList
     Dim TotalNum As Integer
     Dim Page As Integer = 1
+    Dim oweMoney As Integer
     Dim ProductNum As Integer = 0 '商品編號
     Private comOpen As Boolean 'comPort
     Dim MoneyAvailable As Decimal = 0 ' Money deposited by user 
@@ -78,9 +79,15 @@ Public Class VendingMachine
     Friend WithEvents ProductName_8 As System.Windows.Forms.Label
     Friend WithEvents ProductName_7 As System.Windows.Forms.Label
     Friend WithEvents ProductName_6 As System.Windows.Forms.Label
+    Friend WithEvents MsgTimer As System.Windows.Forms.Timer
+    Friend WithEvents PrintError As System.Drawing.Printing.PrintDocument
+    Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintPreviewDialog
     'Quantity of Items available
     Dim objRandom As New System.Random( _
    CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
+
+    Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Integer
+    Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Integer, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
 
     Private Class CSState
         Public RemoteIpEndPoint As IPEndPoint
@@ -206,6 +213,9 @@ Public Class VendingMachine
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.btn_pre = New System.Windows.Forms.Button()
         Me.btn_next = New System.Windows.Forms.Button()
+        Me.MsgTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.PrintError = New System.Drawing.Printing.PrintDocument()
+        Me.PrintDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.Panel2.SuspendLayout()
         CType(Me.Pic_10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pic_6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -978,6 +988,23 @@ Public Class VendingMachine
         Me.btn_next.UseVisualStyleBackColor = False
         Me.btn_next.Visible = False
         '
+        'MsgTimer
+        '
+        Me.MsgTimer.Interval = 3000
+        '
+        'PrintError
+        '
+        '
+        'PrintDialog1
+        '
+        Me.PrintDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PrintDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PrintDialog1.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PrintDialog1.Enabled = True
+        Me.PrintDialog1.Icon = CType(resources.GetObject("PrintDialog1.Icon"), System.Drawing.Icon)
+        Me.PrintDialog1.Name = "PrintDialog1"
+        Me.PrintDialog1.Visible = False
+        '
         'VendingMachine
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -1228,8 +1255,6 @@ Public Class VendingMachine
 
         ChangeMoney(0, 1, 0, 0, 0)
 
-
-
     End Sub
 
 
@@ -1417,12 +1442,10 @@ Public Class VendingMachine
     Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
 
         If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            PrintDocument1.Print()
             CalculateChange(MoneyAvailable)
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
-
-            PrintDocument1.Print()
-
 
             ProductNum = 0
             SendBytes = "done"
@@ -1519,6 +1542,8 @@ Public Class VendingMachine
             ElseIf ReceiveBytes = "50" Then
                 ChangeMoney(Integer.Parse(ReceiveBytes) / 50, 0, 0, 0, 0)
                 SendBytes = "50ok"
+            ElseIf CInt(ReceiveBytes) < 0 Then
+                CalculateError(CInt(ReceiveBytes))
             End If
             ReceiveBytes = String.Empty
         End If
@@ -1725,5 +1750,57 @@ Public Class VendingMachine
         End If
 
         PageSetting()
+    End Sub
+
+    Private Sub CalculateError(ByVal money As Integer)
+        oweMoney = Math.Abs(money)
+        PrintDialog1.Document = PrintError
+        If PrintDialog1.ShowDialog() = DialogResult.OK Then
+            'PrintError.Print()
+        End If
+        MsgTimer.Enabled = True
+        MessageBox.Show("販賣機餘額不足，請領取收據至櫃檯兌換找零" & oweMoney & "元。", "餘額不足", MessageBoxButtons.OK)
+    End Sub
+
+    Private Sub MsgTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MsgTimer.Tick
+
+        Dim hWnd As Integer
+        hWnd = FindWindow(vbNullString, "餘額不足")
+        If hWnd <> 0 Then
+            PostMessage(hWnd, &H10, 0, 0)
+        End If
+
+        MsgTimer.Enabled = False
+    End Sub
+
+    Private Sub PrintError_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintError.PrintPage
+        'e.Graphics.DrawImage(New Bitmap(path), New Point(0, 0))
+        Dim dateFont As New Font("Arial", 8)
+        Dim prtFont As New Font("微軟正黑體", 12)
+
+        'Time Location
+        Dim right As Single = e.MarginBounds.Right - 50
+        Dim top As Single = 50
+
+        ' Create rectangle for drawing.
+        Dim x As Single = 20
+        Dim y As Single = 70
+        Dim width As Single = e.MarginBounds.Height
+        Dim height As Single = e.MarginBounds.Width
+        Dim drawRect As New RectangleF(x, y, width, height)
+
+        ' Set format of string.
+        Dim drawFormat As New StringFormat
+        drawFormat.Alignment = StringAlignment.Near
+
+        Dim dtNow As Date = Now()
+        Dim content = "很抱歉，販賣機內零錢餘額不足。" & Chr(13) & Chr(10) & _
+            "請持本收據至噪咖櫃檯兌換找零" & oweMoney & "元"
+
+        e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\noiseKitchenKNT.png"), New Point(10, 10))
+        e.Graphics.DrawString(dtNow.ToLocalTime().ToString(), dateFont, Brushes.Black, right, top)
+        e.Graphics.DrawString(content, prtFont, Brushes.Black, drawRect, drawFormat)
+
+        oweMoney = 0
     End Sub
 End Class
