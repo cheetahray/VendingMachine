@@ -1193,12 +1193,11 @@ Public Class VendingMachine
         If (AvailableMoney = 0) Then
             MoneyAvailable = 0
             MoneyDepositTB.Text = ""
-            Exit Sub
+            'Exit Sub
         Else
             MoneyDepositTB.Text = ""
             Dim num As Integer = AvailableMoney / 50
             MoneyAvailable = AvailableMoney = 0
-            Btn_Show()
             SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
         End If
 
@@ -1207,6 +1206,7 @@ Public Class VendingMachine
         MoneyDepositTB.Text = ""
 
         MoneyAvailable = 0.0
+        Btn_Show()
 
     End Sub
 
@@ -1413,7 +1413,6 @@ Public Class VendingMachine
 
     '按鈕狀態
     Private Sub Btn_Show()
-
         Btn1.Visible = MoneyAvailable >= Val(Price1.Text) And Price1.Text <> ""
         Btn2.Visible = MoneyAvailable >= Val(Price2.Text) And Price2.Text <> ""
         Btn3.Visible = MoneyAvailable >= Val(Price3.Text) And Price3.Text <> ""
@@ -1442,11 +1441,10 @@ Public Class VendingMachine
     Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
 
         If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
-            'PrintDocument1.Print()
+            UdpTimer.Enabled = True
             CalculateChange(MoneyAvailable)
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
-            UdpTimer.Enabled = True
             ProductNum = 0
             SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
@@ -1766,11 +1764,11 @@ Public Class VendingMachine
         oweMoney = Math.Abs(money)
         'PrintDialog1.Document = PrintError
         'If PrintDialog1.ShowDialog() = DialogResult.OK Then
-
+        PrintError.Print()
         'End If
         MsgTimer.Enabled = True
         MessageBox.Show("販賣機餘額不足，請領取收據至櫃檯兌換找零" & oweMoney & "元。", "餘額不足", MessageBoxButtons.OK)
-        '1` `   PrintError.Print()
+
     End Sub
 
     Private Sub MsgTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MsgTimer.Tick
@@ -1807,11 +1805,12 @@ Public Class VendingMachine
         Dim dtNow As Date = Now()
         Dim content = "很抱歉，販賣機內零錢餘額" & Chr(13) & Chr(10) & _
             "不足。請持本收據至噪咖櫃" & Chr(13) & Chr(10) & _
-            "檯兌換找零" & oweMoney & "元" & Chr(13) & Chr(10) & Chr(13) & Chr(10)
+            "檯兌換找零" & oweMoney & "元" & Chr(13) & Chr(10) & " " & Chr(13) & Chr(10) & " " & Chr(13) & Chr(10) & " "
 
         e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\noiseKitchenKNT.jpg"), New Point(10, 10))
         e.Graphics.DrawString(dtNow.ToLocalTime().ToString(), dateFont, Brushes.Black, right, top)
         e.Graphics.DrawString(content, prtFont, Brushes.Black, drawRect, drawFormat)
+        e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\white.JPG"), New Point(10, 150))
 
         oweMoney = 0
     End Sub
