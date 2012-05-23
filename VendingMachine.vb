@@ -1199,7 +1199,7 @@ Public Class VendingMachine
             Dim num As Integer = AvailableMoney / 50
             MoneyAvailable = AvailableMoney = 0
             Btn_Show()
-            SendBytes = num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
+            SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
         End If
 
 
@@ -1404,7 +1404,7 @@ Public Class VendingMachine
     Private Sub PlayMovie()
         If (ProductNum >= 1 And ProductNum <= 10) Then
             SendBytes = "play"
-
+            UdpTimer.Enabled = False
             'MsgBox(Application.StartupPath & "\" & list_Viedo((ProductNum - 1)))
             AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Viedo((ProductNum - 1))
         End If
@@ -1442,11 +1442,11 @@ Public Class VendingMachine
     Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
 
         If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
-            PrintDocument1.Print()
+            'PrintDocument1.Print()
             CalculateChange(MoneyAvailable)
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
-
+            UdpTimer.Enabled = True
             ProductNum = 0
             SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
@@ -1519,11 +1519,15 @@ Public Class VendingMachine
                 End If
                 If String.IsNullOrEmpty(SendBytes) = False Then
                     Dim myBytes As Byte()
-                    myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
                     If SendBytes = "play" Or SendBytes = "done" Then
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12346))
+                    ElseIf SendBytes.StartsWith("@@") Then
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes.Substring("@@".Length)))
+                        myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345))
                     Else
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, myObj.RemoteIpEndPoint)
                     End If
                     SendBytes = String.Empty
@@ -1536,16 +1540,22 @@ Public Class VendingMachine
 
     Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
         If String.IsNullOrEmpty(ReceiveBytes) = False Then
+            Dim intrec As Integer
             If ReceiveBytes = "100" Then
-                ChangeMoney(0, Integer.Parse(ReceiveBytes) / 100, 0, 0, 0)
+                intrec = Integer.Parse(ReceiveBytes) / 100
+                ReceiveBytes = String.Empty
+                ChangeMoney(0, intrec, 0, 0, 0)
                 SendBytes = "100ok"
             ElseIf ReceiveBytes = "50" Then
-                ChangeMoney(Integer.Parse(ReceiveBytes) / 50, 0, 0, 0, 0)
+                intrec = Integer.Parse(ReceiveBytes) / 50
+                ReceiveBytes = String.Empty
+                ChangeMoney(intrec, 0, 0, 0, 0)
                 SendBytes = "50ok"
-            ElseIf CInt(ReceiveBytes) < 0 Then
-                CalculateError(CInt(ReceiveBytes))
+            ElseIf ReceiveBytes.StartsWith("-") Then
+                intrec = Integer.Parse(ReceiveBytes)
+                ReceiveBytes = String.Empty
+                CalculateError(intrec)
             End If
-            ReceiveBytes = String.Empty
         End If
     End Sub
 
@@ -1754,12 +1764,13 @@ Public Class VendingMachine
 
     Private Sub CalculateError(ByVal money As Integer)
         oweMoney = Math.Abs(money)
-        PrintDialog1.Document = PrintError
-        If PrintDialog1.ShowDialog() = DialogResult.OK Then
-            'PrintError.Print()
-        End If
+        'PrintDialog1.Document = PrintError
+        'If PrintDialog1.ShowDialog() = DialogResult.OK Then
+
+        'End If
         MsgTimer.Enabled = True
         MessageBox.Show("販賣機餘額不足，請領取收據至櫃檯兌換找零" & oweMoney & "元。", "餘額不足", MessageBoxButtons.OK)
+        '1` `   PrintError.Print()
     End Sub
 
     Private Sub MsgTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MsgTimer.Tick
@@ -1779,7 +1790,7 @@ Public Class VendingMachine
         Dim prtFont As New Font("微軟正黑體", 12)
 
         'Time Location
-        Dim right As Single = e.MarginBounds.Right - 50
+        Dim right As Single = e.MarginBounds.Right - 80
         Dim top As Single = 50
 
         ' Create rectangle for drawing.
@@ -1794,10 +1805,11 @@ Public Class VendingMachine
         drawFormat.Alignment = StringAlignment.Near
 
         Dim dtNow As Date = Now()
-        Dim content = "很抱歉，販賣機內零錢餘額不足。" & Chr(13) & Chr(10) & _
-            "請持本收據至噪咖櫃檯兌換找零" & oweMoney & "元"
+        Dim content = "很抱歉，販賣機內零錢餘額" & Chr(13) & Chr(10) & _
+            "不足。請持本收據至噪咖櫃" & Chr(13) & Chr(10) & _
+            "檯兌換找零" & oweMoney & "元" & Chr(13) & Chr(10) & Chr(13) & Chr(10)
 
-        e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\noiseKitchenKNT.png"), New Point(10, 10))
+        e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\noiseKitchenKNT.jpg"), New Point(10, 10))
         e.Graphics.DrawString(dtNow.ToLocalTime().ToString(), dateFont, Brushes.Black, right, top)
         e.Graphics.DrawString(content, prtFont, Brushes.Black, drawRect, drawFormat)
 
