@@ -1443,6 +1443,7 @@ Public Class VendingMachine
         If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             CalculateChange(MoneyAvailable)
+            PrintDocument1.Print()
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer1.Visible = False
             ProductNum = 0
@@ -1779,6 +1780,7 @@ Public Class VendingMachine
             PostMessage(hWnd, &H10, 0, 0)
         End If
 
+        oweMoney = 0
         MsgTimer.Enabled = False
     End Sub
 
@@ -1810,8 +1812,8 @@ Public Class VendingMachine
         e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\noiseKitchenKNT.jpg"), New Point(10, 10))
         e.Graphics.DrawString(dtNow.ToLocalTime().ToString(), dateFont, Brushes.Black, right, top)
         e.Graphics.DrawString(content, prtFont, Brushes.Black, drawRect, drawFormat)
-        e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\white.JPG"), New Point(10, 150))
+        'e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\white.JPG"), New Point(10, 150))
 
-        oweMoney = 0
+
     End Sub
 End Class
