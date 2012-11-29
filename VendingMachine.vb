@@ -25,18 +25,26 @@ Public Class VendingMachine
     Dim ItemCost As Decimal = 0.0       'Cost of the item
     Dim ItemQuantity As Integer = 0
     Dim ReceiveBytes, SendBytes As String
+    'Quantity of Items available
+    Dim objRandom As New System.Random(CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
+    Dim formGraphics As System.Drawing.Graphics
+    Dim drawFont As System.Drawing.Font
+    Dim drawBrush As System.Drawing.SolidBrush
+    Dim drawFormat As System.Drawing.StringFormat
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker     'Quantity of Items available
-    Friend WithEvents Pic_3 As System.Windows.Forms.PictureBox
     Friend WithEvents Price1 As System.Windows.Forms.Label
-    Friend WithEvents Index1 As System.Windows.Forms.Label
     Friend WithEvents Btn1 As System.Windows.Forms.Button
     Friend WithEvents Price2 As System.Windows.Forms.Label
-    Friend WithEvents Index2 As System.Windows.Forms.Label
     Friend WithEvents Btn2 As System.Windows.Forms.Button
     Friend WithEvents Price3 As System.Windows.Forms.Label
-    Friend WithEvents Index3 As System.Windows.Forms.Label
     Friend WithEvents Btn3 As System.Windows.Forms.Button
+    Friend WithEvents AxWindowsMediaPlayer0 As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents AxWindowsMediaPlayer1 As AxWMPLib.AxWindowsMediaPlayer
+    Friend WithEvents AxWindowsMediaPlayer2 As AxWMPLib.AxWindowsMediaPlayer
+    Friend WithEvents AxWindowsMediaPlayer3 As AxWMPLib.AxWindowsMediaPlayer
+    Friend WithEvents AxWindowsMediaPlayer4 As AxWMPLib.AxWindowsMediaPlayer
+    Friend WithEvents AxWindowsMediaPlayer5 As AxWMPLib.AxWindowsMediaPlayer
+    Friend WithEvents AxWindowsMediaPlayer6 As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
     Friend WithEvents UdpTimer As System.Windows.Forms.Timer
     Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
@@ -48,25 +56,15 @@ Public Class VendingMachine
     Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents cboComPort As System.Windows.Forms.ComboBox
     Friend WithEvents picOpen As System.Windows.Forms.PictureBox
-    Friend WithEvents Pic_4 As System.Windows.Forms.PictureBox
-    Friend WithEvents Index6 As System.Windows.Forms.Label
     Friend WithEvents Price5 As System.Windows.Forms.Label
-    Friend WithEvents Pic_6 As System.Windows.Forms.PictureBox
     Friend WithEvents Price6 As System.Windows.Forms.Label
     Friend WithEvents Price4 As System.Windows.Forms.Label
-    Friend WithEvents Index5 As System.Windows.Forms.Label
     Friend WithEvents Btn6 As System.Windows.Forms.Button
-    Friend WithEvents Index4 As System.Windows.Forms.Label
     Friend WithEvents Btn5 As System.Windows.Forms.Button
     Friend WithEvents Btn4 As System.Windows.Forms.Button
     Friend WithEvents ProductName_6 As System.Windows.Forms.Label
     Friend WithEvents ProductName_5 As System.Windows.Forms.Label
     Friend WithEvents ProductName_4 As System.Windows.Forms.Label
-    Friend WithEvents Pic_5 As System.Windows.Forms.PictureBox
-    'Quantity of Items available
-    Dim objRandom As New System.Random( _
-   CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
-
     Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Integer
     Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Integer, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
 
@@ -103,8 +101,6 @@ Public Class VendingMachine
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    Friend WithEvents Pic_2 As System.Windows.Forms.PictureBox
-    Friend WithEvents Pic_1 As System.Windows.Forms.PictureBox
     Friend WithEvents MoneyReturnTB As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents MoneyDepositTB As System.Windows.Forms.TextBox
@@ -113,27 +109,27 @@ Public Class VendingMachine
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VendingMachine))
-        Me.Pic_2 = New System.Windows.Forms.PictureBox()
         Me.ProductName_3 = New System.Windows.Forms.Label()
         Me.ProductName_2 = New System.Windows.Forms.Label()
         Me.ProductName_1 = New System.Windows.Forms.Label()
         Me.Price3 = New System.Windows.Forms.Label()
         Me.Price2 = New System.Windows.Forms.Label()
         Me.Price1 = New System.Windows.Forms.Label()
-        Me.Pic_3 = New System.Windows.Forms.PictureBox()
-        Me.Pic_1 = New System.Windows.Forms.PictureBox()
         Me.MoneyReturnTB = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.MoneyDepositTB = New System.Windows.Forms.TextBox()
         Me.ChangeReturnBTN = New System.Windows.Forms.Button()
         Me.ResetMoneyReturnTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.Index1 = New System.Windows.Forms.Label()
         Me.Btn1 = New System.Windows.Forms.Button()
-        Me.Index2 = New System.Windows.Forms.Label()
         Me.Btn2 = New System.Windows.Forms.Button()
-        Me.Index3 = New System.Windows.Forms.Label()
         Me.Btn3 = New System.Windows.Forms.Button()
+        Me.AxWindowsMediaPlayer0 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.AxWindowsMediaPlayer2 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.AxWindowsMediaPlayer3 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.AxWindowsMediaPlayer4 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.AxWindowsMediaPlayer5 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.AxWindowsMediaPlayer6 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.UdpTimer = New System.Windows.Forms.Timer(Me.components)
@@ -143,46 +139,30 @@ Public Class VendingMachine
         Me.PrintDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.cboComPort = New System.Windows.Forms.ComboBox()
         Me.picOpen = New System.Windows.Forms.PictureBox()
-        Me.Pic_4 = New System.Windows.Forms.PictureBox()
-        Me.Index6 = New System.Windows.Forms.Label()
         Me.Price5 = New System.Windows.Forms.Label()
-        Me.Pic_6 = New System.Windows.Forms.PictureBox()
         Me.Price6 = New System.Windows.Forms.Label()
         Me.Price4 = New System.Windows.Forms.Label()
-        Me.Index5 = New System.Windows.Forms.Label()
         Me.Btn6 = New System.Windows.Forms.Button()
-        Me.Index4 = New System.Windows.Forms.Label()
         Me.Btn5 = New System.Windows.Forms.Button()
         Me.Btn4 = New System.Windows.Forms.Button()
         Me.ProductName_6 = New System.Windows.Forms.Label()
         Me.ProductName_5 = New System.Windows.Forms.Label()
         Me.ProductName_4 = New System.Windows.Forms.Label()
-        Me.Pic_5 = New System.Windows.Forms.PictureBox()
-        CType(Me.Pic_2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic_3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic_1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer0, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic_4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic_6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic_5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Pic_2
-        '
-        Me.Pic_2.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_2.ErrorImage = Nothing
-        Me.Pic_2.Location = New System.Drawing.Point(285, 333)
-        Me.Pic_2.Name = "Pic_2"
-        Me.Pic_2.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_2.TabIndex = 0
-        Me.Pic_2.TabStop = False
         '
         'ProductName_3
         '
         Me.ProductName_3.AutoSize = True
         Me.ProductName_3.BackColor = System.Drawing.Color.White
-        Me.ProductName_3.Location = New System.Drawing.Point(333, 189)
+        Me.ProductName_3.Location = New System.Drawing.Point(501, 96)
         Me.ProductName_3.Name = "ProductName_3"
         Me.ProductName_3.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_3.TabIndex = 91
@@ -194,7 +174,7 @@ Public Class VendingMachine
         '
         Me.ProductName_2.AutoSize = True
         Me.ProductName_2.BackColor = System.Drawing.Color.White
-        Me.ProductName_2.Location = New System.Drawing.Point(399, 345)
+        Me.ProductName_2.Location = New System.Drawing.Point(501, 356)
         Me.ProductName_2.Name = "ProductName_2"
         Me.ProductName_2.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_2.TabIndex = 91
@@ -206,7 +186,7 @@ Public Class VendingMachine
         '
         Me.ProductName_1.AutoSize = True
         Me.ProductName_1.BackColor = System.Drawing.Color.White
-        Me.ProductName_1.Location = New System.Drawing.Point(357, 577)
+        Me.ProductName_1.Location = New System.Drawing.Point(501, 610)
         Me.ProductName_1.Name = "ProductName_1"
         Me.ProductName_1.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_1.TabIndex = 91
@@ -218,7 +198,7 @@ Public Class VendingMachine
         '
         Me.Price3.AutoSize = True
         Me.Price3.BackColor = System.Drawing.Color.White
-        Me.Price3.Location = New System.Drawing.Point(417, 184)
+        Me.Price3.Location = New System.Drawing.Point(501, 137)
         Me.Price3.Name = "Price3"
         Me.Price3.Size = New System.Drawing.Size(25, 13)
         Me.Price3.TabIndex = 88
@@ -229,7 +209,7 @@ Public Class VendingMachine
         '
         Me.Price2.AutoSize = True
         Me.Price2.BackColor = System.Drawing.Color.White
-        Me.Price2.Location = New System.Drawing.Point(417, 383)
+        Me.Price2.Location = New System.Drawing.Point(501, 389)
         Me.Price2.Name = "Price2"
         Me.Price2.Size = New System.Drawing.Size(25, 13)
         Me.Price2.TabIndex = 87
@@ -240,31 +220,12 @@ Public Class VendingMachine
         '
         Me.Price1.AutoSize = True
         Me.Price1.BackColor = System.Drawing.Color.White
-        Me.Price1.Location = New System.Drawing.Point(377, 631)
+        Me.Price1.Location = New System.Drawing.Point(501, 649)
         Me.Price1.Name = "Price1"
         Me.Price1.Size = New System.Drawing.Size(25, 13)
         Me.Price1.TabIndex = 86
         Me.Price1.Text = "100"
         Me.Price1.Visible = False
-        '
-        'Pic_3
-        '
-        Me.Pic_3.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_3.Location = New System.Drawing.Point(336, 109)
-        Me.Pic_3.Name = "Pic_3"
-        Me.Pic_3.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Pic_3.TabIndex = 2
-        Me.Pic_3.TabStop = False
-        '
-        'Pic_1
-        '
-        Me.Pic_1.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_1.Location = New System.Drawing.Point(271, 575)
-        Me.Pic_1.Name = "Pic_1"
-        Me.Pic_1.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_1.TabIndex = 2
-        Me.Pic_1.TabStop = False
         '
         'MoneyReturnTB
         '
@@ -277,35 +238,41 @@ Public Class VendingMachine
         Me.MoneyReturnTB.Size = New System.Drawing.Size(104, 22)
         Me.MoneyReturnTB.TabIndex = 47
         Me.MoneyReturnTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.MoneyReturnTB.Visible = False
         '
         'Label2
         '
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Maroon
-        Me.Label2.Location = New System.Drawing.Point(12, 272)
+        Me.Label2.Location = New System.Drawing.Point(9, 292)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(96, 14)
         Me.Label2.TabIndex = 48
         Me.Label2.Text = "Money Returned:"
+        Me.Label2.Visible = False
         '
         'MoneyDepositTB
         '
         Me.MoneyDepositTB.BackColor = System.Drawing.Color.Silver
-        Me.MoneyDepositTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MoneyDepositTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte), True)
         Me.MoneyDepositTB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.MoneyDepositTB.Location = New System.Drawing.Point(15, 377)
+        Me.MoneyDepositTB.Location = New System.Drawing.Point(55, 401)
+        Me.MoneyDepositTB.MaxLength = 32
+        Me.MoneyDepositTB.Multiline = True
         Me.MoneyDepositTB.Name = "MoneyDepositTB"
         Me.MoneyDepositTB.ReadOnly = True
-        Me.MoneyDepositTB.Size = New System.Drawing.Size(68, 26)
+        Me.MoneyDepositTB.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.MoneyDepositTB.Size = New System.Drawing.Size(27, 80)
         Me.MoneyDepositTB.TabIndex = 50
+        Me.MoneyDepositTB.Text = "50"
         Me.MoneyDepositTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.MoneyDepositTB.Visible = False
         '
         'ChangeReturnBTN
         '
         Me.ChangeReturnBTN.BackColor = System.Drawing.Color.Silver
-        Me.ChangeReturnBTN.Enabled = False
         Me.ChangeReturnBTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ChangeReturnBTN.Location = New System.Drawing.Point(13, 426)
+        Me.ChangeReturnBTN.Location = New System.Drawing.Point(12, 184)
         Me.ChangeReturnBTN.Name = "ChangeReturnBTN"
         Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 35)
         Me.ChangeReturnBTN.TabIndex = 58
@@ -316,83 +283,115 @@ Public Class VendingMachine
         'ResetMoneyReturnTimer
         '
         '
-        'Index1
-        '
-        Me.Index1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index1.Image = CType(resources.GetObject("Index1.Image"), System.Drawing.Image)
-        Me.Index1.Location = New System.Drawing.Point(518, 567)
-        Me.Index1.Name = "Index1"
-        Me.Index1.Size = New System.Drawing.Size(26, 114)
-        Me.Index1.TabIndex = 61
-        Me.Index1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Btn1
         '
+        Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn1.Image = CType(resources.GetObject("Btn1.Image"), System.Drawing.Image)
-        Me.Btn1.Location = New System.Drawing.Point(470, 577)
+        Me.Btn1.Location = New System.Drawing.Point(435, 580)
         Me.Btn1.Name = "Btn1"
-        Me.Btn1.Size = New System.Drawing.Size(31, 114)
+        Me.Btn1.Size = New System.Drawing.Size(50, 123)
         Me.Btn1.TabIndex = 86
+        Me.Btn1.UseVisualStyleBackColor = False
         Me.Btn1.Visible = False
-        '
-        'Index2
-        '
-        Me.Index2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index2.Image = CType(resources.GetObject("Index2.Image"), System.Drawing.Image)
-        Me.Index2.Location = New System.Drawing.Point(501, 327)
-        Me.Index2.Name = "Index2"
-        Me.Index2.Size = New System.Drawing.Size(24, 101)
-        Me.Index2.TabIndex = 87
-        Me.Index2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Btn2
         '
+        Me.Btn2.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn2.Image = CType(resources.GetObject("Btn2.Image"), System.Drawing.Image)
-        Me.Btn2.Location = New System.Drawing.Point(460, 333)
+        Me.Btn2.Location = New System.Drawing.Point(435, 322)
         Me.Btn2.Name = "Btn2"
-        Me.Btn2.Size = New System.Drawing.Size(35, 101)
+        Me.Btn2.Size = New System.Drawing.Size(50, 123)
         Me.Btn2.TabIndex = 88
+        Me.Btn2.UseVisualStyleBackColor = False
         Me.Btn2.Visible = False
-        '
-        'Index3
-        '
-        Me.Index3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index3.Image = CType(resources.GetObject("Index3.Image"), System.Drawing.Image)
-        Me.Index3.Location = New System.Drawing.Point(501, 65)
-        Me.Index3.Name = "Index3"
-        Me.Index3.Size = New System.Drawing.Size(27, 101)
-        Me.Index3.TabIndex = 89
-        Me.Index3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Btn3
         '
+        Me.Btn3.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn3.Image = CType(resources.GetObject("Btn3.Image"), System.Drawing.Image)
-        Me.Btn3.Location = New System.Drawing.Point(444, 77)
+        Me.Btn3.Location = New System.Drawing.Point(435, 64)
         Me.Btn3.Name = "Btn3"
-        Me.Btn3.Size = New System.Drawing.Size(33, 101)
+        Me.Btn3.Size = New System.Drawing.Size(50, 123)
         Me.Btn3.TabIndex = 90
+        Me.Btn3.UseVisualStyleBackColor = False
         Me.Btn3.Visible = False
+        '
+        'AxWindowsMediaPlayer0
+        '
+        Me.AxWindowsMediaPlayer0.Enabled = True
+        Me.AxWindowsMediaPlayer0.Location = New System.Drawing.Point(0, 0)
+        Me.AxWindowsMediaPlayer0.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer0.Name = "AxWindowsMediaPlayer0"
+        Me.AxWindowsMediaPlayer0.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer0.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(150, 150)
+        Me.AxWindowsMediaPlayer0.TabIndex = 1000
+        Me.AxWindowsMediaPlayer0.TabStop = False
         '
         'AxWindowsMediaPlayer1
         '
         Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(0, 0)
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(139, 540)
         Me.AxWindowsMediaPlayer1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(50, 50)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(278, 154)
         Me.AxWindowsMediaPlayer1.TabIndex = 1000
         Me.AxWindowsMediaPlayer1.TabStop = False
-        Me.AxWindowsMediaPlayer1.Visible = False
+        '
+        'AxWindowsMediaPlayer2
+        '
+        Me.AxWindowsMediaPlayer2.Enabled = True
+        Me.AxWindowsMediaPlayer2.Location = New System.Drawing.Point(139, 309)
+        Me.AxWindowsMediaPlayer2.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer2.Name = "AxWindowsMediaPlayer2"
+        Me.AxWindowsMediaPlayer2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer2.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer2.Size = New System.Drawing.Size(278, 150)
+        Me.AxWindowsMediaPlayer2.TabIndex = 1000
+        Me.AxWindowsMediaPlayer2.TabStop = False
+        '
+        'AxWindowsMediaPlayer3
+        '
+        Me.AxWindowsMediaPlayer3.Enabled = True
+        Me.AxWindowsMediaPlayer3.Location = New System.Drawing.Point(139, 82)
+        Me.AxWindowsMediaPlayer3.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer3.Name = "AxWindowsMediaPlayer3"
+        Me.AxWindowsMediaPlayer3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer3.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer3.Size = New System.Drawing.Size(278, 150)
+        Me.AxWindowsMediaPlayer3.TabIndex = 1000
+        Me.AxWindowsMediaPlayer3.TabStop = False
+        '
+        'AxWindowsMediaPlayer4
+        '
+        Me.AxWindowsMediaPlayer4.Enabled = True
+        Me.AxWindowsMediaPlayer4.Location = New System.Drawing.Point(628, 540)
+        Me.AxWindowsMediaPlayer4.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer4.Name = "AxWindowsMediaPlayer4"
+        Me.AxWindowsMediaPlayer4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer4.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer4.Size = New System.Drawing.Size(315, 154)
+        Me.AxWindowsMediaPlayer4.TabIndex = 1000
+        Me.AxWindowsMediaPlayer4.TabStop = False
+        '
+        'AxWindowsMediaPlayer5
+        '
+        Me.AxWindowsMediaPlayer5.Enabled = True
+        Me.AxWindowsMediaPlayer5.Location = New System.Drawing.Point(628, 309)
+        Me.AxWindowsMediaPlayer5.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer5.Name = "AxWindowsMediaPlayer5"
+        Me.AxWindowsMediaPlayer5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer5.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer5.Size = New System.Drawing.Size(315, 150)
+        Me.AxWindowsMediaPlayer5.TabIndex = 1000
+        Me.AxWindowsMediaPlayer5.TabStop = False
+        '
+        'AxWindowsMediaPlayer6
+        '
+        Me.AxWindowsMediaPlayer6.Enabled = True
+        Me.AxWindowsMediaPlayer6.Location = New System.Drawing.Point(628, 83)
+        Me.AxWindowsMediaPlayer6.Margin = New System.Windows.Forms.Padding(0)
+        Me.AxWindowsMediaPlayer6.Name = "AxWindowsMediaPlayer6"
+        Me.AxWindowsMediaPlayer6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer6.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer6.Size = New System.Drawing.Size(315, 150)
+        Me.AxWindowsMediaPlayer6.TabIndex = 1000
+        Me.AxWindowsMediaPlayer6.TabStop = False
         '
         'BackgroundWorker1
         '
@@ -425,7 +424,7 @@ Public Class VendingMachine
         '
         Me.cboComPort.FormattingEnabled = True
         Me.cboComPort.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4"})
-        Me.cboComPort.Location = New System.Drawing.Point(824, 10)
+        Me.cboComPort.Location = New System.Drawing.Point(594, 12)
         Me.cboComPort.Name = "cboComPort"
         Me.cboComPort.Size = New System.Drawing.Size(65, 21)
         Me.cboComPort.TabIndex = 1002
@@ -436,59 +435,29 @@ Public Class VendingMachine
         Me.picOpen.BackColor = System.Drawing.SystemColors.Control
         Me.picOpen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.picOpen.InitialImage = CType(resources.GetObject("picOpen.InitialImage"), System.Drawing.Image)
-        Me.picOpen.Location = New System.Drawing.Point(895, 11)
+        Me.picOpen.Location = New System.Drawing.Point(692, 12)
         Me.picOpen.Name = "picOpen"
         Me.picOpen.Size = New System.Drawing.Size(20, 18)
         Me.picOpen.TabIndex = 1001
         Me.picOpen.TabStop = False
         Me.picOpen.Visible = False
         '
-        'Pic_4
-        '
-        Me.Pic_4.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_4.Location = New System.Drawing.Point(764, 542)
-        Me.Pic_4.Name = "Pic_4"
-        Me.Pic_4.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_4.TabIndex = 2
-        Me.Pic_4.TabStop = False
-        '
-        'Index6
-        '
-        Me.Index6.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index6.Image = CType(resources.GetObject("Index6.Image"), System.Drawing.Image)
-        Me.Index6.Location = New System.Drawing.Point(1032, 85)
-        Me.Index6.Name = "Index6"
-        Me.Index6.Size = New System.Drawing.Size(28, 112)
-        Me.Index6.TabIndex = 74
-        Me.Index6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Price5
         '
         Me.Price5.AutoSize = True
         Me.Price5.BackColor = System.Drawing.Color.White
-        Me.Price5.Location = New System.Drawing.Point(911, 398)
+        Me.Price5.Location = New System.Drawing.Point(1029, 389)
         Me.Price5.Name = "Price5"
         Me.Price5.Size = New System.Drawing.Size(25, 13)
         Me.Price5.TabIndex = 90
         Me.Price5.Text = "200"
         Me.Price5.Visible = False
         '
-        'Pic_6
-        '
-        Me.Pic_6.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_6.Location = New System.Drawing.Point(790, 109)
-        Me.Pic_6.Name = "Pic_6"
-        Me.Pic_6.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_6.TabIndex = 2
-        Me.Pic_6.TabStop = False
-        '
         'Price6
         '
         Me.Price6.AutoSize = True
         Me.Price6.BackColor = System.Drawing.Color.White
-        Me.Price6.Location = New System.Drawing.Point(892, 141)
+        Me.Price6.Location = New System.Drawing.Point(1029, 137)
         Me.Price6.Name = "Price6"
         Me.Price6.Size = New System.Drawing.Size(25, 13)
         Me.Price6.TabIndex = 91
@@ -499,72 +468,52 @@ Public Class VendingMachine
         '
         Me.Price4.AutoSize = True
         Me.Price4.BackColor = System.Drawing.Color.White
-        Me.Price4.Location = New System.Drawing.Point(881, 610)
+        Me.Price4.Location = New System.Drawing.Point(1029, 649)
         Me.Price4.Name = "Price4"
         Me.Price4.Size = New System.Drawing.Size(19, 13)
         Me.Price4.TabIndex = 89
         Me.Price4.Text = "50"
         Me.Price4.Visible = False
         '
-        'Index5
-        '
-        Me.Index5.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index5.Image = CType(resources.GetObject("Index5.Image"), System.Drawing.Image)
-        Me.Index5.Location = New System.Drawing.Point(1032, 327)
-        Me.Index5.Name = "Index5"
-        Me.Index5.Size = New System.Drawing.Size(30, 112)
-        Me.Index5.TabIndex = 93
-        Me.Index5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Btn6
         '
+        Me.Btn6.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn6.Image = CType(resources.GetObject("Btn6.Image"), System.Drawing.Image)
-        Me.Btn6.Location = New System.Drawing.Point(981, 90)
+        Me.Btn6.Location = New System.Drawing.Point(965, 57)
+        Me.Btn6.Margin = New System.Windows.Forms.Padding(0)
         Me.Btn6.Name = "Btn6"
-        Me.Btn6.Size = New System.Drawing.Size(32, 112)
+        Me.Btn6.Size = New System.Drawing.Size(55, 130)
         Me.Btn6.TabIndex = 95
+        Me.Btn6.UseVisualStyleBackColor = False
         Me.Btn6.Visible = False
-        '
-        'Index4
-        '
-        Me.Index4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Index4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Index4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Index4.Image = CType(resources.GetObject("Index4.Image"), System.Drawing.Image)
-        Me.Index4.Location = New System.Drawing.Point(968, 577)
-        Me.Index4.Name = "Index4"
-        Me.Index4.Size = New System.Drawing.Size(54, 120)
-        Me.Index4.TabIndex = 91
-        Me.Index4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Btn5
         '
+        Me.Btn5.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn5.Image = CType(resources.GetObject("Btn5.Image"), System.Drawing.Image)
-        Me.Btn5.Location = New System.Drawing.Point(971, 327)
+        Me.Btn5.Location = New System.Drawing.Point(965, 322)
         Me.Btn5.Name = "Btn5"
-        Me.Btn5.Size = New System.Drawing.Size(33, 112)
+        Me.Btn5.Size = New System.Drawing.Size(55, 123)
         Me.Btn5.TabIndex = 94
+        Me.Btn5.UseVisualStyleBackColor = False
         Me.Btn5.Visible = False
         '
         'Btn4
         '
+        Me.Btn4.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn4.Image = CType(resources.GetObject("Btn4.Image"), System.Drawing.Image)
-        Me.Btn4.Location = New System.Drawing.Point(895, 577)
+        Me.Btn4.Location = New System.Drawing.Point(965, 577)
         Me.Btn4.Name = "Btn4"
-        Me.Btn4.Size = New System.Drawing.Size(59, 120)
+        Me.Btn4.Size = New System.Drawing.Size(55, 126)
         Me.Btn4.TabIndex = 92
+        Me.Btn4.UseVisualStyleBackColor = False
         Me.Btn4.Visible = False
         '
         'ProductName_6
         '
         Me.ProductName_6.AutoSize = True
         Me.ProductName_6.BackColor = System.Drawing.Color.White
-        Me.ProductName_6.Location = New System.Drawing.Point(881, 109)
+        Me.ProductName_6.Location = New System.Drawing.Point(1029, 96)
         Me.ProductName_6.Name = "ProductName_6"
         Me.ProductName_6.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_6.TabIndex = 91
@@ -576,7 +525,7 @@ Public Class VendingMachine
         '
         Me.ProductName_5.AutoSize = True
         Me.ProductName_5.BackColor = System.Drawing.Color.White
-        Me.ProductName_5.Location = New System.Drawing.Point(862, 345)
+        Me.ProductName_5.Location = New System.Drawing.Point(1029, 356)
         Me.ProductName_5.Name = "ProductName_5"
         Me.ProductName_5.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_5.TabIndex = 91
@@ -588,23 +537,13 @@ Public Class VendingMachine
         '
         Me.ProductName_4.AutoSize = True
         Me.ProductName_4.BackColor = System.Drawing.Color.White
-        Me.ProductName_4.Location = New System.Drawing.Point(860, 567)
+        Me.ProductName_4.Location = New System.Drawing.Point(1026, 610)
         Me.ProductName_4.Name = "ProductName_4"
         Me.ProductName_4.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_4.TabIndex = 91
         Me.ProductName_4.Text = "產品名稱"
         Me.ProductName_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.ProductName_4.Visible = False
-        '
-        'Pic_5
-        '
-        Me.Pic_5.BackColor = System.Drawing.Color.Transparent
-        Me.Pic_5.Location = New System.Drawing.Point(764, 327)
-        Me.Pic_5.Name = "Pic_5"
-        Me.Pic_5.Size = New System.Drawing.Size(60, 69)
-        Me.Pic_5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Pic_5.TabIndex = 2
-        Me.Pic_5.TabStop = False
         '
         'VendingMachine
         '
@@ -616,42 +555,34 @@ Public Class VendingMachine
         Me.ControlBox = False
         Me.Controls.Add(Me.Price3)
         Me.Controls.Add(Me.ProductName_3)
-        Me.Controls.Add(Me.Pic_5)
         Me.Controls.Add(Me.ProductName_2)
-        Me.Controls.Add(Me.Pic_3)
         Me.Controls.Add(Me.Price2)
-        Me.Controls.Add(Me.Index3)
         Me.Controls.Add(Me.Btn3)
         Me.Controls.Add(Me.Price4)
         Me.Controls.Add(Me.ProductName_1)
         Me.Controls.Add(Me.ProductName_4)
         Me.Controls.Add(Me.Price1)
         Me.Controls.Add(Me.Btn2)
-        Me.Controls.Add(Me.Pic_2)
-        Me.Controls.Add(Me.AxWindowsMediaPlayer1)
         Me.Controls.Add(Me.ProductName_5)
-        Me.Controls.Add(Me.Index2)
         Me.Controls.Add(Me.Price5)
-        Me.Controls.Add(Me.Pic_4)
-        Me.Controls.Add(Me.Pic_1)
         Me.Controls.Add(Me.cboComPort)
         Me.Controls.Add(Me.Btn1)
         Me.Controls.Add(Me.ProductName_6)
         Me.Controls.Add(Me.Price6)
-        Me.Controls.Add(Me.Index1)
         Me.Controls.Add(Me.picOpen)
         Me.Controls.Add(Me.Btn6)
         Me.Controls.Add(Me.Btn5)
-        Me.Controls.Add(Me.Pic_6)
-        Me.Controls.Add(Me.Index5)
         Me.Controls.Add(Me.Btn4)
-        Me.Controls.Add(Me.Index4)
         Me.Controls.Add(Me.ChangeReturnBTN)
         Me.Controls.Add(Me.MoneyDepositTB)
-        Me.Controls.Add(Me.Index6)
         Me.Controls.Add(Me.MoneyReturnTB)
-        Me.Controls.Add(Me.Label2)
-        Me.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Controls.Add(Me.AxWindowsMediaPlayer1)
+        Me.Controls.Add(Me.AxWindowsMediaPlayer2)
+        Me.Controls.Add(Me.AxWindowsMediaPlayer3)
+        Me.Controls.Add(Me.AxWindowsMediaPlayer4)
+        Me.Controls.Add(Me.AxWindowsMediaPlayer5)
+        Me.Controls.Add(Me.AxWindowsMediaPlayer6)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
         Me.ForeColor = System.Drawing.SystemColors.ControlText
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -663,14 +594,14 @@ Public Class VendingMachine
         Me.Text = "Vending Machine"
         Me.TopMost = True
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.Pic_2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic_3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic_1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer0, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic_4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic_6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic_5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -680,18 +611,33 @@ Public Class VendingMachine
 
     'form on load settings
     Private Sub VendingMachine_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim strDbCon As String = "Provider=Microsoft.Jet.OLEDB.4.0;" & "Data Source=test.mdb"
+        Dim screen As Screen
 
+        ' We want to display a form on screen 1
+
+        screen = screen.AllScreens(1)
+
+        If (screen.AllScreens.Length = 2) Then
+            Dim formRay As New Form
+            ' Set the StartPosition to Manual otherwise the system will assign an automatic start position
+            formRay.StartPosition = FormStartPosition.Manual
+            ' Set the form location so it appears at Location (100, 100) on the screen 1
+            formRay.Location = screen.Bounds.Location ' + New Point(100, 100)
+            ' Show the form
+            formRay.BackColor = Color.Black
+            formRay.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+            formRay.WindowState = FormWindowState.Maximized
+            formRay.Controls.Add(Me.AxWindowsMediaPlayer0)
+            formRay.Show() 'Dialog(Me)
+        End If
+
+        Dim strDbCon As String = "Provider=Microsoft.Jet.OLEDB.4.0;" & "Data Source=test.mdb"
         Dim objCon As OleDbConnection = New OleDbConnection(strDbCon)
         objCon.Open()
-
         ' SQL語法
         Dim objCmd As OleDbCommand = New OleDbCommand("SELECT * FROM test order by P_Num", objCon)
-
         Dim objDataReader As OleDbDataReader = objCmd.ExecuteReader()
-
         'Dim out As String
-
         ' 讀取singer欄位的值
         While objDataReader.Read()
             TotalNum = TotalNum + 1
@@ -701,9 +647,7 @@ Public Class VendingMachine
             list_Price.Add(objDataReader.Item("P_Price"))
             list_Viedo.Add(objDataReader.Item("Animation"))
             list_Print.Add(objDataReader.Item("Content_Pic"))
-
         End While
-
         ' 關閉資料庫的連結
         objDataReader.Close()
         objCon.Close()
@@ -722,7 +666,6 @@ Public Class VendingMachine
         End If
         cboComPort.Items.AddRange(Portnames)
         cboComPort.Text = "COM4"
-
         OpenComPort()
 
         If BackgroundWorker1.IsBusy = False Then
@@ -731,7 +674,9 @@ Public Class VendingMachine
             myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("127.0.0.1"), 0) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
             BackgroundWorker1.RunWorkerAsync(myObj)
         End If
+
         UdpTimer.Enabled = True
+
     End Sub
 
     'start mouse over behavior
@@ -742,9 +687,6 @@ Public Class VendingMachine
     'Private Sub DollarBillImg_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs)
     '    DollarBillImg.Location = New Point(DollarBillImg.Location.X - 2, DollarBillImg.Location.Y - 2)
     'End Sub
-
-
-
 
     'Private Sub QuarterImg_MouseEnter(ByVal sender As Object, ByVal e As System.EventArgs)
     '    QuarterImg.Location = New Point(QuarterImg.Location.X + 2, QuarterImg.Location.Y + 2)
@@ -773,14 +715,8 @@ Public Class VendingMachine
     '    NickelImg.Location = New Point(NickelImg.Location.X - 2, NickelImg.Location.Y - 2)
     'End Sub
 
-
-
-
     ' Returns a random number, between the optional Low and High parameters 
-    Public Function GetRandomNumber( _
-          Optional ByVal Low As Integer = 1, _
-          Optional ByVal High As Integer = 100) As Integer
-
+    Public Function GetRandomNumber(Optional ByVal Low As Integer = 1, Optional ByVal High As Integer = 100) As Integer
         Return objRandom.Next(Low, High + 1)
     End Function
 
@@ -798,7 +734,6 @@ Public Class VendingMachine
             SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
         End If
 
-
         MoneyReturnTB.Text = MoneyAvailable.ToString("C")
         MoneyDepositTB.Text = ""
 
@@ -807,99 +742,84 @@ Public Class VendingMachine
 
     End Sub
 
-
-
     'Clears fields and resets them to remove any values
     Private Sub ResetComponents()
-
-
         MoneyReturnTB.Text = ""
-
-
-
     End Sub
 
     'Returns unused amount to user
     Private Sub ChangeReturnBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChangeReturnBTN.Click
-        If (MoneyAvailable > 0) Then
+        'DrawVerticalText("50")
 
+        If (MoneyAvailable > 0) Then
             CalculateChange(MoneyAvailable)
             ResetMoneyReturnTimer.Enabled = True
-
         Else
             MsgBox("You do not have any deposited money to return", MsgBoxStyle.Exclamation, "Zero Balance")
-
         End If
 
         Btn_Show()
     End Sub
 
+    'Private Sub DollarBillImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Dim i As Integer
+    'Dim TempMoneyCount As Decimal
+    'For i = 1 To 100 Step 3
+    'TempMoneyCount = i / 100 + MoneyAvailable
+    'Me.Refresh()
+    'MoneyDepositTB.Text = TempMoneyCount.ToString("C")
+    'Next
+    'MoneyAvailable = MoneyAvailable + 1.0
+
+    'ChangeMoney(0, 1, 0, 0, 0)
+
+    'End Sub
 
 
+    'Private Sub QuarterImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Dim i As Integer
+    'Dim TempMoneyCount As Decimal
 
-    Private Sub DollarBillImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'Dim i As Integer
-        'Dim TempMoneyCount As Decimal
+    'For i = 1 To 25 Step 3
+    'TempMoneyCount = i / 100 + MoneyAvailable
+    'Me.Refresh()
 
-        'For i = 1 To 100 Step 3
-        'TempMoneyCount = i / 100 + MoneyAvailable
-        'Me.Refresh()
+    'MoneyDepositTB.Text = TempMoneyCount.ToString("C")
+    'Next
 
-        'MoneyDepositTB.Text = TempMoneyCount.ToString("C")
-        'Next
+    'MoneyAvailable = MoneyAvailable + 0.25
+    'End Sub
 
-        'MoneyAvailable = MoneyAvailable + 1.0
+    'Private Sub dimeImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Dim i As Integer
+    'Dim TempMoneyCount As Decimal
 
-        ChangeMoney(0, 1, 0, 0, 0)
+    'For i = 1 To 10
+    'TempMoneyCount = i / 100 + MoneyAvailable
+    'Me.Refresh()
 
-    End Sub
+    'MoneyDepositTB.Text = TempMoneyCount.ToString("C")
+    'Next
 
+    'MoneyAvailable = MoneyAvailable + 0.1
+    'End Sub
 
-    Private Sub QuarterImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim i As Integer
-        Dim TempMoneyCount As Decimal
+    'Private Sub NickelImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Dim i As Integer
+    'Dim TempMoneyCount As Decimal
 
-        For i = 1 To 25 Step 3
-            TempMoneyCount = i / 100 + MoneyAvailable
-            Me.Refresh()
+    'For i = 1 To 5
+    'TempMoneyCount = i / 100 + MoneyAvailable
+    'Me.Refresh()
 
-            MoneyDepositTB.Text = TempMoneyCount.ToString("C")
-        Next
+    'MoneyDepositTB.Text = TempMoneyCount.ToString("C")
+    'Next
 
-        MoneyAvailable = MoneyAvailable + 0.25
-    End Sub
-
-    Private Sub dimeImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim i As Integer
-        Dim TempMoneyCount As Decimal
-
-        For i = 1 To 10
-            TempMoneyCount = i / 100 + MoneyAvailable
-            Me.Refresh()
-
-            MoneyDepositTB.Text = TempMoneyCount.ToString("C")
-        Next
-
-        MoneyAvailable = MoneyAvailable + 0.1
-    End Sub
-
-    Private Sub NickelImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim i As Integer
-        Dim TempMoneyCount As Decimal
-
-        For i = 1 To 5
-            TempMoneyCount = i / 100 + MoneyAvailable
-            Me.Refresh()
-
-            MoneyDepositTB.Text = TempMoneyCount.ToString("C")
-        Next
-
-        MoneyAvailable = MoneyAvailable + 0.05
-    End Sub
+    'MoneyAvailable = MoneyAvailable + 0.05
+    'End Sub
 
     '時間
     Private Sub ResetMoneyReturnTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ResetMoneyReturnTimer.Tick
-
 
         Call ResetComponents()
 
@@ -909,8 +829,7 @@ Public Class VendingMachine
 
     End Sub
     '買買買
-    Private Sub PerformTransaction(ByVal ItemName As PictureBox, ByVal ButtonName As Button, ByVal ItemPrice As Decimal, ByVal SoldOutLabel As Label)
-
+    Private Sub PerformTransaction(ByVal ItemName As AxWMPLib.AxWindowsMediaPlayer, ByVal ButtonName As Button, ByVal ItemPrice As Decimal)
 
         ItemCost = ItemPrice
 
@@ -922,6 +841,7 @@ Public Class VendingMachine
             MoneyDepositTB.Text = MoneyAvailable
 
             If comOpen Then SerialPort1.Write("1")
+
             '按鈕隱藏
             'ButtonName.Visible = False
             'Btn_Visible()
@@ -929,49 +849,38 @@ Public Class VendingMachine
             'CalculateChange(MoneyAvailable)
 
             ResetMoneyReturnTimer.Enabled = True
-
-
-
         End If 'ITEM COST
+
     End Sub
-
-
-
 
     Private Sub Btn1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn1.Click
         ProductNum = 1 + (Page - 1) * 10
-        Call PerformTransaction(Pic_1, Btn1, Price1.Text, Index1)
-
+        Call PerformTransaction(AxWindowsMediaPlayer1, Btn1, Price1.Text)'(Pic_1, Btn1, Price1.Text)
     End Sub
 
     Private Sub Btn2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn2.Click
         ProductNum = 2 + (Page - 1) * 10
-        Call PerformTransaction(Pic_2, Btn2, Price2.Text, Index2)
-
+        Call PerformTransaction(AxWindowsMediaPlayer2, Btn2, Price2.Text)
     End Sub
 
     Private Sub Btn3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn3.Click
         ProductNum = 3 + (Page - 1) * 10
-        Call PerformTransaction(Pic_3, Btn3, Price3.Text, Index3)
-
+        Call PerformTransaction(AxWindowsMediaPlayer3, Btn3, Price3.Text)
     End Sub
 
     Private Sub Btn4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn4.Click
         ProductNum = 4 + (Page - 1) * 10
-        Call PerformTransaction(Pic_4, Btn4, Price4.Text, Index4)
-
+        Call PerformTransaction(AxWindowsMediaPlayer4, Btn4, Price4.Text)
     End Sub
 
     Private Sub Btn5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn5.Click
         ProductNum = 5 + (Page - 1) * 10
-        Call PerformTransaction(Pic_5, Btn5, Price5.Text, Index5)
-
+        Call PerformTransaction(AxWindowsMediaPlayer5, Btn5, Price5.Text)
     End Sub
 
     Private Sub Btn6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn6.Click
         ProductNum = 6 + (Page - 1) * 10
-        Call PerformTransaction(Pic_6, Btn6, Price6.Text, Index6)
-
+        Call PerformTransaction(AxWindowsMediaPlayer6, Btn6, Price6.Text)
     End Sub
 
     'Private Sub Btn7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -999,9 +908,8 @@ Public Class VendingMachine
             SendBytes = "play"
             UdpTimer.Enabled = False
             'MsgBox(Application.StartupPath & "\" & list_Viedo((ProductNum - 1)))
-            AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Viedo((ProductNum - 1))
+            AxWindowsMediaPlayer0.URL = Application.StartupPath & "\" & list_Viedo((ProductNum - 1))
         End If
-
     End Sub
 
     '按鈕狀態
@@ -1016,7 +924,6 @@ Public Class VendingMachine
         'Btn8.Visible = MoneyAvailable >= Val(Price8.Text) And Price8.Text <> ""
         'Btn9.Visible = MoneyAvailable >= Val(Price9.Text) And Price9.Text <> ""
         'Btn10.Visible = MoneyAvailable >= Val(Price10.Text) And Price10.Text <> ""
-
     End Sub
 
     '錢幣投入
@@ -1029,21 +936,21 @@ Public Class VendingMachine
         Btn_Show()
 
         Return total
-
     End Function
-    Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
 
-        If (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+    Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+
+        If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             CalculateChange(MoneyAvailable)
             PrintDocument1.Print()
             If comOpen Then SerialPort1.Write("0")
-            AxWindowsMediaPlayer1.Visible = False
+            AxWindowsMediaPlayer0.Visible = False
             ProductNum = 0
             SendBytes = "done"
-        ElseIf (AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
-            AxWindowsMediaPlayer1.Visible = True
-            ' MsgBox(AxWindowsMediaPlayer1.playState, MsgBoxStyle.Information, "狀態")
+        ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
+            AxWindowsMediaPlayer0.Visible = True
+            ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "狀態")
         End If
 
     End Sub
@@ -1088,7 +995,7 @@ Public Class VendingMachine
             Close_Comport()
             Me.Close()
         End If
-        Me.Close()
+        'Me.Close()
     End Function
 
     Private Sub Close_Comport()
@@ -1099,7 +1006,6 @@ Public Class VendingMachine
         End If
         comOpen = False
         picOpen.BackColor = Color.Red
-
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -1206,88 +1112,94 @@ Public Class VendingMachine
     End Sub
 
     Private Sub PageSetting()
-        For value As Integer = 1 To 10
+        For n As Integer = 1 To 6 'For value As Integer = 1 To 10
 
-            Dim n As Integer = (Page - 1) * 10 + value
-            If (n > TotalNum) Then
-                Dim a As Integer = (n Mod 10)
-                For i As Integer = a To 10
-                    Select Case i
-                        Case 1
-                            Pic_1.Image = Nothing
-                            ProductName_1.Text = ""
-                            Price1.Text = ""
-                        Case 2
-                            Pic_2.Image = Nothing
-                            ProductName_2.Text = ""
-                            Price2.Text = ""
-                        Case 3
-                            Pic_3.Image = Nothing
-                            ProductName_3.Text = ""
-                            Price3.Text = ""
-                        Case 4
-                            Pic_4.Image = Nothing
-                            ProductName_4.Text = ""
-                            Price4.Text = ""
-                        Case 5
-                            Pic_5.Image = Nothing
-                            ProductName_5.Text = ""
-                            Price5.Text = ""
-                        Case 6
-                            Pic_6.Image = Nothing
-                            ProductName_6.Text = ""
-                            Price6.Text = ""
-                            'Case 7
-                            '    Pic_7.Image = Nothing
-                            '    ProductName_7.Text = ""
-                            '    Price7.Text = ""
-                            'Case 8
-                            '    Pic_8.Image = Nothing
-                            '    ProductName_8.Text = ""
-                            '    Price8.Text = ""
-                            'Case 9
-                            '    Pic_9.Image = Nothing
-                            '    ProductName_9.Text = ""
-                            '    Price9.Text = ""
-                            'Case 10
-                            '    Pic_10.Image = Nothing
-                            '    ProductName_10.Text = ""
-                            '    Price10.Text = ""
+            'Dim n As Integer = (Page - 1) * 10 + value
+            'If (n > TotalNum) Then
+            'Dim a As Integer = (n Mod 10)
+            'For i As Integer = a To 10
+            'Select Case i
+            'Case 1
+            'Pic_1.Image = Nothing
+            'ProductName_1.Text = ""
+            'Price1.Text = ""
+            'Case 2
+            'Pic_2.Image = Nothing
+            'ProductName_2.Text = ""
+            'Price2.Text = ""
+            'Case 3
+            'Pic_3.Image = Nothing
+            'ProductName_3.Text = ""
+            'Price3.Text = ""
+            'Case 4
+            'Pic_4.Image = Nothing
+            'ProductName_4.Text = ""
+            'Price4.Text = ""
+            'Case 5
+            'Pic_5.Image = Nothing
+            'ProductName_5.Text = ""
+            'Price5.Text = ""
+            'Case 6
+            'Pic_6.Image = Nothing
+            'ProductName_6.Text = ""
+            'Price6.Text = ""
+            'Case 7
+            '    Pic_7.Image = Nothing
+            '    ProductName_7.Text = ""
+            '    Price7.Text = ""
+            'Case 8
+            '    Pic_8.Image = Nothing
+            '    ProductName_8.Text = ""
+            '    Price8.Text = ""
+            'Case 9
+            '    Pic_9.Image = Nothing
+            '    ProductName_9.Text = ""
+            '    Price9.Text = ""
+            'Case 10
+            '    Pic_10.Image = Nothing
+            '    ProductName_10.Text = ""
+            '    Price10.Text = ""
 
-                    End Select
-                Next
-                Exit For
-            End If
+            'End Select
+            'Next
+            'Exit For
+            'End If
 
-            Select Case value
+            Select Case n
                 Case 1
-                    Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
+                    AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                    AxWindowsMediaPlayer1.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
                     ProductName_1.Text = list_Name(n - 1)
                     Price1.Text = list_Price(n - 1)
                 Case 2
-                    Pic_2.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
+                    AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1)
+                    AxWindowsMediaPlayer2.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
                     ProductName_2.Text = list_Name(n - 1)
                     Price2.Text = list_Price(n - 1)
                 Case 3
-                    Pic_3.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
+                    AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1)
+                    AxWindowsMediaPlayer3.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
                     ProductName_3.Text = list_Name(n - 1)
                     Price3.Text = list_Price(n - 1)
                 Case 4
-                    Pic_4.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
+                    AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1)
+                    AxWindowsMediaPlayer4.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
                     ProductName_4.Text = list_Name(n - 1)
                     Price4.Text = list_Price(n - 1)
                 Case 5
-                    Pic_5.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
+                    AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1)
+                    AxWindowsMediaPlayer5.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
                     ProductName_5.Text = list_Name(n - 1)
                     Price5.Text = list_Price(n - 1)
                 Case 6
-                    Pic_6.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
+                    AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1)
+                    AxWindowsMediaPlayer6.settings.setMode("loop", True)
+                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
                     ProductName_6.Text = list_Name(n - 1)
                     Price6.Text = list_Price(n - 1)
                     'Case 7
@@ -1318,41 +1230,41 @@ Public Class VendingMachine
 
     End Sub
 
-    Private Sub btn_next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Page = Page + 1
+    'Private Sub btn_next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Page = Page + 1
 
-        'If (Math.Ceiling(TotalNum / 10) > Page) Then
-        'btn_next.Visible = True
-        'Else
-        'btn_next.Visible = False
-        'End If
+    'If (Math.Ceiling(TotalNum / 10) > Page) Then
+    'btn_next.Visible = True
+    'Else
+    'btn_next.Visible = False
+    'End If
 
-        'If (Page > 1) Then
-        'btn_pre.Visible = True
-        'Else
-        'btn_pre.Visible = False
-        'End If
+    'If (Page > 1) Then
+    'btn_pre.Visible = True
+    'Else
+    'btn_pre.Visible = False
+    'End If
 
-        PageSetting()
-    End Sub
+    'PageSetting()
+    'End Sub
 
-    Private Sub btn_pre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Page = Page - 1
+    'Private Sub btn_pre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    'Page = Page - 1
 
-        'If (Math.Ceiling(TotalNum / 10) > Page) Then
-        'btn_next.Visible = True
-        'Else
-        'btn_next.Visible = False
-        'End If
+    'If (Math.Ceiling(TotalNum / 10) > Page) Then
+    'btn_next.Visible = True
+    'Else
+    'btn_next.Visible = False
+    'End If
 
-        'If (Page > 1) Then
-        'btn_pre.Visible = True
-        'Else
-        'btn_pre.Visible = False
-        'End If
+    'If (Page > 1) Then
+    'btn_pre.Visible = True
+    'Else
+    'btn_pre.Visible = False
+    'End If
 
-        PageSetting()
-    End Sub
+    'PageSetting()
+    'End Sub
 
     Private Sub CalculateError(ByVal money As Integer)
         oweMoney = Math.Abs(money)
@@ -1362,7 +1274,6 @@ Public Class VendingMachine
         'End If
         MsgTimer.Enabled = True
         MessageBox.Show("販賣機餘額不足，請領取收據至櫃檯兌換找零" & oweMoney & "元。", "餘額不足", MessageBoxButtons.OK)
-
     End Sub
 
     Private Sub MsgTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MsgTimer.Tick
@@ -1375,6 +1286,7 @@ Public Class VendingMachine
 
         oweMoney = 0
         MsgTimer.Enabled = False
+
     End Sub
 
     Private Sub PrintError_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintError.PrintPage
@@ -1407,14 +1319,22 @@ Public Class VendingMachine
         e.Graphics.DrawString(content, prtFont, Brushes.Black, drawRect, drawFormat)
         'e.Graphics.DrawImage(New Bitmap(Application.StartupPath & "\white.JPG"), New Point(10, 150))
 
+    End Sub
+
+    Private Sub DrawVerticalText(ByVal drawString As String)
+        If formGraphics Is Nothing Then
+            formGraphics = Me.CreateGraphics
+            formGraphics.RotateTransform(180.0F)
+            drawFont = New System.Drawing.Font("Arial", 16)
+            drawBrush = New System.Drawing.SolidBrush(System.Drawing.Color.Black)
+            drawFormat = New System.Drawing.StringFormat(StringFormatFlags.DirectionVertical)
+        End If
+        formGraphics.FillRectangle(Brushes.White, -100.0F, -100.0F, 50, 50)
+        formGraphics.DrawString(drawString, drawFont, drawBrush, -100.0F, -100.0F, drawFormat)
+        'drawFont.Dispose()
+        'drawBrush.Dispose()
+        'formGraphics.Dispose()
 
     End Sub
 
-    Private Sub DollarBillImg_MouseLeave(sender As System.Object, e As System.EventArgs)
-
-    End Sub
-
-    Private Sub DollarBillImg_MouseEnter(sender As System.Object, e As System.EventArgs)
-
-    End Sub
 End Class
