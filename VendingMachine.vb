@@ -31,6 +31,7 @@ Public Class VendingMachine
     Dim drawFont As System.Drawing.Font
     Dim drawBrush As System.Drawing.SolidBrush
     Dim drawFormat As System.Drawing.StringFormat
+    Dim appobject As AppClass
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker     'Quantity of Items available
     Friend WithEvents Price1 As System.Windows.Forms.Label
     Friend WithEvents Btn1 As System.Windows.Forms.Button
@@ -47,6 +48,7 @@ Public Class VendingMachine
     Friend WithEvents AxWindowsMediaPlayer6 As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
     Friend WithEvents UdpTimer As System.Windows.Forms.Timer
+    Friend WithEvents RotateTimer As System.Windows.Forms.Timer
     Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
     Friend WithEvents ProductName_3 As System.Windows.Forms.Label
     Friend WithEvents ProductName_2 As System.Windows.Forms.Label
@@ -133,6 +135,7 @@ Public Class VendingMachine
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.UdpTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.RotateTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.MsgTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PrintError = New System.Drawing.Printing.PrintDocument()
@@ -282,7 +285,8 @@ Public Class VendingMachine
         '
         'ResetMoneyReturnTimer
         '
-        '
+        Me.ResetMoneyReturnTimer.Interval = 250
+        Me.RotateTimer.Interval = 10000
         'Btn1
         '
         Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
@@ -652,6 +656,7 @@ Public Class VendingMachine
         objDataReader.Close()
         objCon.Close()
 
+        appobject = New AppClass()
         'If (Math.Ceiling(TotalNum / 10) > 1) Then btn_next.Visible = True
         PageSetting()
 
@@ -676,7 +681,7 @@ Public Class VendingMachine
         End If
 
         UdpTimer.Enabled = True
-
+        RotateTimer.Enabled = True
     End Sub
 
     'start mouse over behavior
@@ -904,9 +909,10 @@ Public Class VendingMachine
     'End Sub
 
     Private Sub PlayMovie()
-        If (ProductNum >= 1 And ProductNum <= 10) Then
+        If (ProductNum >= 1 And ProductNum <= 6) Then
             SendBytes = "play"
             UdpTimer.Enabled = False
+            RotateTimer.Enabled = False
             'MsgBox(Application.StartupPath & "\" & list_Viedo((ProductNum - 1)))
             AxWindowsMediaPlayer0.URL = Application.StartupPath & "\" & list_Viedo((ProductNum - 1))
         End If
@@ -942,6 +948,7 @@ Public Class VendingMachine
 
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
+            RotateTimer.Enabled = True
             CalculateChange(MoneyAvailable)
             PrintDocument1.Print()
             If comOpen Then SerialPort1.Write("0")
@@ -1034,6 +1041,23 @@ Public Class VendingMachine
                 MessageBox.Show(ex.ToString)
             End Try
         End While
+    End Sub
+
+    Private Sub RotateTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RotateTimer.Tick
+        appobject.Over10Sec()
+        appobject.backToRotate()
+        AxWindowsMediaPlayer1.SetBounds(appobject.RaySix(0).wmv.Left, appobject.RaySix(0).wmv.Top, appobject.RaySix(0).wmv.Width, appobject.RaySix(0).wmv.Height)
+        Btn1.SetBounds(appobject.RaySix(0).btn.Left, appobject.RaySix(0).btn.Top, appobject.RaySix(0).btn.Width, appobject.RaySix(0).btn.Height)
+        AxWindowsMediaPlayer2.SetBounds(appobject.RaySix(1).wmv.Left, appobject.RaySix(1).wmv.Top, appobject.RaySix(1).wmv.Width, appobject.RaySix(1).wmv.Height)
+        Btn2.SetBounds(appobject.RaySix(1).btn.Left, appobject.RaySix(1).btn.Top, appobject.RaySix(1).btn.Width, appobject.RaySix(1).btn.Height)
+        AxWindowsMediaPlayer3.SetBounds(appobject.RaySix(2).wmv.Left, appobject.RaySix(2).wmv.Top, appobject.RaySix(2).wmv.Width, appobject.RaySix(2).wmv.Height)
+        Btn3.SetBounds(appobject.RaySix(2).btn.Left, appobject.RaySix(2).btn.Top, appobject.RaySix(2).btn.Width, appobject.RaySix(2).btn.Height)
+        AxWindowsMediaPlayer4.SetBounds(appobject.RaySix(3).wmv.Left, appobject.RaySix(3).wmv.Top, appobject.RaySix(3).wmv.Width, appobject.RaySix(3).wmv.Height)
+        Btn4.SetBounds(appobject.RaySix(3).btn.Left, appobject.RaySix(3).btn.Top, appobject.RaySix(3).btn.Width, appobject.RaySix(3).btn.Height)
+        AxWindowsMediaPlayer5.SetBounds(appobject.RaySix(4).wmv.Left, appobject.RaySix(4).wmv.Top, appobject.RaySix(4).wmv.Width, appobject.RaySix(4).wmv.Height)
+        Btn5.SetBounds(appobject.RaySix(4).btn.Left, appobject.RaySix(4).btn.Top, appobject.RaySix(4).btn.Width, appobject.RaySix(4).btn.Height)
+        AxWindowsMediaPlayer6.SetBounds(appobject.RaySix(5).wmv.Left, appobject.RaySix(5).wmv.Top, appobject.RaySix(5).wmv.Width, appobject.RaySix(5).wmv.Height)
+        Btn6.SetBounds(appobject.RaySix(5).btn.Left, appobject.RaySix(5).btn.Top, appobject.RaySix(5).btn.Width, appobject.RaySix(5).btn.Height)
     End Sub
 
     Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
@@ -1172,36 +1196,60 @@ Public Class VendingMachine
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
                     ProductName_1.Text = list_Name(n - 1)
                     Price1.Text = list_Price(n - 1)
+                    appobject.RaySix(0).wmv = New Rectangle(AxWindowsMediaPlayer1.Location.X, AxWindowsMediaPlayer1.Location.Y _
+                                                  , AxWindowsMediaPlayer1.Size.Width, AxWindowsMediaPlayer1.Size.Height)
+                    appobject.RaySix(0).btn = New Rectangle(Btn1.Location.X, Btn1.Location.Y _
+                                                  , Btn1.Size.Width, Btn1.Size.Height)
                 Case 2
                     AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1)
                     AxWindowsMediaPlayer2.settings.setMode("loop", True)
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
                     ProductName_2.Text = list_Name(n - 1)
                     Price2.Text = list_Price(n - 1)
+                    appobject.RaySix(1).wmv = New Rectangle(AxWindowsMediaPlayer2.Location.X, AxWindowsMediaPlayer2.Location.Y _
+                                                  , AxWindowsMediaPlayer2.Size.Width, AxWindowsMediaPlayer2.Size.Height)
+                    appobject.RaySix(1).btn = New Rectangle(Btn2.Location.X, Btn2.Location.Y _
+                                                  , Btn2.Size.Width, Btn2.Size.Height)
                 Case 3
                     AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1)
                     AxWindowsMediaPlayer3.settings.setMode("loop", True)
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
                     ProductName_3.Text = list_Name(n - 1)
                     Price3.Text = list_Price(n - 1)
+                    appobject.RaySix(2).wmv = New Rectangle(AxWindowsMediaPlayer3.Location.X, AxWindowsMediaPlayer3.Location.Y _
+                                                 , AxWindowsMediaPlayer3.Size.Width, AxWindowsMediaPlayer3.Size.Height)
+                    appobject.RaySix(2).btn = New Rectangle(Btn3.Location.X, Btn3.Location.Y _
+                                                  , Btn3.Size.Width, Btn3.Size.Height)
                 Case 4
                     AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1)
                     AxWindowsMediaPlayer4.settings.setMode("loop", True)
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
                     ProductName_4.Text = list_Name(n - 1)
                     Price4.Text = list_Price(n - 1)
+                    appobject.RaySix(3).wmv = New Rectangle(AxWindowsMediaPlayer4.Location.X, AxWindowsMediaPlayer4.Location.Y _
+                                                  , AxWindowsMediaPlayer4.Size.Width, AxWindowsMediaPlayer4.Size.Height)
+                    appobject.RaySix(3).btn = New Rectangle(Btn4.Location.X, Btn4.Location.Y _
+                                                  , Btn4.Size.Width, Btn4.Size.Height)
                 Case 5
                     AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1)
                     AxWindowsMediaPlayer5.settings.setMode("loop", True)
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
                     ProductName_5.Text = list_Name(n - 1)
                     Price5.Text = list_Price(n - 1)
+                    appobject.RaySix(4).wmv = New Rectangle(AxWindowsMediaPlayer5.Location.X, AxWindowsMediaPlayer5.Location.Y _
+                                                  , AxWindowsMediaPlayer5.Size.Width, AxWindowsMediaPlayer5.Size.Height)
+                    appobject.RaySix(4).btn = New Rectangle(Btn5.Location.X, Btn5.Location.Y _
+                                                  , Btn5.Size.Width, Btn5.Size.Height)
                 Case 6
                     AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1)
                     AxWindowsMediaPlayer6.settings.setMode("loop", True)
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
                     ProductName_6.Text = list_Name(n - 1)
                     Price6.Text = list_Price(n - 1)
+                    appobject.RaySix(5).wmv = New Rectangle(AxWindowsMediaPlayer6.Location.X, AxWindowsMediaPlayer6.Location.Y _
+                                                  , AxWindowsMediaPlayer6.Size.Width, AxWindowsMediaPlayer6.Size.Height)
+                    appobject.RaySix(5).btn = New Rectangle(Btn6.Location.X, Btn6.Location.Y _
+                                                  , Btn6.Size.Width, Btn6.Size.Height)
                     'Case 7
                     'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                     'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_7)

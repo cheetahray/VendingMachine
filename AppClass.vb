@@ -47,10 +47,10 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member data.
     '
-
+    Public RaySix(6) As SixRandom
     ' The class' associated finite state machine.
     Private _fsm As AppClassContext
-
+    Dim rand As New Random()
     ' Set this flag to true if the given string is accepted by
     ' the FSM.
     'Private _isAcceptable As Boolean
@@ -60,17 +60,21 @@ Public NotInheritable Class AppClass
     '
 
     Public Sub New()
-
+        For ctr As Integer = 0 To 5
+            RaySix(ctr) = New SixRandom
+        Next
         '_isAcceptable = False
         _fsm = New AppClassContext(Me)
+        _fsm.EnterStartState()
     End Sub
 
-    Public Function CheckString(ByVal s As String) As Boolean
+    Public Sub Over10Sec()
+        _fsm.Over10Sec()
+    End Sub
 
-        _fsm.EnterStartState()
-
-        Return True
-    End Function
+    Public Sub backToRotate()
+        _fsm.Autoback()
+    End Sub
 
     Public Sub BillFirstFrame()
 
@@ -81,7 +85,17 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub arrangecombine()
-
+        For ctr As Integer = 0 To 5
+            Dim p As Integer
+            p = rand.NextDouble() * 6
+            Dim tmp As New SixRandom
+            tmp.wmv = RaySix(ctr).wmv
+            RaySix(ctr).wmv = RaySix(p).wmv
+            RaySix(p).wmv = tmp.wmv
+            tmp.btn = RaySix(ctr).btn
+            RaySix(ctr).btn = RaySix(p).btn
+            RaySix(p).btn = tmp.btn
+        Next
     End Sub
 
     Public Sub playagain()
