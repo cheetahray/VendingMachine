@@ -47,7 +47,7 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member data.
     '
-    Public RaySix(6) As SixRandom
+    Public RaySix(6), tmpSix(6) As SixRandom
     ' The class' associated finite state machine.
     Private _fsm As AppClassContext
     Dim rand As New Random()
@@ -58,10 +58,12 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member methods.
     '
-
+    Private RayBol(6) As Boolean
     Public Sub New()
         For ctr As Integer = 0 To 5
             RaySix(ctr) = New SixRandom
+            tmpSix(ctr) = New SixRandom
+            RayBol(ctr) = False
         Next
         '_isAcceptable = False
         _fsm = New AppClassContext(Me)
@@ -85,21 +87,24 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub arrangecombine()
+        Dim p As Integer
         For ctr As Integer = 0 To 5
-            Dim p As Integer
-            p = rand.NextDouble() * 6
-            Dim tmp As New SixRandom
-            tmp.wmv = RaySix(ctr).wmv
-            RaySix(ctr).wmv = RaySix(p).wmv
-            RaySix(p).wmv = tmp.wmv
-            tmp.btn = RaySix(ctr).btn
-            RaySix(ctr).btn = RaySix(p).btn
-            RaySix(p).btn = tmp.btn
+            p = rand.NextDouble() * 5
+            While RayBol(p) = True
+                p = rand.NextDouble() * 5
+            End While
+            RayBol(p) = True
+            tmpSix(ctr).wmv = RaySix(p).wmv
+            tmpSix(ctr).btn = RaySix(p).btn
         Next
     End Sub
 
     Public Sub playagain()
-
+        For ctr As Integer = 0 To 5
+            RaySix(ctr).wmv = tmpSix(ctr).wmv
+            RaySix(ctr).btn = tmpSix(ctr).btn
+            RayBol(ctr) = False
+        Next
     End Sub
 
     Public Sub BillAdd()
