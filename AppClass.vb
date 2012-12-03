@@ -54,11 +54,13 @@ Public NotInheritable Class AppClass
     ' Set this flag to true if the given string is accepted by
     ' the FSM.
     'Private _isAcceptable As Boolean
-
+    Public ReceiveBytes, SendBytes As String
     '-----------------------------------------------------------
     ' Member methods.
     '
     Private RayBol(6) As Boolean
+    Public MoneyAvailable As Decimal = 0 ' Money deposited by user 
+
     Public Sub New()
         For ctr As Integer = 0 To 5
             RaySix(ctr) = New SixRandom
@@ -78,12 +80,36 @@ Public NotInheritable Class AppClass
         _fsm.Autoback()
     End Sub
 
-    Public Sub BillFirstFrame()
-
+    Public Sub BillIn()
+        _fsm.BillIn()
     End Sub
 
-    Public Sub CoinFirstFrame()
+    Public Sub CoinIn()
+        _fsm.CoinIn()
+    End Sub
 
+    Public Sub BillInAgain()
+        _fsm.BillInAgain()
+    End Sub
+
+    Public Sub CoinInAgain()
+        _fsm.CoinInAgain()
+    End Sub
+
+    Public Sub BillFirstFrame()
+        BillAdd()
+    End Sub
+
+    '¿ú¹ô§ë¤J
+    Private Function ChangeMoney(ByVal a As Integer, ByVal b As Integer, ByVal c As Integer, ByVal d As Integer, ByVal e As Integer) As Integer
+        Dim total As Integer = a * 50 + b * 100 + e * 200 + d * 500 + e * 1000
+        'MsgBox(total, MsgBoxStyle.Information, "About")
+        MoneyAvailable += total
+        Return total
+    End Function
+
+    Public Sub CoinFirstFrame()
+        CoinAdd()
     End Sub
 
     Public Sub arrangecombine()
@@ -108,11 +134,19 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub BillAdd()
-
+        Dim intrec As Integer
+        intrec = Integer.Parse(ReceiveBytes) / 100
+        ReceiveBytes = String.Empty
+        ChangeMoney(0, intrec, 0, 0, 0)
+        SendBytes = "100ok"
     End Sub
 
     Public Sub CoinAdd()
-
+        Dim intrec As Integer
+        intrec = Integer.Parse(ReceiveBytes) / 50
+        ReceiveBytes = String.Empty
+        ChangeMoney(intrec, 0, 0, 0, 0)
+        SendBytes = "50ok"
     End Sub
 
     Public Sub playBoom()

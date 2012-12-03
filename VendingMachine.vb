@@ -21,10 +21,8 @@ Public Class VendingMachine
     Dim oweMoney As Integer
     Dim ProductNum As Integer = 0 '商品編號
     Private comOpen As Boolean 'comPort
-    Dim MoneyAvailable As Decimal = 0 ' Money deposited by user 
     Dim ItemCost As Decimal = 0.0       'Cost of the item
     Dim ItemQuantity As Integer = 0
-    Dim ReceiveBytes, SendBytes As String
     'Quantity of Items available
     Dim objRandom As New System.Random(CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
     Dim formGraphics As System.Drawing.Graphics
@@ -729,20 +727,20 @@ Public Class VendingMachine
     Private Sub CalculateChange(ByVal AvailableMoney As Decimal)
 
         If (AvailableMoney = 0) Then
-            MoneyAvailable = 0
+            appobject.MoneyAvailable = 0
             MoneyDepositTB.Text = ""
             'Exit Sub
         Else
             MoneyDepositTB.Text = ""
             Dim num As Integer = AvailableMoney / 50
-            MoneyAvailable = AvailableMoney = 0
-            SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
+            appobject.MoneyAvailable = AvailableMoney = 0
+            appobject.SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
         End If
 
-        MoneyReturnTB.Text = MoneyAvailable.ToString("C")
+        MoneyReturnTB.Text = appobject.MoneyAvailable.ToString("C")
         MoneyDepositTB.Text = ""
 
-        MoneyAvailable = 0.0
+        appobject.MoneyAvailable = 0.0
         Btn_Show()
 
     End Sub
@@ -756,8 +754,8 @@ Public Class VendingMachine
     Private Sub ChangeReturnBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChangeReturnBTN.Click
         'DrawVerticalText("50")
 
-        If (MoneyAvailable > 0) Then
-            CalculateChange(MoneyAvailable)
+        If (appobject.MoneyAvailable > 0) Then
+            CalculateChange(appobject.MoneyAvailable)
             ResetMoneyReturnTimer.Enabled = True
         Else
             MsgBox("You do not have any deposited money to return", MsgBoxStyle.Exclamation, "Zero Balance")
@@ -838,12 +836,12 @@ Public Class VendingMachine
 
         ItemCost = ItemPrice
 
-        If (ItemCost <= MoneyAvailable) Then
+        If (ItemCost <= appobject.MoneyAvailable) Then
             ' ButtonName.Enabled = False
 
-            MoneyAvailable -= ItemCost 'Reduce MoneyAvailable after purchase
+            appobject.MoneyAvailable -= ItemCost 'Reduce MoneyAvailable after purchase
             'MoneyDepositTB.Text = MoneyAvailable.ToString("C")
-            MoneyDepositTB.Text = MoneyAvailable
+            MoneyDepositTB.Text = appobject.MoneyAvailable
 
             If comOpen Then SerialPort1.Write("1")
 
@@ -910,7 +908,7 @@ Public Class VendingMachine
 
     Private Sub PlayMovie()
         If (ProductNum >= 1 And ProductNum <= 6) Then
-            SendBytes = "play"
+            appobject.SendBytes = "play"
             UdpTimer.Enabled = False
             RotateTimer.Enabled = False
             'MsgBox(Application.StartupPath & "\" & list_Viedo((ProductNum - 1)))
@@ -920,41 +918,29 @@ Public Class VendingMachine
 
     '按鈕狀態
     Private Sub Btn_Show()
-        Btn1.Visible = MoneyAvailable >= Val(Price1.Text) And Price1.Text <> ""
-        Btn2.Visible = MoneyAvailable >= Val(Price2.Text) And Price2.Text <> ""
-        Btn3.Visible = MoneyAvailable >= Val(Price3.Text) And Price3.Text <> ""
-        Btn4.Visible = MoneyAvailable >= Val(Price4.Text) And Price4.Text <> ""
-        Btn5.Visible = MoneyAvailable >= Val(Price5.Text) And Price5.Text <> ""
-        Btn6.Visible = MoneyAvailable >= Val(Price6.Text) And Price6.Text <> ""
+        Btn1.Visible = appobject.MoneyAvailable >= Val(Price1.Text) And Price1.Text <> ""
+        Btn2.Visible = appobject.MoneyAvailable >= Val(Price2.Text) And Price2.Text <> ""
+        Btn3.Visible = appobject.MoneyAvailable >= Val(Price3.Text) And Price3.Text <> ""
+        Btn4.Visible = appobject.MoneyAvailable >= Val(Price4.Text) And Price4.Text <> ""
+        Btn5.Visible = appobject.MoneyAvailable >= Val(Price5.Text) And Price5.Text <> ""
+        Btn6.Visible = appobject.MoneyAvailable >= Val(Price6.Text) And Price6.Text <> ""
         'Btn7.Visible = MoneyAvailable >= Val(Price7.Text) And Price7.Text <> ""
         'Btn8.Visible = MoneyAvailable >= Val(Price8.Text) And Price8.Text <> ""
         'Btn9.Visible = MoneyAvailable >= Val(Price9.Text) And Price9.Text <> ""
         'Btn10.Visible = MoneyAvailable >= Val(Price10.Text) And Price10.Text <> ""
     End Sub
 
-    '錢幣投入
-    Public Function ChangeMoney(ByVal a As Integer, ByVal b As Integer, ByVal c As Integer, ByVal d As Integer, ByVal e As Integer) As Integer
-        Dim total As Integer = a * 50 + b * 100 + e * 200 + d * 500 + e * 1000
-        'MsgBox(total, MsgBoxStyle.Information, "About")
-        MoneyAvailable += total
-        MoneyDepositTB.Text = MoneyAvailable
-
-        Btn_Show()
-
-        Return total
-    End Function
-
     Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
 
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             RotateTimer.Enabled = True
-            CalculateChange(MoneyAvailable)
+            CalculateChange(appobject.MoneyAvailable)
             PrintDocument1.Print()
             If comOpen Then SerialPort1.Write("0")
             AxWindowsMediaPlayer0.Visible = False
             ProductNum = 0
-            SendBytes = "done"
+            appobject.SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "狀態")
@@ -1020,22 +1006,22 @@ Public Class VendingMachine
         While True
             Try
                 If myObj.myUDPClient.Available > 0 Then
-                    ReceiveBytes = Encoding.GetEncoding(0).GetString(myObj.myUDPClient.Receive(myObj.RemoteIpEndPoint))
+                    appobject.ReceiveBytes = Encoding.GetEncoding(0).GetString(myObj.myUDPClient.Receive(myObj.RemoteIpEndPoint))
                 End If
-                If String.IsNullOrEmpty(SendBytes) = False Then
+                If String.IsNullOrEmpty(appobject.SendBytes) = False Then
                     Dim myBytes As Byte()
-                    If SendBytes = "play" Or SendBytes = "done" Then
-                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
+                    If appobject.SendBytes = "play" Or appobject.SendBytes = "done" Then
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(appobject.SendBytes))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12346))
-                    ElseIf SendBytes.StartsWith("@@") Then
-                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes.Substring("@@".Length)))
+                    ElseIf appobject.SendBytes.StartsWith("@@") Then
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(appobject.SendBytes.Substring("@@".Length)))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, New IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345))
                     Else
-                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(SendBytes))
+                        myBytes = Encoding.GetEncoding(0).GetBytes(Trim(appobject.SendBytes))
                         myObj.myUDPClient.Send(myBytes, myBytes.Length, myObj.RemoteIpEndPoint)
                     End If
-                    SendBytes = String.Empty
+                    appobject.SendBytes = String.Empty
                 End If
             Catch ex As Exception
                 MessageBox.Show(ex.ToString)
@@ -1060,22 +1046,62 @@ Public Class VendingMachine
         Btn6.SetBounds(appobject.RaySix(5).btn.Left, appobject.RaySix(5).btn.Top, appobject.RaySix(5).btn.Width, appobject.RaySix(5).btn.Height)
     End Sub
 
+    Private Sub CoinFirstFrame()
+        appobject.CoinIn()
+        allFirst()
+        End Sub
+
+    Private Sub BillFirstFrame()
+        appobject.BillIn()
+        allFirst()
+    End Sub
+
+    Private Sub allFirst()
+        AxWindowsMediaPlayer1.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer1.Ctlcontrols.pause()
+        AxWindowsMediaPlayer2.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer2.Ctlcontrols.pause()
+        AxWindowsMediaPlayer3.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer3.Ctlcontrols.pause()
+        AxWindowsMediaPlayer4.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer4.Ctlcontrols.pause()
+        AxWindowsMediaPlayer5.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer5.Ctlcontrols.pause()
+        AxWindowsMediaPlayer6.Ctlcontrols.currentPosition = 0
+        AxWindowsMediaPlayer6.Ctlcontrols.pause()
+    End Sub
+
+    Private Sub allContinue()
+        AxWindowsMediaPlayer1.Ctlcontrols.play()
+        AxWindowsMediaPlayer2.Ctlcontrols.play()
+        AxWindowsMediaPlayer3.Ctlcontrols.play()
+        AxWindowsMediaPlayer4.Ctlcontrols.play()
+        AxWindowsMediaPlayer5.Ctlcontrols.play()
+        AxWindowsMediaPlayer6.Ctlcontrols.play()
+    End Sub
+
     Private Sub UdpTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UdpTimer.Tick
-        If String.IsNullOrEmpty(ReceiveBytes) = False Then
+        If String.IsNullOrEmpty(appobject.ReceiveBytes) = False Then
             Dim intrec As Integer
-            If ReceiveBytes = "100" Then
-                intrec = Integer.Parse(ReceiveBytes) / 100
-                ReceiveBytes = String.Empty
-                ChangeMoney(0, intrec, 0, 0, 0)
-                SendBytes = "100ok"
-            ElseIf ReceiveBytes = "50" Then
-                intrec = Integer.Parse(ReceiveBytes) / 50
-                ReceiveBytes = String.Empty
-                ChangeMoney(intrec, 0, 0, 0, 0)
-                SendBytes = "50ok"
-            ElseIf ReceiveBytes.StartsWith("-") Then
-                intrec = Integer.Parse(ReceiveBytes)
-                ReceiveBytes = String.Empty
+            If appobject.ReceiveBytes = "100" Then
+                If appobject.MoneyAvailable = 0 Then
+                    BillFirstFrame()
+                Else
+                    appobject.BillInAgain()
+                End If
+                MoneyDepositTB.Text = appobject.MoneyAvailable
+                Btn_Show()
+            ElseIf appobject.ReceiveBytes = "50" Then
+                If appobject.MoneyAvailable = 0 Then
+                    CoinFirstFrame()
+                Else
+                    appobject.CoinInAgain()
+                End If
+                MoneyDepositTB.Text = appobject.MoneyAvailable
+                Btn_Show()
+            ElseIf appobject.ReceiveBytes.StartsWith("-") Then
+                intrec = Integer.Parse(appobject.ReceiveBytes)
+                appobject.ReceiveBytes = String.Empty
                 CalculateError(intrec)
             End If
         End If
