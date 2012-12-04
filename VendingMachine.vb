@@ -161,9 +161,9 @@ Public Class VendingMachine
         '
         Me.ProductName_3.AutoSize = True
         Me.ProductName_3.BackColor = System.Drawing.Color.White
-        Me.ProductName_3.Location = New System.Drawing.Point(501, 96)
+        Me.ProductName_3.Location = New System.Drawing.Point(501, 111)
         Me.ProductName_3.Name = "ProductName_3"
-        Me.ProductName_3.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_3.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_3.TabIndex = 91
         Me.ProductName_3.Text = "產品名稱"
         Me.ProductName_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -173,9 +173,9 @@ Public Class VendingMachine
         '
         Me.ProductName_2.AutoSize = True
         Me.ProductName_2.BackColor = System.Drawing.Color.White
-        Me.ProductName_2.Location = New System.Drawing.Point(501, 356)
+        Me.ProductName_2.Location = New System.Drawing.Point(501, 411)
         Me.ProductName_2.Name = "ProductName_2"
-        Me.ProductName_2.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_2.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_2.TabIndex = 91
         Me.ProductName_2.Text = "產品名稱"
         Me.ProductName_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -185,9 +185,9 @@ Public Class VendingMachine
         '
         Me.ProductName_1.AutoSize = True
         Me.ProductName_1.BackColor = System.Drawing.Color.White
-        Me.ProductName_1.Location = New System.Drawing.Point(501, 610)
+        Me.ProductName_1.Location = New System.Drawing.Point(501, 704)
         Me.ProductName_1.Name = "ProductName_1"
-        Me.ProductName_1.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_1.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_1.TabIndex = 91
         Me.ProductName_1.Text = "產品名稱"
         Me.ProductName_1.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -197,9 +197,9 @@ Public Class VendingMachine
         '
         Me.Price3.AutoSize = True
         Me.Price3.BackColor = System.Drawing.Color.White
-        Me.Price3.Location = New System.Drawing.Point(501, 137)
+        Me.Price3.Location = New System.Drawing.Point(501, 158)
         Me.Price3.Name = "Price3"
-        Me.Price3.Size = New System.Drawing.Size(25, 13)
+        Me.Price3.Size = New System.Drawing.Size(23, 12)
         Me.Price3.TabIndex = 88
         Me.Price3.Text = "100"
         Me.Price3.Visible = False
@@ -208,9 +208,9 @@ Public Class VendingMachine
         '
         Me.Price2.AutoSize = True
         Me.Price2.BackColor = System.Drawing.Color.White
-        Me.Price2.Location = New System.Drawing.Point(501, 389)
+        Me.Price2.Location = New System.Drawing.Point(501, 449)
         Me.Price2.Name = "Price2"
-        Me.Price2.Size = New System.Drawing.Size(25, 13)
+        Me.Price2.Size = New System.Drawing.Size(23, 12)
         Me.Price2.TabIndex = 87
         Me.Price2.Text = "100"
         Me.Price2.Visible = False
@@ -219,9 +219,9 @@ Public Class VendingMachine
         '
         Me.Price1.AutoSize = True
         Me.Price1.BackColor = System.Drawing.Color.White
-        Me.Price1.Location = New System.Drawing.Point(501, 649)
+        Me.Price1.Location = New System.Drawing.Point(501, 749)
         Me.Price1.Name = "Price1"
-        Me.Price1.Size = New System.Drawing.Size(25, 13)
+        Me.Price1.Size = New System.Drawing.Size(23, 12)
         Me.Price1.TabIndex = 86
         Me.Price1.Text = "100"
         Me.Price1.Visible = False
@@ -231,7 +231,7 @@ Public Class VendingMachine
         Me.MoneyReturnTB.BackColor = System.Drawing.Color.Maroon
         Me.MoneyReturnTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MoneyReturnTB.ForeColor = System.Drawing.Color.Silver
-        Me.MoneyReturnTB.Location = New System.Drawing.Point(4, 309)
+        Me.MoneyReturnTB.Location = New System.Drawing.Point(4, 357)
         Me.MoneyReturnTB.Name = "MoneyReturnTB"
         Me.MoneyReturnTB.ReadOnly = True
         Me.MoneyReturnTB.Size = New System.Drawing.Size(104, 22)
@@ -255,13 +255,13 @@ Public Class VendingMachine
         Me.MoneyDepositTB.BackColor = System.Drawing.Color.Silver
         Me.MoneyDepositTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte), True)
         Me.MoneyDepositTB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.MoneyDepositTB.Location = New System.Drawing.Point(55, 401)
+        Me.MoneyDepositTB.Location = New System.Drawing.Point(55, 463)
         Me.MoneyDepositTB.MaxLength = 32
         Me.MoneyDepositTB.Multiline = True
         Me.MoneyDepositTB.Name = "MoneyDepositTB"
         Me.MoneyDepositTB.ReadOnly = True
         Me.MoneyDepositTB.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MoneyDepositTB.Size = New System.Drawing.Size(27, 80)
+        Me.MoneyDepositTB.Size = New System.Drawing.Size(27, 92)
         Me.MoneyDepositTB.TabIndex = 50
         Me.MoneyDepositTB.Text = "50"
         Me.MoneyDepositTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -271,9 +271,9 @@ Public Class VendingMachine
         '
         Me.ChangeReturnBTN.BackColor = System.Drawing.Color.Silver
         Me.ChangeReturnBTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ChangeReturnBTN.Location = New System.Drawing.Point(12, 184)
+        Me.ChangeReturnBTN.Location = New System.Drawing.Point(12, 212)
         Me.ChangeReturnBTN.Name = "ChangeReturnBTN"
-        Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 35)
+        Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 41)
         Me.ChangeReturnBTN.TabIndex = 58
         Me.ChangeReturnBTN.Text = "退幣"
         Me.ChangeReturnBTN.UseVisualStyleBackColor = False
@@ -287,9 +287,9 @@ Public Class VendingMachine
         '
         Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn1.Location = New System.Drawing.Point(435, 580)
+        Me.Btn1.Location = New System.Drawing.Point(435, 581)
         Me.Btn1.Name = "Btn1"
-        Me.Btn1.Size = New System.Drawing.Size(50, 123)
+        Me.Btn1.Size = New System.Drawing.Size(50, 142)
         Me.Btn1.TabIndex = 86
         Me.Btn1.UseVisualStyleBackColor = False
         Me.Btn1.Visible = False
@@ -298,9 +298,9 @@ Public Class VendingMachine
         '
         Me.Btn2.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn2.Location = New System.Drawing.Point(435, 322)
+        Me.Btn2.Location = New System.Drawing.Point(435, 319)
         Me.Btn2.Name = "Btn2"
-        Me.Btn2.Size = New System.Drawing.Size(50, 123)
+        Me.Btn2.Size = New System.Drawing.Size(50, 141)
         Me.Btn2.TabIndex = 88
         Me.Btn2.UseVisualStyleBackColor = False
         Me.Btn2.Visible = False
@@ -311,7 +311,7 @@ Public Class VendingMachine
         Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Btn3.Location = New System.Drawing.Point(435, 64)
         Me.Btn3.Name = "Btn3"
-        Me.Btn3.Size = New System.Drawing.Size(50, 123)
+        Me.Btn3.Size = New System.Drawing.Size(50, 142)
         Me.Btn3.TabIndex = 90
         Me.Btn3.UseVisualStyleBackColor = False
         Me.Btn3.Visible = False
@@ -334,62 +334,62 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(278, 154)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(278, 178)
         Me.AxWindowsMediaPlayer1.TabIndex = 1000
         Me.AxWindowsMediaPlayer1.TabStop = False
         '
         'AxWindowsMediaPlayer2
         '
         Me.AxWindowsMediaPlayer2.Enabled = True
-        Me.AxWindowsMediaPlayer2.Location = New System.Drawing.Point(139, 309)
+        Me.AxWindowsMediaPlayer2.Location = New System.Drawing.Point(139, 311)
         Me.AxWindowsMediaPlayer2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer2.Name = "AxWindowsMediaPlayer2"
         Me.AxWindowsMediaPlayer2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer2.Size = New System.Drawing.Size(278, 150)
+        Me.AxWindowsMediaPlayer2.Size = New System.Drawing.Size(278, 173)
         Me.AxWindowsMediaPlayer2.TabIndex = 1000
         Me.AxWindowsMediaPlayer2.TabStop = False
         '
         'AxWindowsMediaPlayer3
         '
         Me.AxWindowsMediaPlayer3.Enabled = True
-        Me.AxWindowsMediaPlayer3.Location = New System.Drawing.Point(139, 82)
+        Me.AxWindowsMediaPlayer3.Location = New System.Drawing.Point(139, 60)
         Me.AxWindowsMediaPlayer3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer3.Name = "AxWindowsMediaPlayer3"
         Me.AxWindowsMediaPlayer3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer3.Size = New System.Drawing.Size(278, 150)
+        Me.AxWindowsMediaPlayer3.Size = New System.Drawing.Size(278, 173)
         Me.AxWindowsMediaPlayer3.TabIndex = 1000
         Me.AxWindowsMediaPlayer3.TabStop = False
         '
         'AxWindowsMediaPlayer4
         '
         Me.AxWindowsMediaPlayer4.Enabled = True
-        Me.AxWindowsMediaPlayer4.Location = New System.Drawing.Point(628, 540)
+        Me.AxWindowsMediaPlayer4.Location = New System.Drawing.Point(628, 539)
         Me.AxWindowsMediaPlayer4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer4.Name = "AxWindowsMediaPlayer4"
         Me.AxWindowsMediaPlayer4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer4.Size = New System.Drawing.Size(315, 154)
+        Me.AxWindowsMediaPlayer4.Size = New System.Drawing.Size(315, 178)
         Me.AxWindowsMediaPlayer4.TabIndex = 1000
         Me.AxWindowsMediaPlayer4.TabStop = False
         '
         'AxWindowsMediaPlayer5
         '
         Me.AxWindowsMediaPlayer5.Enabled = True
-        Me.AxWindowsMediaPlayer5.Location = New System.Drawing.Point(628, 309)
+        Me.AxWindowsMediaPlayer5.Location = New System.Drawing.Point(628, 305)
         Me.AxWindowsMediaPlayer5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer5.Name = "AxWindowsMediaPlayer5"
         Me.AxWindowsMediaPlayer5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer5.Size = New System.Drawing.Size(315, 150)
+        Me.AxWindowsMediaPlayer5.Size = New System.Drawing.Size(315, 173)
         Me.AxWindowsMediaPlayer5.TabIndex = 1000
         Me.AxWindowsMediaPlayer5.TabStop = False
         '
         'AxWindowsMediaPlayer6
         '
         Me.AxWindowsMediaPlayer6.Enabled = True
-        Me.AxWindowsMediaPlayer6.Location = New System.Drawing.Point(628, 83)
+        Me.AxWindowsMediaPlayer6.Location = New System.Drawing.Point(628, 74)
         Me.AxWindowsMediaPlayer6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer6.Name = "AxWindowsMediaPlayer6"
         Me.AxWindowsMediaPlayer6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer6.Size = New System.Drawing.Size(315, 150)
+        Me.AxWindowsMediaPlayer6.Size = New System.Drawing.Size(315, 173)
         Me.AxWindowsMediaPlayer6.TabIndex = 1000
         Me.AxWindowsMediaPlayer6.TabStop = False
         '
@@ -418,9 +418,9 @@ Public Class VendingMachine
         '
         Me.cboComPort.FormattingEnabled = True
         Me.cboComPort.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4"})
-        Me.cboComPort.Location = New System.Drawing.Point(594, 12)
+        Me.cboComPort.Location = New System.Drawing.Point(594, 14)
         Me.cboComPort.Name = "cboComPort"
-        Me.cboComPort.Size = New System.Drawing.Size(65, 21)
+        Me.cboComPort.Size = New System.Drawing.Size(65, 20)
         Me.cboComPort.TabIndex = 1002
         Me.cboComPort.Visible = False
         '
@@ -429,9 +429,9 @@ Public Class VendingMachine
         Me.picOpen.BackColor = System.Drawing.SystemColors.Control
         Me.picOpen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.picOpen.InitialImage = CType(resources.GetObject("picOpen.InitialImage"), System.Drawing.Image)
-        Me.picOpen.Location = New System.Drawing.Point(692, 12)
+        Me.picOpen.Location = New System.Drawing.Point(692, 14)
         Me.picOpen.Name = "picOpen"
-        Me.picOpen.Size = New System.Drawing.Size(20, 18)
+        Me.picOpen.Size = New System.Drawing.Size(20, 21)
         Me.picOpen.TabIndex = 1001
         Me.picOpen.TabStop = False
         Me.picOpen.Visible = False
@@ -440,9 +440,9 @@ Public Class VendingMachine
         '
         Me.Price5.AutoSize = True
         Me.Price5.BackColor = System.Drawing.Color.White
-        Me.Price5.Location = New System.Drawing.Point(1029, 389)
+        Me.Price5.Location = New System.Drawing.Point(1029, 449)
         Me.Price5.Name = "Price5"
-        Me.Price5.Size = New System.Drawing.Size(25, 13)
+        Me.Price5.Size = New System.Drawing.Size(23, 12)
         Me.Price5.TabIndex = 90
         Me.Price5.Text = "200"
         Me.Price5.Visible = False
@@ -451,9 +451,9 @@ Public Class VendingMachine
         '
         Me.Price6.AutoSize = True
         Me.Price6.BackColor = System.Drawing.Color.White
-        Me.Price6.Location = New System.Drawing.Point(1029, 137)
+        Me.Price6.Location = New System.Drawing.Point(1029, 158)
         Me.Price6.Name = "Price6"
-        Me.Price6.Size = New System.Drawing.Size(25, 13)
+        Me.Price6.Size = New System.Drawing.Size(23, 12)
         Me.Price6.TabIndex = 91
         Me.Price6.Text = "100"
         Me.Price6.Visible = False
@@ -462,9 +462,9 @@ Public Class VendingMachine
         '
         Me.Price4.AutoSize = True
         Me.Price4.BackColor = System.Drawing.Color.White
-        Me.Price4.Location = New System.Drawing.Point(1029, 649)
+        Me.Price4.Location = New System.Drawing.Point(1029, 749)
         Me.Price4.Name = "Price4"
-        Me.Price4.Size = New System.Drawing.Size(19, 13)
+        Me.Price4.Size = New System.Drawing.Size(17, 12)
         Me.Price4.TabIndex = 89
         Me.Price4.Text = "50"
         Me.Price4.Visible = False
@@ -473,10 +473,10 @@ Public Class VendingMachine
         '
         Me.Btn6.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn6.Location = New System.Drawing.Point(965, 57)
+        Me.Btn6.Location = New System.Drawing.Point(966, 58)
         Me.Btn6.Margin = New System.Windows.Forms.Padding(0)
         Me.Btn6.Name = "Btn6"
-        Me.Btn6.Size = New System.Drawing.Size(55, 130)
+        Me.Btn6.Size = New System.Drawing.Size(55, 150)
         Me.Btn6.TabIndex = 95
         Me.Btn6.UseVisualStyleBackColor = False
         Me.Btn6.Visible = False
@@ -485,9 +485,9 @@ Public Class VendingMachine
         '
         Me.Btn5.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn5.Location = New System.Drawing.Point(965, 322)
+        Me.Btn5.Location = New System.Drawing.Point(965, 323)
         Me.Btn5.Name = "Btn5"
-        Me.Btn5.Size = New System.Drawing.Size(55, 123)
+        Me.Btn5.Size = New System.Drawing.Size(55, 141)
         Me.Btn5.TabIndex = 94
         Me.Btn5.UseVisualStyleBackColor = False
         Me.Btn5.Visible = False
@@ -496,9 +496,9 @@ Public Class VendingMachine
         '
         Me.Btn4.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn4.Location = New System.Drawing.Point(965, 577)
+        Me.Btn4.Location = New System.Drawing.Point(965, 578)
         Me.Btn4.Name = "Btn4"
-        Me.Btn4.Size = New System.Drawing.Size(55, 126)
+        Me.Btn4.Size = New System.Drawing.Size(55, 145)
         Me.Btn4.TabIndex = 92
         Me.Btn4.UseVisualStyleBackColor = False
         Me.Btn4.Visible = False
@@ -507,9 +507,9 @@ Public Class VendingMachine
         '
         Me.ProductName_6.AutoSize = True
         Me.ProductName_6.BackColor = System.Drawing.Color.White
-        Me.ProductName_6.Location = New System.Drawing.Point(1029, 96)
+        Me.ProductName_6.Location = New System.Drawing.Point(1029, 111)
         Me.ProductName_6.Name = "ProductName_6"
-        Me.ProductName_6.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_6.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_6.TabIndex = 91
         Me.ProductName_6.Text = "產品名稱"
         Me.ProductName_6.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -519,9 +519,9 @@ Public Class VendingMachine
         '
         Me.ProductName_5.AutoSize = True
         Me.ProductName_5.BackColor = System.Drawing.Color.White
-        Me.ProductName_5.Location = New System.Drawing.Point(1029, 356)
+        Me.ProductName_5.Location = New System.Drawing.Point(1029, 411)
         Me.ProductName_5.Name = "ProductName_5"
-        Me.ProductName_5.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_5.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_5.TabIndex = 91
         Me.ProductName_5.Text = "產品名稱"
         Me.ProductName_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -531,9 +531,9 @@ Public Class VendingMachine
         '
         Me.ProductName_4.AutoSize = True
         Me.ProductName_4.BackColor = System.Drawing.Color.White
-        Me.ProductName_4.Location = New System.Drawing.Point(1026, 610)
+        Me.ProductName_4.Location = New System.Drawing.Point(1026, 704)
         Me.ProductName_4.Name = "ProductName_4"
-        Me.ProductName_4.Size = New System.Drawing.Size(55, 13)
+        Me.ProductName_4.Size = New System.Drawing.Size(53, 12)
         Me.ProductName_4.TabIndex = 91
         Me.ProductName_4.Text = "產品名稱"
         Me.ProductName_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -541,11 +541,11 @@ Public Class VendingMachine
         '
         'VendingMachine
         '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
+        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 15)
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImage = Global.TermProject2.My.Resources.Resources.vendor
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(1108, 730)
+        Me.ClientSize = New System.Drawing.Size(640, 480)
         Me.ControlBox = False
         Me.Controls.Add(Me.Price3)
         Me.Controls.Add(Me.ProductName_3)
@@ -587,7 +587,6 @@ Public Class VendingMachine
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Vending Machine"
         Me.TopMost = True
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.AxWindowsMediaPlayer0, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -670,7 +669,7 @@ Public Class VendingMachine
             myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("127.0.0.1"), 0) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
             BackgroundWorker1.RunWorkerAsync(myObj)
         End If
-
+        RayStartCase(appobject.ProductNum, False)
         UdpTimer.Enabled = True
         RotateTimer.Enabled = True
     End Sub
@@ -823,8 +822,7 @@ Public Class VendingMachine
             MoneyDepositTB.Text = appobject.MoneyAvailable
             DrawVerticalText(MoneyDepositTB.Text)
             UdpTimer.Enabled = False
-            RotateTimer.Enabled = False
-
+            
             Select Case appobject.ProductNum
                 Case 1
                     AxWindowsMediaPlayer1.settings.setMode("loop", False)
@@ -931,6 +929,7 @@ Public Class VendingMachine
             SerialPort1.Write("1")
         End If
 
+        RotateTimer.Enabled = True
         ResetMoneyReturnTimer.Enabled = True
     End Sub
 
@@ -989,6 +988,7 @@ Public Class VendingMachine
             End If
             AxWindowsMediaPlayer0.Visible = False
             appobject.SendBytes = "done"
+            allContinue()
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "狀態")
@@ -1080,6 +1080,26 @@ Public Class VendingMachine
     Private Sub RotateTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RotateTimer.Tick
         appobject.Over10Sec()
         appobject.backToRotate()
+        Select Case appobject.ProductNum
+            Case 1
+                AxWindowsMediaPlayer1.settings.setMode("loop", False)
+                AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            Case 2
+                AxWindowsMediaPlayer2.settings.setMode("loop", False)
+                AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            Case 3
+                AxWindowsMediaPlayer3.settings.setMode("loop", False)
+                AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            Case 4
+                AxWindowsMediaPlayer4.settings.setMode("loop", False)
+                AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            Case 5
+                AxWindowsMediaPlayer5.settings.setMode("loop", False)
+                AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            Case 6
+                AxWindowsMediaPlayer6.settings.setMode("loop", False)
+                AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+        End Select
         AxWindowsMediaPlayer1.SetBounds(appobject.RaySix(0).wmv.Left, appobject.RaySix(0).wmv.Top, appobject.RaySix(0).wmv.Width, appobject.RaySix(0).wmv.Height)
         Btn1.SetBounds(appobject.RaySix(0).btn.Left, appobject.RaySix(0).btn.Top, appobject.RaySix(0).btn.Width, appobject.RaySix(0).btn.Height)
         AxWindowsMediaPlayer2.SetBounds(appobject.RaySix(1).wmv.Left, appobject.RaySix(1).wmv.Top, appobject.RaySix(1).wmv.Width, appobject.RaySix(1).wmv.Height)
@@ -1140,6 +1160,7 @@ Public Class VendingMachine
                 MoneyDepositTB.Text = appobject.MoneyAvailable
                 DrawVerticalText(MoneyDepositTB.Text)
                 Btn_Show()
+                RotateTimer.Enabled = False
             ElseIf appobject.ReceiveBytes = "50" Then
                 If appobject.MoneyAvailable = 0 Then
                     CoinFirstFrame()
@@ -1149,6 +1170,7 @@ Public Class VendingMachine
                 MoneyDepositTB.Text = appobject.MoneyAvailable
                 DrawVerticalText(MoneyDepositTB.Text)
                 Btn_Show()
+                RotateTimer.Enabled = False
             ElseIf appobject.ReceiveBytes.StartsWith("-") Then
                 intrec = Integer.Parse(appobject.ReceiveBytes)
                 appobject.ReceiveBytes = String.Empty
@@ -1265,94 +1287,111 @@ Public Class VendingMachine
             'Exit For
             'End If
 
-            Select Case n
-                Case 1
-                    AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    AxWindowsMediaPlayer1.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
-                    ProductName_1.Text = list_Name(n - 1)
-                    Price1.Text = list_Price(n - 1)
-                    appobject.RaySix(0).wmv = New Rectangle(AxWindowsMediaPlayer1.Location.X, AxWindowsMediaPlayer1.Location.Y _
-                                                  , AxWindowsMediaPlayer1.Size.Width, AxWindowsMediaPlayer1.Size.Height)
-                    appobject.RaySix(0).btn = New Rectangle(Btn1.Location.X, Btn1.Location.Y _
-                                                  , Btn1.Size.Width, Btn1.Size.Height)
-                Case 2
-                    AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1)
-                    AxWindowsMediaPlayer2.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
-                    ProductName_2.Text = list_Name(n - 1)
-                    Price2.Text = list_Price(n - 1)
-                    appobject.RaySix(1).wmv = New Rectangle(AxWindowsMediaPlayer2.Location.X, AxWindowsMediaPlayer2.Location.Y _
-                                                  , AxWindowsMediaPlayer2.Size.Width, AxWindowsMediaPlayer2.Size.Height)
-                    appobject.RaySix(1).btn = New Rectangle(Btn2.Location.X, Btn2.Location.Y _
-                                                  , Btn2.Size.Width, Btn2.Size.Height)
-                Case 3
-                    AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1)
-                    AxWindowsMediaPlayer3.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
-                    ProductName_3.Text = list_Name(n - 1)
-                    Price3.Text = list_Price(n - 1)
-                    appobject.RaySix(2).wmv = New Rectangle(AxWindowsMediaPlayer3.Location.X, AxWindowsMediaPlayer3.Location.Y _
-                                                 , AxWindowsMediaPlayer3.Size.Width, AxWindowsMediaPlayer3.Size.Height)
-                    appobject.RaySix(2).btn = New Rectangle(Btn3.Location.X, Btn3.Location.Y _
-                                                  , Btn3.Size.Width, Btn3.Size.Height)
-                Case 4
-                    AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1)
-                    AxWindowsMediaPlayer4.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
-                    ProductName_4.Text = list_Name(n - 1)
-                    Price4.Text = list_Price(n - 1)
-                    appobject.RaySix(3).wmv = New Rectangle(AxWindowsMediaPlayer4.Location.X, AxWindowsMediaPlayer4.Location.Y _
-                                                  , AxWindowsMediaPlayer4.Size.Width, AxWindowsMediaPlayer4.Size.Height)
-                    appobject.RaySix(3).btn = New Rectangle(Btn4.Location.X, Btn4.Location.Y _
-                                                  , Btn4.Size.Width, Btn4.Size.Height)
-                Case 5
-                    AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1)
-                    AxWindowsMediaPlayer5.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
-                    ProductName_5.Text = list_Name(n - 1)
-                    Price5.Text = list_Price(n - 1)
-                    appobject.RaySix(4).wmv = New Rectangle(AxWindowsMediaPlayer5.Location.X, AxWindowsMediaPlayer5.Location.Y _
-                                                  , AxWindowsMediaPlayer5.Size.Width, AxWindowsMediaPlayer5.Size.Height)
-                    appobject.RaySix(4).btn = New Rectangle(Btn5.Location.X, Btn5.Location.Y _
-                                                  , Btn5.Size.Width, Btn5.Size.Height)
-                Case 6
-                    AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1)
-                    AxWindowsMediaPlayer6.settings.setMode("loop", True)
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
-                    ProductName_6.Text = list_Name(n - 1)
-                    Price6.Text = list_Price(n - 1)
-                    appobject.RaySix(5).wmv = New Rectangle(AxWindowsMediaPlayer6.Location.X, AxWindowsMediaPlayer6.Location.Y _
-                                                  , AxWindowsMediaPlayer6.Size.Width, AxWindowsMediaPlayer6.Size.Height)
-                    appobject.RaySix(5).btn = New Rectangle(Btn6.Location.X, Btn6.Location.Y _
-                                                  , Btn6.Size.Width, Btn6.Size.Height)
-                    'Case 7
-                    'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_7)
-                    'ProductName_7.Text = list_Name(n - 1)
-                    'Price7.Text = list_Price(n - 1)
-                    'Case 8
-                    'Pic_8.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_8)
-                    'ProductName_8.Text = list_Name(n - 1)
-                    'Price8.Text = list_Price(n - 1)
-                    'Case 9
-                    'Pic_9.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_9)
-                    'ProductName_9.Text = list_Name(n - 1)
-                    'Price9.Text = list_Price(n - 1)
-                    'Case 10
-                    'Pic_10.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
-                    'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_10)
-                    'ProductName_10.Text = list_Name(n - 1)
-                    'Price10.Text = list_Price(n - 1)
-
-            End Select
+            RayStartCase(n, True)
         Next
 
         Btn_Show()
 
     End Sub
+
+    Private Sub RayStartCase(ByVal n As Integer, ByVal isPos As Boolean)
+        Select Case n
+            Case 1
+                AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                AxWindowsMediaPlayer1.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_1)
+                'ProductName_1.Text = list_Name(n - 1)
+                Price1.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(0).wmv = New Rectangle(AxWindowsMediaPlayer1.Location.X, AxWindowsMediaPlayer1.Location.Y _
+                                              , AxWindowsMediaPlayer1.Size.Width, AxWindowsMediaPlayer1.Size.Height)
+                    appobject.RaySix(0).btn = New Rectangle(Btn1.Location.X, Btn1.Location.Y _
+                                              , Btn1.Size.Width, Btn1.Size.Height)
+                End If
+            Case 2
+                AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
+                AxWindowsMediaPlayer2.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_2)
+                'ProductName_2.Text = list_Name(n - 1)
+                Price2.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(1).wmv = New Rectangle(AxWindowsMediaPlayer2.Location.X, AxWindowsMediaPlayer2.Location.Y _
+                                              , AxWindowsMediaPlayer2.Size.Width, AxWindowsMediaPlayer2.Size.Height)
+                    appobject.RaySix(1).btn = New Rectangle(Btn2.Location.X, Btn2.Location.Y _
+                                              , Btn2.Size.Width, Btn2.Size.Height)
+                End If
+            Case 3
+                AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
+                AxWindowsMediaPlayer3.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_3)
+                'ProductName_3.Text = list_Name(n - 1)
+                Price3.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(2).wmv = New Rectangle(AxWindowsMediaPlayer3.Location.X, AxWindowsMediaPlayer3.Location.Y _
+                                                             , AxWindowsMediaPlayer3.Size.Width, AxWindowsMediaPlayer3.Size.Height)
+                    appobject.RaySix(2).btn = New Rectangle(Btn3.Location.X, Btn3.Location.Y _
+                                                  , Btn3.Size.Width, Btn3.Size.Height)
+                End If
+            Case 4
+                AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
+                AxWindowsMediaPlayer4.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_4)
+                'ProductName_4.Text = list_Name(n - 1)
+                'Price4.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(3).wmv = New Rectangle(AxWindowsMediaPlayer4.Location.X, AxWindowsMediaPlayer4.Location.Y _
+                                                  , AxWindowsMediaPlayer4.Size.Width, AxWindowsMediaPlayer4.Size.Height)
+                    appobject.RaySix(3).btn = New Rectangle(Btn4.Location.X, Btn4.Location.Y _
+                                                  , Btn4.Size.Width, Btn4.Size.Height)
+                End If
+            Case 5
+                AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
+                AxWindowsMediaPlayer5.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_5)
+                'ProductName_5.Text = list_Name(n - 1)
+                Price5.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(4).wmv = New Rectangle(AxWindowsMediaPlayer5.Location.X, AxWindowsMediaPlayer5.Location.Y _
+                                                  , AxWindowsMediaPlayer5.Size.Width, AxWindowsMediaPlayer5.Size.Height)
+                    appobject.RaySix(4).btn = New Rectangle(Btn5.Location.X, Btn5.Location.Y _
+                                                  , Btn5.Size.Width, Btn5.Size.Height)
+                End If
+            Case 6
+                AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
+                AxWindowsMediaPlayer6.settings.setMode("loop", True)
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_6)
+                'ProductName_6.Text = list_Name(n - 1)
+                Price6.Text = list_Price(n - 1)
+                If isPos = True Then
+                    appobject.RaySix(5).wmv = New Rectangle(AxWindowsMediaPlayer6.Location.X, AxWindowsMediaPlayer6.Location.Y _
+                                                            , AxWindowsMediaPlayer6.Size.Width, AxWindowsMediaPlayer6.Size.Height)
+                    appobject.RaySix(5).btn = New Rectangle(Btn6.Location.X, Btn6.Location.Y _
+                                                  , Btn6.Size.Width, Btn6.Size.Height)
+                End If
+                'Case 7
+                'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_7)
+                'ProductName_7.Text = list_Name(n - 1)
+                'Price7.Text = list_Price(n - 1)
+                'Case 8
+                'Pic_8.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_8)
+                'ProductName_8.Text = list_Name(n - 1)
+                'Price8.Text = list_Price(n - 1)
+                'Case 9
+                'Pic_9.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_9)
+                'ProductName_9.Text = list_Name(n - 1)
+                'Price9.Text = list_Price(n - 1)
+                'Case 10
+                'Pic_10.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_10)
+                'ProductName_10.Text = list_Name(n - 1)
+                'Price10.Text = list_Price(n - 1)
+
+        End Select
+    End Sub
+
 
     'Private Sub btn_next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     'Page = Page + 1
@@ -1446,7 +1485,7 @@ Public Class VendingMachine
     End Sub
 
     Private Sub DrawVerticalText(ByVal drawString As String)
-        Dim xx As Single = -1100
+        Dim xx As Single = -150
         Dim yy As Single = -150
         If formGraphics Is Nothing Then
             formGraphics = Me.CreateGraphics
