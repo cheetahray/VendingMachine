@@ -14,14 +14,13 @@ Public Class VendingMachine
     Dim list_Name As New ArrayList
     Dim list_Pic As New ArrayList
     Dim list_Price As New ArrayList
-    Dim list_Viedo As New ArrayList
+    Dim list_Video As New ArrayList
     Dim list_Print As New ArrayList
+    Dim list_Strike As New ArrayList
     Dim TotalNum As Integer
     Dim Page As Integer = 1
     Dim oweMoney As Integer
-    Dim ProductNum As Integer = 0 '商品編號
     Private comOpen As Boolean 'comPort
-    Dim ItemCost As Decimal = 0.0       'Cost of the item
     Dim ItemQuantity As Integer = 0
     'Quantity of Items available
     Dim objRandom As New System.Random(CType(System.DateTime.Now.Ticks Mod System.Int32.MaxValue, Integer))
@@ -53,7 +52,7 @@ Public Class VendingMachine
     Friend WithEvents ProductName_1 As System.Windows.Forms.Label
     Friend WithEvents MsgTimer As System.Windows.Forms.Timer
     Friend WithEvents PrintError As System.Drawing.Printing.PrintDocument
-    Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintPreviewDialog
+    'Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents cboComPort As System.Windows.Forms.ComboBox
     Friend WithEvents picOpen As System.Windows.Forms.PictureBox
     Friend WithEvents Price5 As System.Windows.Forms.Label
@@ -137,7 +136,6 @@ Public Class VendingMachine
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.MsgTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PrintError = New System.Drawing.Printing.PrintDocument()
-        Me.PrintDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.cboComPort = New System.Windows.Forms.ComboBox()
         Me.picOpen = New System.Windows.Forms.PictureBox()
         Me.Price5 = New System.Windows.Forms.Label()
@@ -284,7 +282,7 @@ Public Class VendingMachine
         'ResetMoneyReturnTimer
         '
         Me.ResetMoneyReturnTimer.Interval = 250
-        Me.RotateTimer.Interval = 10000
+        '
         'Btn1
         '
         Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
@@ -402,6 +400,10 @@ Public Class VendingMachine
         '
         Me.UdpTimer.Interval = 1000
         '
+        'RotateTimer
+        '
+        Me.RotateTimer.Interval = 10000
+        '
         'PrintDocument1
         '
         '
@@ -411,16 +413,6 @@ Public Class VendingMachine
         '
         'PrintError
         '
-        '
-        'PrintDialog1
-        '
-        Me.PrintDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.PrintDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.PrintDialog1.ClientSize = New System.Drawing.Size(400, 300)
-        Me.PrintDialog1.Enabled = True
-        Me.PrintDialog1.Icon = CType(resources.GetObject("PrintDialog1.Icon"), System.Drawing.Icon)
-        Me.PrintDialog1.Name = "PrintDialog1"
-        Me.PrintDialog1.Visible = False
         '
         'cboComPort
         '
@@ -647,7 +639,8 @@ Public Class VendingMachine
             list_Name.Add(objDataReader.Item("P_Name"))
             list_Pic.Add(objDataReader.Item("P_Pic"))
             list_Price.Add(objDataReader.Item("P_Price"))
-            list_Viedo.Add(objDataReader.Item("Animation"))
+            list_Video.Add(objDataReader.Item("Animation"))
+            list_Strike.Add(objDataReader.Item("Strike"))
             list_Print.Add(objDataReader.Item("Content_Pic"))
         End While
         ' 關閉資料庫的連結
@@ -726,21 +719,9 @@ Public Class VendingMachine
     'Calculates the amount to return after transaction找錢
     Private Sub CalculateChange(ByVal AvailableMoney As Decimal)
 
-        If (AvailableMoney = 0) Then
-            appobject.MoneyAvailable = 0
-            MoneyDepositTB.Text = ""
-            'Exit Sub
-        Else
-            MoneyDepositTB.Text = ""
-            Dim num As Integer = AvailableMoney / 50
-            appobject.MoneyAvailable = AvailableMoney = 0
-            appobject.SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
-        End If
-
         MoneyReturnTB.Text = appobject.MoneyAvailable.ToString("C")
         MoneyDepositTB.Text = ""
-
-        appobject.MoneyAvailable = 0.0
+        DrawVerticalText(MoneyDepositTB.Text)
         Btn_Show()
 
     End Sub
@@ -752,16 +733,16 @@ Public Class VendingMachine
 
     'Returns unused amount to user
     Private Sub ChangeReturnBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChangeReturnBTN.Click
-        'DrawVerticalText("50")
+        DrawVerticalText("50")
 
-        If (appobject.MoneyAvailable > 0) Then
-            CalculateChange(appobject.MoneyAvailable)
-            ResetMoneyReturnTimer.Enabled = True
-        Else
-            MsgBox("You do not have any deposited money to return", MsgBoxStyle.Exclamation, "Zero Balance")
-        End If
+        'If (appobject.MoneyAvailable > 0) Then
+        'CalculateChange(appobject.MoneyAvailable)
+        'ResetMoneyReturnTimer.Enabled = True
+        'Else
+        'MsgBox("You do not have any deposited money to return", MsgBoxStyle.Exclamation, "Zero Balance")
+        'End If
 
-        Btn_Show()
+        'Btn_Show()
     End Sub
 
     'Private Sub DollarBillImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -832,87 +813,100 @@ Public Class VendingMachine
 
     End Sub
     '買買買
-    Private Sub PerformTransaction(ByVal ItemName As AxWMPLib.AxWindowsMediaPlayer, ByVal ButtonName As Button, ByVal ItemPrice As Decimal)
+    Private Sub PerformTransaction(ByVal ItemPrice As Decimal)
 
-        ItemCost = ItemPrice
+        appobject.ItemCost = ItemPrice
+        appobject.Submit()
 
-        If (ItemCost <= appobject.MoneyAvailable) Then
-            ' ButtonName.Enabled = False
-
-            appobject.MoneyAvailable -= ItemCost 'Reduce MoneyAvailable after purchase
-            'MoneyDepositTB.Text = MoneyAvailable.ToString("C")
+        If (appobject.ItemCost <= appobject.MoneyAvailable) Then
+            
             MoneyDepositTB.Text = appobject.MoneyAvailable
+            DrawVerticalText(MoneyDepositTB.Text)
+            UdpTimer.Enabled = False
+            RotateTimer.Enabled = False
 
-            If comOpen Then SerialPort1.Write("1")
+            Select Case appobject.ProductNum
+                Case 1
+                    AxWindowsMediaPlayer1.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                Case 2
+                    AxWindowsMediaPlayer2.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                Case 3
+                    AxWindowsMediaPlayer3.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                Case 4
+                    AxWindowsMediaPlayer4.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                Case 5
+                    AxWindowsMediaPlayer5.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                Case 6
+                    AxWindowsMediaPlayer6.settings.setMode("loop", False)
+                    AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+            End Select
 
-            '按鈕隱藏
-            'ButtonName.Visible = False
-            'Btn_Visible()
-
-            'CalculateChange(MoneyAvailable)
-
-            ResetMoneyReturnTimer.Enabled = True
         End If 'ITEM COST
 
     End Sub
 
     Private Sub Btn1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn1.Click
-        ProductNum = 1 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer1, Btn1, Price1.Text)'(Pic_1, Btn1, Price1.Text)
+        appobject.ProductNum = 1 '+ (Page - 1) * 10
+        Call PerformTransaction(Price1.Text) '(Pic_1, Btn1, Price1.Text)
     End Sub
 
     Private Sub Btn2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn2.Click
-        ProductNum = 2 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer2, Btn2, Price2.Text)
+        appobject.ProductNum = 2 '+ (Page - 1) * 10
+        Call PerformTransaction(Price2.Text)
     End Sub
 
     Private Sub Btn3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn3.Click
-        ProductNum = 3 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer3, Btn3, Price3.Text)
+        appobject.ProductNum = 3 '+ (Page - 1) * 10
+        Call PerformTransaction(Price3.Text)
     End Sub
 
     Private Sub Btn4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn4.Click
-        ProductNum = 4 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer4, Btn4, Price4.Text)
+        appobject.ProductNum = 4 '+ (Page - 1) * 10
+        Call PerformTransaction(Price4.Text)
     End Sub
 
     Private Sub Btn5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn5.Click
-        ProductNum = 5 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer5, Btn5, Price5.Text)
+        appobject.ProductNum = 5 '+ (Page - 1) * 10
+        Call PerformTransaction(Price5.Text)
     End Sub
 
     Private Sub Btn6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn6.Click
-        ProductNum = 6 + (Page - 1) * 10
-        Call PerformTransaction(AxWindowsMediaPlayer6, Btn6, Price6.Text)
+        appobject.ProductNum = 6 '+ (Page - 1) * 10
+        Call PerformTransaction(Price6.Text)
     End Sub
 
     'Private Sub Btn7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    ProductNum = 7 + (Page - 1) * 10
+    '    appobject.ProductNum = 7 + (Page - 1) * 10
     '    Call PerformTransaction(Pic_7, Btn7, Price7.Text, Index7)
     'End Sub
 
     'Private Sub Btn8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    ProductNum = 8 + (Page - 1) * 10
+    '    appobject.ProductNum = 8 + (Page - 1) * 10
     '    Call PerformTransaction(Pic_8, Btn8, Price8.Text, Index8)
     'End Sub
 
     'Private Sub Btn9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    ProductNum = 9 + (Page - 1) * 10
+    '    appobject.ProductNum = 9 + (Page - 1) * 10
     '    Call PerformTransaction(Pic_9, Btn9, Price9.Text, Index9)
     'End Sub
 
     'Private Sub Btn10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    ProductNum = 10 + (Page - 1) * 10
+    '    appobject.ProductNum = 10 + (Page - 1) * 10
     '    Call PerformTransaction(Pic_10, Btn10, Price10.Text, Index10)
     'End Sub
 
     Private Sub PlayMovie()
-        If (ProductNum >= 1 And ProductNum <= 6) Then
-            appobject.SendBytes = "play"
-            UdpTimer.Enabled = False
-            RotateTimer.Enabled = False
-            'MsgBox(Application.StartupPath & "\" & list_Viedo((ProductNum - 1)))
-            AxWindowsMediaPlayer0.URL = Application.StartupPath & "\" & list_Viedo((ProductNum - 1))
+        If (appobject.ProductNum >= 1 And appobject.ProductNum <= 6) Then
+            'appobject.SendBytes = "play"
+            'UdpTimer.Enabled = False
+            'RotateTimer.Enabled = False
+            'MsgBox(Application.StartupPath & "\" & list_Video((appobject.ProductNum - 1)))
+            AxWindowsMediaPlayer0.URL = Application.StartupPath & "\" & list_Video((appobject.ProductNum - 1))
         End If
     End Sub
 
@@ -930,16 +924,70 @@ Public Class VendingMachine
         'Btn10.Visible = MoneyAvailable >= Val(Price10.Text) And Price10.Text <> ""
     End Sub
 
-    Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub GlassAndMovie()
+        appobject.ToNext()
 
+        If comOpen Then
+            SerialPort1.Write("1")
+        End If
+
+        ResetMoneyReturnTimer.Enabled = True
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer2_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer2.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer3_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer3.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer4_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer4.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer5_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer5.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer6_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+        If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
+            AxWindowsMediaPlayer6.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
+            GlassAndMovie()
+        End If
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             RotateTimer.Enabled = True
-            CalculateChange(appobject.MoneyAvailable)
+            appobject.Change()
             PrintDocument1.Print()
-            If comOpen Then SerialPort1.Write("0")
+            appobject.BackStart()
+            CalculateChange(appobject.MoneyAvailable)
+            If comOpen Then
+                SerialPort1.Write("0")
+            End If
             AxWindowsMediaPlayer0.Visible = False
-            ProductNum = 0
             appobject.SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
@@ -1090,6 +1138,7 @@ Public Class VendingMachine
                     appobject.BillInAgain()
                 End If
                 MoneyDepositTB.Text = appobject.MoneyAvailable
+                DrawVerticalText(MoneyDepositTB.Text)
                 Btn_Show()
             ElseIf appobject.ReceiveBytes = "50" Then
                 If appobject.MoneyAvailable = 0 Then
@@ -1098,6 +1147,7 @@ Public Class VendingMachine
                     appobject.CoinInAgain()
                 End If
                 MoneyDepositTB.Text = appobject.MoneyAvailable
+                DrawVerticalText(MoneyDepositTB.Text)
                 Btn_Show()
             ElseIf appobject.ReceiveBytes.StartsWith("-") Then
                 intrec = Integer.Parse(appobject.ReceiveBytes)
@@ -1107,56 +1157,56 @@ Public Class VendingMachine
         End If
     End Sub
 
-    Public Sub AutosizeImage(ByVal ImagePath As String, ByVal picBox As PictureBox, Optional ByVal pSizeMode As PictureBoxSizeMode = PictureBoxSizeMode.CenterImage)
-        Try
-            picBox.Image = Nothing
-            picBox.SizeMode = pSizeMode
-            If System.IO.File.Exists(ImagePath) Then
-                Dim imgOrg As Bitmap
-                Dim imgShow As Bitmap
-                Dim g As Graphics
-                Dim divideBy, divideByH, divideByW As Double
-                imgOrg = DirectCast(Bitmap.FromFile(ImagePath), Bitmap)
+    'Public Sub AutosizeImage(ByVal ImagePath As String, ByVal picBox As PictureBox, Optional ByVal pSizeMode As PictureBoxSizeMode = PictureBoxSizeMode.CenterImage)
+    '   Try
+    '      picBox.Image = Nothing
+    '     picBox.SizeMode = pSizeMode
+    '    If System.IO.File.Exists(ImagePath) Then
+    'Dim imgOrg As Bitmap
+    'Dim imgShow As Bitmap
+    'Dim g As Graphics
+    'Dim divideBy, divideByH, divideByW As Double
+    '           imgOrg = DirectCast(Bitmap.FromFile(ImagePath), Bitmap)
 
-                divideByW = imgOrg.Width / picBox.Width
-                divideByH = imgOrg.Height / picBox.Height
-                If divideByW > 1 Or divideByH > 1 Then
-                    If divideByW > divideByH Then
-                        divideBy = divideByW
-                    Else
-                        divideBy = divideByH
-                    End If
+    '            divideByW = imgOrg.Width / picBox.Width
+    '           divideByH = imgOrg.Height / picBox.Height
+    '          If divideByW > 1 Or divideByH > 1 Then
+    '             If divideByW > divideByH Then
+    '                divideBy = divideByW
+    '           Else
+    '              divideBy = divideByH
+    '         End If
 
-                    imgShow = New Bitmap(CInt(CDbl(imgOrg.Width) / divideBy), CInt(CDbl(imgOrg.Height) / divideBy))
-                    imgShow.SetResolution(imgOrg.HorizontalResolution, imgOrg.VerticalResolution)
-                    g = Graphics.FromImage(imgShow)
-                    g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-                    g.DrawImage(imgOrg, New Rectangle(0, 0, CInt(CDbl(imgOrg.Width) / divideBy), CInt(CDbl(imgOrg.Height) / divideBy)), 0, 0, imgOrg.Width, imgOrg.Height, GraphicsUnit.Pixel)
-                    g.Dispose()
-                Else
-                    imgShow = New Bitmap(imgOrg.Width, imgOrg.Height)
-                    imgShow.SetResolution(imgOrg.HorizontalResolution, imgOrg.VerticalResolution)
-                    g = Graphics.FromImage(imgShow)
-                    g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-                    g.DrawImage(imgOrg, New Rectangle(0, 0, imgOrg.Width, imgOrg.Height), 0, 0, imgOrg.Width, imgOrg.Height, GraphicsUnit.Pixel)
-                    g.Dispose()
-                End If
-                imgOrg.Dispose()
+    '               imgShow = New Bitmap(CInt(CDbl(imgOrg.Width) / divideBy), CInt(CDbl(imgOrg.Height) / divideBy))
+    '                imgShow.SetResolution(imgOrg.HorizontalResolution, imgOrg.VerticalResolution)
+    '               g = Graphics.FromImage(imgShow)
+    '              g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+    '            g.DrawImage(imgOrg, New Rectangle(0, 0, CInt(CDbl(imgOrg.Width) / divideBy), CInt(CDbl(imgOrg.Height) / divideBy)), 0, 0, imgOrg.Width, imgOrg.Height, GraphicsUnit.Pixel)
+    '             g.Dispose()
+    '       Else
+    '          imgShow = New Bitmap(imgOrg.Width, imgOrg.Height)
+    '         imgShow.SetResolution(imgOrg.HorizontalResolution, imgOrg.VerticalResolution)
+    '        g = Graphics.FromImage(imgShow)
+    '       g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+    '      g.DrawImage(imgOrg, New Rectangle(0, 0, imgOrg.Width, imgOrg.Height), 0, 0, imgOrg.Width, imgOrg.Height, GraphicsUnit.Pixel)
+    '     g.Dispose()
+    'End If
+    'imgOrg.Dispose()
 
-                picBox.Image = imgShow
-            Else
-                picBox.Image = Nothing
-            End If
+    '            picBox.Image = imgShow
+    '       Else
+    '          picBox.Image = Nothing
+    '     End If
 
 
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
+    '    Catch ex As Exception
+    '       MsgBox(ex.ToString)
+    '  End Try
 
-    End Sub
+    'End Sub
 
     Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
-        Dim path As String = Application.StartupPath & "\" & list_Print(ProductNum - 1)
+        Dim path As String = Application.StartupPath & "\" & list_Print(appobject.ProductNum - 1)
         'MsgBox(path)
         e.Graphics.DrawImage(New Bitmap(path), New Point(10, 10))
     End Sub
@@ -1396,15 +1446,18 @@ Public Class VendingMachine
     End Sub
 
     Private Sub DrawVerticalText(ByVal drawString As String)
+        Dim xx As Single = -1100
+        Dim yy As Single = -150
         If formGraphics Is Nothing Then
             formGraphics = Me.CreateGraphics
             formGraphics.RotateTransform(180.0F)
-            drawFont = New System.Drawing.Font("Arial", 16)
+            drawFont = New System.Drawing.Font("Arial", 32)
             drawBrush = New System.Drawing.SolidBrush(System.Drawing.Color.Black)
             drawFormat = New System.Drawing.StringFormat(StringFormatFlags.DirectionVertical)
         End If
-        formGraphics.FillRectangle(Brushes.White, -100.0F, -100.0F, 50, 50)
-        formGraphics.DrawString(drawString, drawFont, drawBrush, -100.0F, -100.0F, drawFormat)
+        drawString = "$" & drawString
+        formGraphics.FillRectangle(Brushes.White, xx, yy, 40, 120)
+        formGraphics.DrawString(drawString, drawFont, drawBrush, xx, yy, drawFormat)
         'drawFont.Dispose()
         'drawBrush.Dispose()
         'formGraphics.Dispose()

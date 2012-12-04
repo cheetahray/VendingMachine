@@ -58,12 +58,16 @@ Public NotInheritable Class AppClass
     '-----------------------------------------------------------
     ' Member methods.
     '
+    Public RayPos(6) As Integer
     Private RayBol(6) As Boolean
     Public MoneyAvailable As Decimal = 0 ' Money deposited by user 
+    Public ItemCost As Decimal = 0.0       'Cost of the item
+    Public ProductNum As Integer = 0 '商品編號
 
     Public Sub New()
         For ctr As Integer = 0 To 5
             RaySix(ctr) = New SixRandom
+            RayPos(ctr) = ctr
             tmpSix(ctr) = New SixRandom
             RayBol(ctr) = False
         Next
@@ -96,8 +100,24 @@ Public NotInheritable Class AppClass
         _fsm.CoinInAgain()
     End Sub
 
+    Public Sub Submit()
+        _fsm.Submit()
+    End Sub
+
     Public Sub BillFirstFrame()
         BillAdd()
+    End Sub
+
+    Public Sub ToNext()
+        _fsm.ToNext()
+    End Sub
+
+    Public Sub Change()
+        _fsm.Change()
+    End Sub
+
+    Public Sub BackStart()
+        _fsm.BackStart()
     End Sub
 
     '錢幣投入
@@ -122,6 +142,7 @@ Public NotInheritable Class AppClass
             RayBol(p) = True
             tmpSix(ctr).wmv = RaySix(p).wmv
             tmpSix(ctr).btn = RaySix(p).btn
+            RayPos(ctr) = p
         Next
     End Sub
 
@@ -150,6 +171,15 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub playBoom()
+        'ItemCost = ItemPrice
+
+        If (ItemCost <= MoneyAvailable) Then
+
+            MoneyAvailable -= ItemCost 'Reduce MoneyAvailable after purchase
+            'MoneyDepositTB.Text = MoneyAvailable.ToString("C")
+            SendBytes = "play"
+
+        End If 'ITEM COST
 
     End Sub
 
@@ -166,11 +196,15 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub PrintImages()
-
+        ProductNum = 0
     End Sub
 
     Public Sub glassMoneyChange()
 
+            Dim num As Integer = MoneyAvailable / 50
+            MoneyAvailable = 0
+            SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "找錢")
+        
     End Sub
 
 End Class
