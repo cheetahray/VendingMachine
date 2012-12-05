@@ -587,7 +587,6 @@ Public Class VendingMachine
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Vending Machine"
         Me.TopMost = True
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -819,7 +818,7 @@ Public Class VendingMachine
 
         If (appobject.ItemCost <= appobject.MoneyAvailable) Then
 
-            appobject.MoneyAvailable -= appobject.ItemCost 'Reduce MoneyAvailable after purchase
+            'appobject.MoneyAvailable -= appobject.ItemCost 'Reduce MoneyAvailable after purchase
             MoneyDepositTB.Text = appobject.MoneyAvailable
             DrawVerticalText(MoneyDepositTB.Text)
             UdpTimer.Enabled = False
@@ -1003,8 +1002,8 @@ Public Class VendingMachine
             appobject.Change()
             PrintDocument1.Print()
             RayStartCase(appobject.ProductNum, False)
-            CalculateChange(appobject.MoneyAvailable)
             appobject.BackStart()
+            CalculateChange(appobject.MoneyAvailable)
             If comOpen Then
                 SerialPort1.Write("0")
             End If
@@ -1012,7 +1011,9 @@ Public Class VendingMachine
             appobject.SendBytes = "done"
             allContinue()
             RotateTimer.Enabled = True
+            Me.Show()
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
+            Me.Hide()
             AxWindowsMediaPlayer0.Visible = True
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "ª¬ºA")
         End If
