@@ -323,7 +323,7 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer0.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer0.Name = "AxWindowsMediaPlayer0"
         Me.AxWindowsMediaPlayer0.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer0.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(150, 150)
+        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(1024, 768)
         Me.AxWindowsMediaPlayer0.TabIndex = 1000
         Me.AxWindowsMediaPlayer0.TabStop = False
         '
@@ -669,7 +669,6 @@ Public Class VendingMachine
             myObj.RemoteIpEndPoint = New IPEndPoint(IPAddress.Parse("127.0.0.1"), 0) '<==這是Server接收的一個重點，要用(IPAddress.Any, 0)的原因在於Server端程式一開始無法預測會是哪個IP從哪個Port傳給它﹝除非有其它原因要鎖住來源﹞。 
             BackgroundWorker1.RunWorkerAsync(myObj)
         End If
-        RayStartCase(appobject.ProductNum, False)
         UdpTimer.Enabled = True
         RotateTimer.Enabled = True
     End Sub
@@ -719,7 +718,7 @@ Public Class VendingMachine
     Private Sub CalculateChange(ByVal AvailableMoney As Decimal)
 
         MoneyReturnTB.Text = appobject.MoneyAvailable.ToString("C")
-        MoneyDepositTB.Text = ""
+        MoneyDepositTB.Text = "   "
         DrawVerticalText(MoneyDepositTB.Text)
         Btn_Show()
 
@@ -727,7 +726,7 @@ Public Class VendingMachine
 
     'Clears fields and resets them to remove any values
     Private Sub ResetComponents()
-        MoneyReturnTB.Text = ""
+        MoneyReturnTB.Text = "   "
     End Sub
 
     'Returns unused amount to user
@@ -818,7 +817,8 @@ Public Class VendingMachine
         appobject.Submit()
 
         If (appobject.ItemCost <= appobject.MoneyAvailable) Then
-            
+
+            appobject.MoneyAvailable -= appobject.ItemCost 'Reduce MoneyAvailable after purchase
             MoneyDepositTB.Text = appobject.MoneyAvailable
             DrawVerticalText(MoneyDepositTB.Text)
             UdpTimer.Enabled = False
@@ -827,22 +827,30 @@ Public Class VendingMachine
                 Case 1
                     AxWindowsMediaPlayer1.settings.setMode("loop", False)
                     AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer1.Ctlcontrols.play()
                 Case 2
                     AxWindowsMediaPlayer2.settings.setMode("loop", False)
                     AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer2.Ctlcontrols.play()
                 Case 3
                     AxWindowsMediaPlayer3.settings.setMode("loop", False)
                     AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer3.Ctlcontrols.play()
                 Case 4
                     AxWindowsMediaPlayer4.settings.setMode("loop", False)
                     AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer4.Ctlcontrols.play()
                 Case 5
                     AxWindowsMediaPlayer5.settings.setMode("loop", False)
                     AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer5.Ctlcontrols.play()
                 Case 6
                     AxWindowsMediaPlayer6.settings.setMode("loop", False)
                     AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Strike(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
+                    AxWindowsMediaPlayer6.Ctlcontrols.play()
             End Select
+
+            Btn_Show()
 
         End If 'ITEM COST
 
@@ -929,46 +937,45 @@ Public Class VendingMachine
             SerialPort1.Write("1")
         End If
 
-        RotateTimer.Enabled = True
         ResetMoneyReturnTimer.Enabled = True
     End Sub
 
-    Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer1_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer1.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
         End If
     End Sub
 
-    Private Sub AxWindowsMediaPlayer2_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer2_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer2.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer2.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
         End If
     End Sub
 
-    Private Sub AxWindowsMediaPlayer3_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer3_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer3.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer3.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
         End If
     End Sub
 
-    Private Sub AxWindowsMediaPlayer4_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer4_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer4.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer4.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
         End If
     End Sub
 
-    Private Sub AxWindowsMediaPlayer5_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer5_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer5.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer5.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
         End If
     End Sub
 
-    Private Sub AxWindowsMediaPlayer6_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
+    Private Sub AxWindowsMediaPlayer6_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer6.PlayStateChange
         If (UdpTimer.Enabled = False And RotateTimer.Enabled = False And
             AxWindowsMediaPlayer6.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             GlassAndMovie()
@@ -978,9 +985,9 @@ Public Class VendingMachine
     Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
-            RotateTimer.Enabled = True
             appobject.Change()
             PrintDocument1.Print()
+            RayStartCase(appobject.ProductNum, False)
             appobject.BackStart()
             CalculateChange(appobject.MoneyAvailable)
             If comOpen Then
@@ -989,6 +996,7 @@ Public Class VendingMachine
             AxWindowsMediaPlayer0.Visible = False
             appobject.SendBytes = "done"
             allContinue()
+            RotateTimer.Enabled = True
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
             ' MsgBox(AxWindowsMediaPlayer0.playState, MsgBoxStyle.Information, "狀態")
@@ -1080,26 +1088,26 @@ Public Class VendingMachine
     Private Sub RotateTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RotateTimer.Tick
         appobject.Over10Sec()
         appobject.backToRotate()
-        Select Case appobject.ProductNum
-            Case 1
-                AxWindowsMediaPlayer1.settings.setMode("loop", False)
-                AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-            Case 2
-                AxWindowsMediaPlayer2.settings.setMode("loop", False)
-                AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-            Case 3
-                AxWindowsMediaPlayer3.settings.setMode("loop", False)
-                AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-            Case 4
-                AxWindowsMediaPlayer4.settings.setMode("loop", False)
-                AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-            Case 5
-                AxWindowsMediaPlayer5.settings.setMode("loop", False)
-                AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-            Case 6
-                AxWindowsMediaPlayer6.settings.setMode("loop", False)
-                AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Video(appobject.ProductNum - 1) & appobject.RayPos(appobject.ProductNum - 1) & ".wmv"
-        End Select
+        'Select Case appobject.ProductNum
+        '    Case 1
+        'AxWindowsMediaPlayer1.settings.setMode("loop", False)
+        AxWindowsMediaPlayer1.URL = Application.StartupPath & "\" & list_Pic(0) & appobject.RayPos(0) & ".wmv"
+        '    Case 2
+        'AxWindowsMediaPlayer2.settings.setMode("loop", False)
+        AxWindowsMediaPlayer2.URL = Application.StartupPath & "\" & list_Pic(1) & appobject.RayPos(1) & ".wmv"
+        '    Case 3
+        'AxWindowsMediaPlayer3.settings.setMode("loop", False)
+        AxWindowsMediaPlayer3.URL = Application.StartupPath & "\" & list_Pic(2) & appobject.RayPos(2) & ".wmv"
+        '    Case 4
+        'AxWindowsMediaPlayer4.settings.setMode("loop", False)
+        AxWindowsMediaPlayer4.URL = Application.StartupPath & "\" & list_Pic(3) & appobject.RayPos(3) & ".wmv"
+        '    Case 5
+        'AxWindowsMediaPlayer5.settings.setMode("loop", False)
+        AxWindowsMediaPlayer5.URL = Application.StartupPath & "\" & list_Pic(4) & appobject.RayPos(4) & ".wmv"
+        '    Case 6
+        'AxWindowsMediaPlayer6.settings.setMode("loop", False)
+        AxWindowsMediaPlayer6.URL = Application.StartupPath & "\" & list_Pic(5) & appobject.RayPos(5) & ".wmv"
+        'End Select
         AxWindowsMediaPlayer1.SetBounds(appobject.RaySix(0).wmv.Left, appobject.RaySix(0).wmv.Top, appobject.RaySix(0).wmv.Width, appobject.RaySix(0).wmv.Height)
         Btn1.SetBounds(appobject.RaySix(0).btn.Left, appobject.RaySix(0).btn.Top, appobject.RaySix(0).btn.Width, appobject.RaySix(0).btn.Height)
         AxWindowsMediaPlayer2.SetBounds(appobject.RaySix(1).wmv.Left, appobject.RaySix(1).wmv.Top, appobject.RaySix(1).wmv.Width, appobject.RaySix(1).wmv.Height)
@@ -1289,8 +1297,6 @@ Public Class VendingMachine
 
             RayStartCase(n, True)
         Next
-
-        Btn_Show()
 
     End Sub
 

@@ -67,7 +67,7 @@ Public NotInheritable Class AppClass
     Public Sub New()
         For ctr As Integer = 0 To 5
             RaySix(ctr) = New SixRandom
-            RayPos(ctr) = ctr
+            RayPos(ctr) = ctr + 1
             tmpSix(ctr) = New SixRandom
             RayBol(ctr) = False
         Next
@@ -142,7 +142,7 @@ Public NotInheritable Class AppClass
             RayBol(p) = True
             tmpSix(ctr).wmv = RaySix(p).wmv
             tmpSix(ctr).btn = RaySix(p).btn
-            RayPos(ctr) = p
+            RayPos(ctr) = p + 1
         Next
     End Sub
 
@@ -175,7 +175,6 @@ Public NotInheritable Class AppClass
 
         If (ItemCost <= MoneyAvailable) Then
 
-            MoneyAvailable -= ItemCost 'Reduce MoneyAvailable after purchase
             'MoneyDepositTB.Text = MoneyAvailable.ToString("C")
             SendBytes = "play"
 
@@ -196,15 +195,16 @@ Public NotInheritable Class AppClass
     End Sub
 
     Public Sub PrintImages()
-        ProductNum = 0
+
     End Sub
 
     Public Sub glassMoneyChange()
 
-            Dim num As Integer = MoneyAvailable / 50
-            MoneyAvailable = 0
-            SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
-        
+        Dim num As Integer = MoneyAvailable / 50
+        MoneyAvailable = 0
+        SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
+        ProductNum = 7
+
     End Sub
 
 End Class
