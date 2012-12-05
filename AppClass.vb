@@ -202,7 +202,9 @@ Public NotInheritable Class AppClass
 
         Dim num As Integer = MoneyAvailable / 50
         MoneyAvailable = 0
-        SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
+        If num <> 0 Then
+            SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
+        End If
         ProductNum = 7
 
     End Sub
