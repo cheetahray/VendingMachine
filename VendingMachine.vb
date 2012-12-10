@@ -272,9 +272,9 @@ Public Class VendingMachine
         '
         Me.ProductName_3.AutoSize = True
         Me.ProductName_3.BackColor = System.Drawing.Color.White
-        Me.ProductName_3.Location = New System.Drawing.Point(501, 111)
+        Me.ProductName_3.Location = New System.Drawing.Point(501, 96)
         Me.ProductName_3.Name = "ProductName_3"
-        Me.ProductName_3.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_3.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_3.TabIndex = 91
         Me.ProductName_3.Text = "產品名稱"
         Me.ProductName_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -284,9 +284,9 @@ Public Class VendingMachine
         '
         Me.ProductName_2.AutoSize = True
         Me.ProductName_2.BackColor = System.Drawing.Color.White
-        Me.ProductName_2.Location = New System.Drawing.Point(501, 411)
+        Me.ProductName_2.Location = New System.Drawing.Point(501, 356)
         Me.ProductName_2.Name = "ProductName_2"
-        Me.ProductName_2.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_2.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_2.TabIndex = 91
         Me.ProductName_2.Text = "產品名稱"
         Me.ProductName_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -296,9 +296,9 @@ Public Class VendingMachine
         '
         Me.ProductName_1.AutoSize = True
         Me.ProductName_1.BackColor = System.Drawing.Color.White
-        Me.ProductName_1.Location = New System.Drawing.Point(501, 704)
+        Me.ProductName_1.Location = New System.Drawing.Point(501, 610)
         Me.ProductName_1.Name = "ProductName_1"
-        Me.ProductName_1.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_1.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_1.TabIndex = 91
         Me.ProductName_1.Text = "產品名稱"
         Me.ProductName_1.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -308,9 +308,9 @@ Public Class VendingMachine
         '
         Me.Price3.AutoSize = True
         Me.Price3.BackColor = System.Drawing.Color.White
-        Me.Price3.Location = New System.Drawing.Point(501, 158)
+        Me.Price3.Location = New System.Drawing.Point(501, 137)
         Me.Price3.Name = "Price3"
-        Me.Price3.Size = New System.Drawing.Size(23, 12)
+        Me.Price3.Size = New System.Drawing.Size(25, 13)
         Me.Price3.TabIndex = 88
         Me.Price3.Text = "100"
         Me.Price3.Visible = False
@@ -319,9 +319,9 @@ Public Class VendingMachine
         '
         Me.Price2.AutoSize = True
         Me.Price2.BackColor = System.Drawing.Color.White
-        Me.Price2.Location = New System.Drawing.Point(501, 449)
+        Me.Price2.Location = New System.Drawing.Point(501, 389)
         Me.Price2.Name = "Price2"
-        Me.Price2.Size = New System.Drawing.Size(23, 12)
+        Me.Price2.Size = New System.Drawing.Size(25, 13)
         Me.Price2.TabIndex = 87
         Me.Price2.Text = "100"
         Me.Price2.Visible = False
@@ -330,9 +330,9 @@ Public Class VendingMachine
         '
         Me.Price1.AutoSize = True
         Me.Price1.BackColor = System.Drawing.Color.White
-        Me.Price1.Location = New System.Drawing.Point(501, 749)
+        Me.Price1.Location = New System.Drawing.Point(501, 649)
         Me.Price1.Name = "Price1"
-        Me.Price1.Size = New System.Drawing.Size(23, 12)
+        Me.Price1.Size = New System.Drawing.Size(25, 13)
         Me.Price1.TabIndex = 86
         Me.Price1.Text = "100"
         Me.Price1.Visible = False
@@ -342,7 +342,7 @@ Public Class VendingMachine
         Me.MoneyReturnTB.BackColor = System.Drawing.Color.Maroon
         Me.MoneyReturnTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MoneyReturnTB.ForeColor = System.Drawing.Color.Silver
-        Me.MoneyReturnTB.Location = New System.Drawing.Point(4, 357)
+        Me.MoneyReturnTB.Location = New System.Drawing.Point(4, 309)
         Me.MoneyReturnTB.Name = "MoneyReturnTB"
         Me.MoneyReturnTB.ReadOnly = True
         Me.MoneyReturnTB.Size = New System.Drawing.Size(104, 22)
@@ -365,13 +365,13 @@ Public Class VendingMachine
         Me.MoneyDepositTB.BackColor = System.Drawing.Color.Silver
         Me.MoneyDepositTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte), True)
         Me.MoneyDepositTB.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.MoneyDepositTB.Location = New System.Drawing.Point(55, 463)
+        Me.MoneyDepositTB.Location = New System.Drawing.Point(55, 401)
         Me.MoneyDepositTB.MaxLength = 32
         Me.MoneyDepositTB.Multiline = True
         Me.MoneyDepositTB.Name = "MoneyDepositTB"
         Me.MoneyDepositTB.ReadOnly = True
         Me.MoneyDepositTB.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MoneyDepositTB.Size = New System.Drawing.Size(27, 92)
+        Me.MoneyDepositTB.Size = New System.Drawing.Size(27, 80)
         Me.MoneyDepositTB.TabIndex = 50
         Me.MoneyDepositTB.Text = "50"
         Me.MoneyDepositTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -381,9 +381,9 @@ Public Class VendingMachine
         '
         Me.ChangeReturnBTN.BackColor = System.Drawing.Color.Silver
         Me.ChangeReturnBTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ChangeReturnBTN.Location = New System.Drawing.Point(12, 212)
+        Me.ChangeReturnBTN.Location = New System.Drawing.Point(12, 184)
         Me.ChangeReturnBTN.Name = "ChangeReturnBTN"
-        Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 41)
+        Me.ChangeReturnBTN.Size = New System.Drawing.Size(70, 35)
         Me.ChangeReturnBTN.TabIndex = 58
         Me.ChangeReturnBTN.Text = "退幣"
         Me.ChangeReturnBTN.UseVisualStyleBackColor = False
@@ -418,9 +418,9 @@ Public Class VendingMachine
         '
         Me.cboComPort.FormattingEnabled = True
         Me.cboComPort.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4"})
-        Me.cboComPort.Location = New System.Drawing.Point(594, 14)
+        Me.cboComPort.Location = New System.Drawing.Point(594, 12)
         Me.cboComPort.Name = "cboComPort"
-        Me.cboComPort.Size = New System.Drawing.Size(65, 20)
+        Me.cboComPort.Size = New System.Drawing.Size(65, 21)
         Me.cboComPort.TabIndex = 1002
         Me.cboComPort.Visible = False
         '
@@ -429,9 +429,9 @@ Public Class VendingMachine
         Me.picOpen.BackColor = System.Drawing.SystemColors.Control
         Me.picOpen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.picOpen.InitialImage = CType(resources.GetObject("picOpen.InitialImage"), System.Drawing.Image)
-        Me.picOpen.Location = New System.Drawing.Point(692, 14)
+        Me.picOpen.Location = New System.Drawing.Point(692, 12)
         Me.picOpen.Name = "picOpen"
-        Me.picOpen.Size = New System.Drawing.Size(20, 21)
+        Me.picOpen.Size = New System.Drawing.Size(20, 18)
         Me.picOpen.TabIndex = 1001
         Me.picOpen.TabStop = False
         Me.picOpen.Visible = False
@@ -440,9 +440,9 @@ Public Class VendingMachine
         '
         Me.Price5.AutoSize = True
         Me.Price5.BackColor = System.Drawing.Color.White
-        Me.Price5.Location = New System.Drawing.Point(1029, 449)
+        Me.Price5.Location = New System.Drawing.Point(1029, 389)
         Me.Price5.Name = "Price5"
-        Me.Price5.Size = New System.Drawing.Size(23, 12)
+        Me.Price5.Size = New System.Drawing.Size(25, 13)
         Me.Price5.TabIndex = 90
         Me.Price5.Text = "200"
         Me.Price5.Visible = False
@@ -451,9 +451,9 @@ Public Class VendingMachine
         '
         Me.Price6.AutoSize = True
         Me.Price6.BackColor = System.Drawing.Color.White
-        Me.Price6.Location = New System.Drawing.Point(1029, 158)
+        Me.Price6.Location = New System.Drawing.Point(1029, 137)
         Me.Price6.Name = "Price6"
-        Me.Price6.Size = New System.Drawing.Size(23, 12)
+        Me.Price6.Size = New System.Drawing.Size(25, 13)
         Me.Price6.TabIndex = 91
         Me.Price6.Text = "100"
         Me.Price6.Visible = False
@@ -462,9 +462,9 @@ Public Class VendingMachine
         '
         Me.Price4.AutoSize = True
         Me.Price4.BackColor = System.Drawing.Color.White
-        Me.Price4.Location = New System.Drawing.Point(1029, 749)
+        Me.Price4.Location = New System.Drawing.Point(1029, 649)
         Me.Price4.Name = "Price4"
-        Me.Price4.Size = New System.Drawing.Size(17, 12)
+        Me.Price4.Size = New System.Drawing.Size(19, 13)
         Me.Price4.TabIndex = 89
         Me.Price4.Text = "50"
         Me.Price4.Visible = False
@@ -473,9 +473,9 @@ Public Class VendingMachine
         '
         Me.ProductName_6.AutoSize = True
         Me.ProductName_6.BackColor = System.Drawing.Color.White
-        Me.ProductName_6.Location = New System.Drawing.Point(1029, 111)
+        Me.ProductName_6.Location = New System.Drawing.Point(1029, 96)
         Me.ProductName_6.Name = "ProductName_6"
-        Me.ProductName_6.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_6.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_6.TabIndex = 91
         Me.ProductName_6.Text = "產品名稱"
         Me.ProductName_6.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -485,9 +485,9 @@ Public Class VendingMachine
         '
         Me.ProductName_5.AutoSize = True
         Me.ProductName_5.BackColor = System.Drawing.Color.White
-        Me.ProductName_5.Location = New System.Drawing.Point(1029, 411)
+        Me.ProductName_5.Location = New System.Drawing.Point(1029, 356)
         Me.ProductName_5.Name = "ProductName_5"
-        Me.ProductName_5.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_5.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_5.TabIndex = 91
         Me.ProductName_5.Text = "產品名稱"
         Me.ProductName_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -497,9 +497,9 @@ Public Class VendingMachine
         '
         Me.ProductName_4.AutoSize = True
         Me.ProductName_4.BackColor = System.Drawing.Color.White
-        Me.ProductName_4.Location = New System.Drawing.Point(1026, 704)
+        Me.ProductName_4.Location = New System.Drawing.Point(1026, 610)
         Me.ProductName_4.Name = "ProductName_4"
-        Me.ProductName_4.Size = New System.Drawing.Size(53, 12)
+        Me.ProductName_4.Size = New System.Drawing.Size(55, 13)
         Me.ProductName_4.TabIndex = 91
         Me.ProductName_4.Text = "產品名稱"
         Me.ProductName_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -508,396 +508,396 @@ Public Class VendingMachine
         'AxWindowsMediaPlayerA_1
         '
         Me.AxWindowsMediaPlayerA_1.Enabled = True
-        Me.AxWindowsMediaPlayerA_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerA_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerA_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_1.Name = "AxWindowsMediaPlayerA_1"
         Me.AxWindowsMediaPlayerA_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_1.TabStop = False
         '
         'AxWindowsMediaPlayerA_2
         '
         Me.AxWindowsMediaPlayerA_2.Enabled = True
-        Me.AxWindowsMediaPlayerA_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerA_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerA_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_2.Name = "AxWindowsMediaPlayerA_2"
         Me.AxWindowsMediaPlayerA_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_2.TabStop = False
         '
         'AxWindowsMediaPlayerA_3
         '
         Me.AxWindowsMediaPlayerA_3.Enabled = True
-        Me.AxWindowsMediaPlayerA_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerA_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerA_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_3.Name = "AxWindowsMediaPlayerA_3"
         Me.AxWindowsMediaPlayerA_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_3.TabStop = False
         '
         'AxWindowsMediaPlayerA_4
         '
         Me.AxWindowsMediaPlayerA_4.Enabled = True
-        Me.AxWindowsMediaPlayerA_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerA_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerA_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_4.Name = "AxWindowsMediaPlayerA_4"
         Me.AxWindowsMediaPlayerA_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_4.TabStop = False
         '
         'AxWindowsMediaPlayerA_5
         '
         Me.AxWindowsMediaPlayerA_5.Enabled = True
-        Me.AxWindowsMediaPlayerA_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerA_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerA_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_5.Name = "AxWindowsMediaPlayerA_5"
         Me.AxWindowsMediaPlayerA_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_5.TabStop = False
         '
         'AxWindowsMediaPlayerA_6
         '
         Me.AxWindowsMediaPlayerA_6.Enabled = True
-        Me.AxWindowsMediaPlayerA_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerA_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerA_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerA_6.Name = "AxWindowsMediaPlayerA_6"
         Me.AxWindowsMediaPlayerA_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerA_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerA_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerA_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerA_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerA_6.TabStop = False
         '
         'AxWindowsMediaPlayerB_1
         '
         Me.AxWindowsMediaPlayerB_1.Enabled = True
-        Me.AxWindowsMediaPlayerB_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerB_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerB_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_1.Name = "AxWindowsMediaPlayerB_1"
         Me.AxWindowsMediaPlayerB_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_1.TabStop = False
         '
         'AxWindowsMediaPlayerB_2
         '
         Me.AxWindowsMediaPlayerB_2.Enabled = True
-        Me.AxWindowsMediaPlayerB_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerB_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerB_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_2.Name = "AxWindowsMediaPlayerB_2"
         Me.AxWindowsMediaPlayerB_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_2.TabStop = False
         '
         'AxWindowsMediaPlayerB_3
         '
         Me.AxWindowsMediaPlayerB_3.Enabled = True
-        Me.AxWindowsMediaPlayerB_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerB_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerB_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_3.Name = "AxWindowsMediaPlayerB_3"
         Me.AxWindowsMediaPlayerB_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_3.TabStop = False
         '
         'AxWindowsMediaPlayerB_4
         '
         Me.AxWindowsMediaPlayerB_4.Enabled = True
-        Me.AxWindowsMediaPlayerB_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerB_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerB_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_4.Name = "AxWindowsMediaPlayerB_4"
         Me.AxWindowsMediaPlayerB_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_4.TabStop = False
         '
         'AxWindowsMediaPlayerB_5
         '
         Me.AxWindowsMediaPlayerB_5.Enabled = True
-        Me.AxWindowsMediaPlayerB_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerB_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerB_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_5.Name = "AxWindowsMediaPlayerB_5"
         Me.AxWindowsMediaPlayerB_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_5.TabStop = False
         '
         'AxWindowsMediaPlayerB_6
         '
         Me.AxWindowsMediaPlayerB_6.Enabled = True
-        Me.AxWindowsMediaPlayerB_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerB_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerB_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerB_6.Name = "AxWindowsMediaPlayerB_6"
         Me.AxWindowsMediaPlayerB_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerB_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerB_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerB_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerB_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerB_6.TabStop = False
         '
         'AxWindowsMediaPlayerC_1
         '
         Me.AxWindowsMediaPlayerC_1.Enabled = True
-        Me.AxWindowsMediaPlayerC_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerC_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerC_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_1.Name = "AxWindowsMediaPlayerC_1"
         Me.AxWindowsMediaPlayerC_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_1.TabStop = False
         '
         'AxWindowsMediaPlayerC_2
         '
         Me.AxWindowsMediaPlayerC_2.Enabled = True
-        Me.AxWindowsMediaPlayerC_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerC_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerC_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_2.Name = "AxWindowsMediaPlayerC_2"
         Me.AxWindowsMediaPlayerC_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_2.TabStop = False
         '
         'AxWindowsMediaPlayerC_3
         '
         Me.AxWindowsMediaPlayerC_3.Enabled = True
-        Me.AxWindowsMediaPlayerC_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerC_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerC_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_3.Name = "AxWindowsMediaPlayerC_3"
         Me.AxWindowsMediaPlayerC_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_3.TabStop = False
         '
         'AxWindowsMediaPlayerC_4
         '
         Me.AxWindowsMediaPlayerC_4.Enabled = True
-        Me.AxWindowsMediaPlayerC_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerC_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerC_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_4.Name = "AxWindowsMediaPlayerC_4"
         Me.AxWindowsMediaPlayerC_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_4.TabStop = False
         '
         'AxWindowsMediaPlayerC_5
         '
         Me.AxWindowsMediaPlayerC_5.Enabled = True
-        Me.AxWindowsMediaPlayerC_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerC_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerC_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_5.Name = "AxWindowsMediaPlayerC_5"
         Me.AxWindowsMediaPlayerC_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_5.TabStop = False
         '
         'AxWindowsMediaPlayerC_6
         '
         Me.AxWindowsMediaPlayerC_6.Enabled = True
-        Me.AxWindowsMediaPlayerC_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerC_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerC_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerC_6.Name = "AxWindowsMediaPlayerC_6"
         Me.AxWindowsMediaPlayerC_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerC_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerC_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerC_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerC_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerC_6.TabStop = False
         '
         'AxWindowsMediaPlayerD_1
         '
         Me.AxWindowsMediaPlayerD_1.Enabled = True
-        Me.AxWindowsMediaPlayerD_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerD_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerD_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_1.Name = "AxWindowsMediaPlayerD_1"
         Me.AxWindowsMediaPlayerD_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_1.TabStop = False
         '
         'AxWindowsMediaPlayerD_2
         '
         Me.AxWindowsMediaPlayerD_2.Enabled = True
-        Me.AxWindowsMediaPlayerD_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerD_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerD_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_2.Name = "AxWindowsMediaPlayerD_2"
         Me.AxWindowsMediaPlayerD_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_2.TabStop = False
         '
         'AxWindowsMediaPlayerD_3
         '
         Me.AxWindowsMediaPlayerD_3.Enabled = True
-        Me.AxWindowsMediaPlayerD_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerD_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerD_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_3.Name = "AxWindowsMediaPlayerD_3"
         Me.AxWindowsMediaPlayerD_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_3.TabStop = False
         '
         'AxWindowsMediaPlayerD_4
         '
         Me.AxWindowsMediaPlayerD_4.Enabled = True
-        Me.AxWindowsMediaPlayerD_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerD_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerD_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_4.Name = "AxWindowsMediaPlayerD_4"
         Me.AxWindowsMediaPlayerD_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_4.TabStop = False
         '
         'AxWindowsMediaPlayerD_5
         '
         Me.AxWindowsMediaPlayerD_5.Enabled = True
-        Me.AxWindowsMediaPlayerD_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerD_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerD_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_5.Name = "AxWindowsMediaPlayerD_5"
         Me.AxWindowsMediaPlayerD_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_5.TabStop = False
         '
         'AxWindowsMediaPlayerD_6
         '
         Me.AxWindowsMediaPlayerD_6.Enabled = True
-        Me.AxWindowsMediaPlayerD_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerD_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerD_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerD_6.Name = "AxWindowsMediaPlayerD_6"
         Me.AxWindowsMediaPlayerD_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerD_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerD_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerD_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerD_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerD_6.TabStop = False
         '
         'AxWindowsMediaPlayerE_1
         '
         Me.AxWindowsMediaPlayerE_1.Enabled = True
-        Me.AxWindowsMediaPlayerE_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerE_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerE_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_1.Name = "AxWindowsMediaPlayerE_1"
         Me.AxWindowsMediaPlayerE_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_1.TabStop = False
         '
         'AxWindowsMediaPlayerE_2
         '
         Me.AxWindowsMediaPlayerE_2.Enabled = True
-        Me.AxWindowsMediaPlayerE_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerE_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerE_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_2.Name = "AxWindowsMediaPlayerE_2"
         Me.AxWindowsMediaPlayerE_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_2.TabStop = False
         '
         'AxWindowsMediaPlayerE_3
         '
         Me.AxWindowsMediaPlayerE_3.Enabled = True
-        Me.AxWindowsMediaPlayerE_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerE_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerE_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_3.Name = "AxWindowsMediaPlayerE_3"
         Me.AxWindowsMediaPlayerE_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_3.TabStop = False
         '
         'AxWindowsMediaPlayerE_4
         '
         Me.AxWindowsMediaPlayerE_4.Enabled = True
-        Me.AxWindowsMediaPlayerE_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerE_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerE_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_4.Name = "AxWindowsMediaPlayerE_4"
         Me.AxWindowsMediaPlayerE_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_4.TabStop = False
         '
         'AxWindowsMediaPlayerE_5
         '
         Me.AxWindowsMediaPlayerE_5.Enabled = True
-        Me.AxWindowsMediaPlayerE_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerE_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerE_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_5.Name = "AxWindowsMediaPlayerE_5"
         Me.AxWindowsMediaPlayerE_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_5.TabStop = False
         '
         'AxWindowsMediaPlayerE_6
         '
         Me.AxWindowsMediaPlayerE_6.Enabled = True
-        Me.AxWindowsMediaPlayerE_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerE_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerE_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerE_6.Name = "AxWindowsMediaPlayerE_6"
         Me.AxWindowsMediaPlayerE_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerE_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerE_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerE_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerE_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerE_6.TabStop = False
         '
         'AxWindowsMediaPlayerF_1
         '
         Me.AxWindowsMediaPlayerF_1.Enabled = True
-        Me.AxWindowsMediaPlayerF_1.Location = New System.Drawing.Point(79, 515)
+        Me.AxWindowsMediaPlayerF_1.Location = New System.Drawing.Point(79, 446)
         Me.AxWindowsMediaPlayerF_1.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_1.Name = "AxWindowsMediaPlayerF_1"
         Me.AxWindowsMediaPlayerF_1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_1.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_1.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_1.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_1.TabStop = False
         '
         'AxWindowsMediaPlayerF_2
         '
         Me.AxWindowsMediaPlayerF_2.Enabled = True
-        Me.AxWindowsMediaPlayerF_2.Location = New System.Drawing.Point(79, 259)
+        Me.AxWindowsMediaPlayerF_2.Location = New System.Drawing.Point(79, 224)
         Me.AxWindowsMediaPlayerF_2.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_2.Name = "AxWindowsMediaPlayerF_2"
         Me.AxWindowsMediaPlayerF_2.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_2.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_2.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_2.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_2.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_2.TabStop = False
         '
         'AxWindowsMediaPlayerF_3
         '
         Me.AxWindowsMediaPlayerF_3.Enabled = True
-        Me.AxWindowsMediaPlayerF_3.Location = New System.Drawing.Point(79, 4)
+        Me.AxWindowsMediaPlayerF_3.Location = New System.Drawing.Point(79, 3)
         Me.AxWindowsMediaPlayerF_3.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_3.Name = "AxWindowsMediaPlayerF_3"
         Me.AxWindowsMediaPlayerF_3.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_3.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_3.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_3.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_3.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_3.TabStop = False
         '
         'AxWindowsMediaPlayerF_4
         '
         Me.AxWindowsMediaPlayerF_4.Enabled = True
-        Me.AxWindowsMediaPlayerF_4.Location = New System.Drawing.Point(563, 515)
+        Me.AxWindowsMediaPlayerF_4.Location = New System.Drawing.Point(563, 446)
         Me.AxWindowsMediaPlayerF_4.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_4.Name = "AxWindowsMediaPlayerF_4"
         Me.AxWindowsMediaPlayerF_4.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_4.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_4.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_4.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_4.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_4.TabStop = False
         '
         'AxWindowsMediaPlayerF_5
         '
         Me.AxWindowsMediaPlayerF_5.Enabled = True
-        Me.AxWindowsMediaPlayerF_5.Location = New System.Drawing.Point(563, 259)
+        Me.AxWindowsMediaPlayerF_5.Location = New System.Drawing.Point(563, 224)
         Me.AxWindowsMediaPlayerF_5.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_5.Name = "AxWindowsMediaPlayerF_5"
         Me.AxWindowsMediaPlayerF_5.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_5.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_5.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_5.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_5.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_5.TabStop = False
         '
         'AxWindowsMediaPlayerF_6
         '
         Me.AxWindowsMediaPlayerF_6.Enabled = True
-        Me.AxWindowsMediaPlayerF_6.Location = New System.Drawing.Point(563, 4)
+        Me.AxWindowsMediaPlayerF_6.Location = New System.Drawing.Point(563, 3)
         Me.AxWindowsMediaPlayerF_6.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayerF_6.Name = "AxWindowsMediaPlayerF_6"
         Me.AxWindowsMediaPlayerF_6.OcxState = CType(resources.GetObject("AxWindowsMediaPlayerF_6.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayerF_6.Size = New System.Drawing.Size(456, 256)
+        Me.AxWindowsMediaPlayerF_6.Size = New System.Drawing.Size(456, 222)
         Me.AxWindowsMediaPlayerF_6.TabIndex = 1000
         Me.AxWindowsMediaPlayerF_6.TabStop = False
         '
@@ -908,7 +908,7 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer0.Margin = New System.Windows.Forms.Padding(0)
         Me.AxWindowsMediaPlayer0.Name = "AxWindowsMediaPlayer0"
         Me.AxWindowsMediaPlayer0.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer0.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(100, 100)
+        Me.AxWindowsMediaPlayer0.Size = New System.Drawing.Size(1024, 768)
         Me.AxWindowsMediaPlayer0.TabIndex = 1000
         Me.AxWindowsMediaPlayer0.TabStop = False
         '
@@ -916,16 +916,16 @@ Public Class VendingMachine
         '
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1024, 768)
+        Me.PictureBox1.Size = New System.Drawing.Size(1024, 666)
         Me.PictureBox1.TabIndex = 1003
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Visible = False
         '
         'PIC_3
         '
-        Me.PIC_3.Location = New System.Drawing.Point(79, 4)
+        Me.PIC_3.Location = New System.Drawing.Point(79, 3)
         Me.PIC_3.Name = "PIC_3"
-        Me.PIC_3.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_3.Size = New System.Drawing.Size(456, 222)
         Me.PIC_3.TabIndex = 1004
         Me.PIC_3.TabStop = False
         Me.PIC_3.Visible = False
@@ -934,18 +934,18 @@ Public Class VendingMachine
         '
         Me.Btn3.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn3.Location = New System.Drawing.Point(409, 69)
+        Me.Btn3.Location = New System.Drawing.Point(409, 60)
         Me.Btn3.Name = "Btn3"
-        Me.Btn3.Size = New System.Drawing.Size(50, 122)
+        Me.Btn3.Size = New System.Drawing.Size(50, 106)
         Me.Btn3.TabIndex = 1005
         Me.Btn3.UseVisualStyleBackColor = False
         Me.Btn3.Visible = False
         '
         'PIC_2
         '
-        Me.PIC_2.Location = New System.Drawing.Point(79, 259)
+        Me.PIC_2.Location = New System.Drawing.Point(79, 224)
         Me.PIC_2.Name = "PIC_2"
-        Me.PIC_2.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_2.Size = New System.Drawing.Size(456, 222)
         Me.PIC_2.TabIndex = 1006
         Me.PIC_2.TabStop = False
         Me.PIC_2.Visible = False
@@ -954,18 +954,18 @@ Public Class VendingMachine
         '
         Me.Btn2.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn2.Location = New System.Drawing.Point(409, 324)
+        Me.Btn2.Location = New System.Drawing.Point(409, 281)
         Me.Btn2.Name = "Btn2"
-        Me.Btn2.Size = New System.Drawing.Size(50, 122)
+        Me.Btn2.Size = New System.Drawing.Size(50, 106)
         Me.Btn2.TabIndex = 1007
         Me.Btn2.UseVisualStyleBackColor = False
         Me.Btn2.Visible = False
         '
         'PIC_1
         '
-        Me.PIC_1.Location = New System.Drawing.Point(79, 515)
+        Me.PIC_1.Location = New System.Drawing.Point(79, 446)
         Me.PIC_1.Name = "PIC_1"
-        Me.PIC_1.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_1.Size = New System.Drawing.Size(456, 222)
         Me.PIC_1.TabIndex = 1008
         Me.PIC_1.TabStop = False
         Me.PIC_1.Visible = False
@@ -974,18 +974,18 @@ Public Class VendingMachine
         '
         Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn1.Location = New System.Drawing.Point(409, 584)
+        Me.Btn1.Location = New System.Drawing.Point(409, 506)
         Me.Btn1.Name = "Btn1"
-        Me.Btn1.Size = New System.Drawing.Size(50, 122)
+        Me.Btn1.Size = New System.Drawing.Size(50, 106)
         Me.Btn1.TabIndex = 1009
         Me.Btn1.UseVisualStyleBackColor = False
         Me.Btn1.Visible = False
         '
         'PIC_6
         '
-        Me.PIC_6.Location = New System.Drawing.Point(563, 4)
+        Me.PIC_6.Location = New System.Drawing.Point(563, 3)
         Me.PIC_6.Name = "PIC_6"
-        Me.PIC_6.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_6.Size = New System.Drawing.Size(456, 222)
         Me.PIC_6.TabIndex = 1010
         Me.PIC_6.TabStop = False
         Me.PIC_6.Visible = False
@@ -994,19 +994,19 @@ Public Class VendingMachine
         '
         Me.Btn6.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn6.Location = New System.Drawing.Point(892, 67)
+        Me.Btn6.Location = New System.Drawing.Point(892, 58)
         Me.Btn6.Margin = New System.Windows.Forms.Padding(0)
         Me.Btn6.Name = "Btn6"
-        Me.Btn6.Size = New System.Drawing.Size(52, 122)
+        Me.Btn6.Size = New System.Drawing.Size(52, 106)
         Me.Btn6.TabIndex = 1011
         Me.Btn6.UseVisualStyleBackColor = False
         Me.Btn6.Visible = False
         '
         'PIC_5
         '
-        Me.PIC_5.Location = New System.Drawing.Point(563, 259)
+        Me.PIC_5.Location = New System.Drawing.Point(563, 224)
         Me.PIC_5.Name = "PIC_5"
-        Me.PIC_5.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_5.Size = New System.Drawing.Size(456, 222)
         Me.PIC_5.TabIndex = 1012
         Me.PIC_5.TabStop = False
         Me.PIC_5.Visible = False
@@ -1015,18 +1015,18 @@ Public Class VendingMachine
         '
         Me.Btn5.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn5.Location = New System.Drawing.Point(892, 324)
+        Me.Btn5.Location = New System.Drawing.Point(892, 281)
         Me.Btn5.Name = "Btn5"
-        Me.Btn5.Size = New System.Drawing.Size(52, 122)
+        Me.Btn5.Size = New System.Drawing.Size(52, 106)
         Me.Btn5.TabIndex = 1013
         Me.Btn5.UseVisualStyleBackColor = False
         Me.Btn5.Visible = False
         '
         'PIC_4
         '
-        Me.PIC_4.Location = New System.Drawing.Point(563, 515)
+        Me.PIC_4.Location = New System.Drawing.Point(563, 446)
         Me.PIC_4.Name = "PIC_4"
-        Me.PIC_4.Size = New System.Drawing.Size(456, 256)
+        Me.PIC_4.Size = New System.Drawing.Size(456, 222)
         Me.PIC_4.TabIndex = 1014
         Me.PIC_4.TabStop = False
         Me.PIC_4.Visible = False
@@ -1035,16 +1035,16 @@ Public Class VendingMachine
         '
         Me.Btn4.BackColor = System.Drawing.Color.LimeGreen
         Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn4.Location = New System.Drawing.Point(892, 584)
+        Me.Btn4.Location = New System.Drawing.Point(892, 506)
         Me.Btn4.Name = "Btn4"
-        Me.Btn4.Size = New System.Drawing.Size(52, 122)
+        Me.Btn4.Size = New System.Drawing.Size(52, 106)
         Me.Btn4.TabIndex = 1015
         Me.Btn4.UseVisualStyleBackColor = False
         Me.Btn4.Visible = False
         '
         'VendingMachine
         '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 15)
+        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.Color.Black
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1024, 768)
@@ -2045,22 +2045,22 @@ Public Class VendingMachine
 
     Private Sub allDisapperStop()
         If AxWindowsMediaPlayerA_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_1.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_1.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerF_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_1.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_1.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_1.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_1.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_1.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_1.Visible = False
         AxWindowsMediaPlayerB_1.Visible = False
@@ -2069,22 +2069,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_1.Visible = False
         AxWindowsMediaPlayerF_1.Visible = False
         If AxWindowsMediaPlayerF_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_2.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_2.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_2.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_2.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_2.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerA_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_2.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_2.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_2.Visible = False
         AxWindowsMediaPlayerB_2.Visible = False
@@ -2093,22 +2093,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_2.Visible = False
         AxWindowsMediaPlayerF_2.Visible = False
         If AxWindowsMediaPlayerF_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_3.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_3.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_3.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_3.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_3.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerA_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_3.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_3.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_3.Visible = False
         AxWindowsMediaPlayerB_3.Visible = False
@@ -2117,22 +2117,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_3.Visible = False
         AxWindowsMediaPlayerF_3.Visible = False
         If AxWindowsMediaPlayerF_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_4.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_4.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_4.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_4.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_4.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerA_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_4.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_4.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_4.Visible = False
         AxWindowsMediaPlayerB_4.Visible = False
@@ -2141,22 +2141,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_4.Visible = False
         AxWindowsMediaPlayerF_4.Visible = False
         If AxWindowsMediaPlayerF_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_5.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerA_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_5.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_5.Visible = False
         AxWindowsMediaPlayerB_5.Visible = False
@@ -2165,22 +2165,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_5.Visible = False
         AxWindowsMediaPlayerF_5.Visible = False
         If AxWindowsMediaPlayerF_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerF_6.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerE_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerD_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerC_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerB_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
         End If
         If AxWindowsMediaPlayerA_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_6.Ctlcontrols.pause()
+            AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
         End If
         AxWindowsMediaPlayerA_6.Visible = False
         AxWindowsMediaPlayerB_6.Visible = False
@@ -2378,158 +2378,158 @@ Public Class VendingMachine
 
         Select Case appobject.RayPos(0)
             Case 1
-                AxWindowsMediaPlayerA_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-1.JPG")
             Case 2
-                AxWindowsMediaPlayerB_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-1.JPG")
             Case 3
-                AxWindowsMediaPlayerC_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-1.JPG")
             Case 4
-                AxWindowsMediaPlayerD_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-1.JPG")
             Case 5
-                AxWindowsMediaPlayerE_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-1.JPG")
             Case 6
-                AxWindowsMediaPlayerF_1.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_1.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_1.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_1.Ctlcontrols.stop()
                 PIC_1.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-1.JPG")
         End Select
         Select Case appobject.RayPos(1)
             Case 1
-                AxWindowsMediaPlayerA_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-2.JPG")
             Case 2
-                AxWindowsMediaPlayerB_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-2.JPG")
             Case 3
-                AxWindowsMediaPlayerC_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-2.JPG")
             Case 4
-                AxWindowsMediaPlayerD_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-2.JPG")
             Case 5
-                AxWindowsMediaPlayerE_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-2.JPG")
             Case 6
-                AxWindowsMediaPlayerF_2.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_2.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_2.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_2.Ctlcontrols.stop()
                 PIC_2.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-2.JPG")
         End Select
         Select Case appobject.RayPos(2)
             Case 1
-                AxWindowsMediaPlayerA_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-3.JPG")
             Case 2
-                AxWindowsMediaPlayerB_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-3.JPG")
             Case 3
-                AxWindowsMediaPlayerC_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-3.JPG")
             Case 4
-                AxWindowsMediaPlayerD_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-3.JPG")
             Case 5
-                AxWindowsMediaPlayerE_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-3.JPG")
             Case 6
-                AxWindowsMediaPlayerF_3.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_3.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_3.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_3.Ctlcontrols.stop()
                 PIC_3.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-3.JPG")
         End Select
         Select Case appobject.RayPos(3)
             Case 1
-                AxWindowsMediaPlayerA_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-4.JPG")
             Case 2
-                AxWindowsMediaPlayerB_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-4.JPG")
             Case 3
-                AxWindowsMediaPlayerC_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-4.JPG")
             Case 4
-                AxWindowsMediaPlayerD_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-4.JPG")
             Case 5
-                AxWindowsMediaPlayerE_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-4.JPG")
             Case 6
-                AxWindowsMediaPlayerF_4.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_4.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_4.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_4.Ctlcontrols.stop()
                 PIC_4.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-4.JPG")
         End Select
         Select Case appobject.RayPos(4)
             Case 1
-                AxWindowsMediaPlayerA_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-5.JPG")
             Case 2
-                AxWindowsMediaPlayerB_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-5.JPG")
             Case 3
-                AxWindowsMediaPlayerC_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-5.JPG")
             Case 4
-                AxWindowsMediaPlayerD_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-5.JPG")
             Case 5
-                AxWindowsMediaPlayerE_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-5.JPG")
             Case 6
-                AxWindowsMediaPlayerF_5.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_5.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_5.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
                 PIC_5.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-5.JPG")
         End Select
         Select Case appobject.RayPos(5)
             Case 1
-                AxWindowsMediaPlayerA_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerA_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerA_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_A-6.JPG")
             Case 2
-                AxWindowsMediaPlayerB_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerB_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerB_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_B-6.JPG")
             Case 3
-                AxWindowsMediaPlayerC_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerC_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerC_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_C-6.JPG")
             Case 4
-                AxWindowsMediaPlayerD_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerD_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerD_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_D-6.JPG")
             Case 5
-                AxWindowsMediaPlayerE_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerE_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerE_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_E-6.JPG")
             Case 6
-                AxWindowsMediaPlayerF_6.Ctlcontrols.currentPosition = 1.09
-                AxWindowsMediaPlayerF_6.Ctlcontrols.pause()
+                'AxWindowsMediaPlayerF_6.Ctlcontrols.currentPosition = 1.09
+                AxWindowsMediaPlayerF_6.Ctlcontrols.stop()
                 PIC_6.Image = New System.Drawing.Bitmap("C:\PIC\Rotate_F-6.JPG")
         End Select
 
@@ -2803,21 +2803,23 @@ Public Class VendingMachine
                                               , Btn1.Size.Width, Btn1.Size.Height)
                 End If
                 AxWindowsMediaPlayerA_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
+                AxWindowsMediaPlayerA_1.Visible = True
+                AxWindowsMediaPlayerA_1.Ctlcontrols.play()
                 AxWindowsMediaPlayerA_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_2.Visible = False
-                AxWindowsMediaPlayerA_2.Ctlcontrols.pause()
+                AxWindowsMediaPlayerA_2.Ctlcontrols.stop()
                 AxWindowsMediaPlayerA_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_3.Visible = False
-                AxWindowsMediaPlayerA_3.Ctlcontrols.pause()
+                AxWindowsMediaPlayerA_3.Ctlcontrols.stop()
                 AxWindowsMediaPlayerA_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_4.Visible = False
-                AxWindowsMediaPlayerA_4.Ctlcontrols.pause()
+                AxWindowsMediaPlayerA_4.Ctlcontrols.stop()
                 AxWindowsMediaPlayerA_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_5.Visible = False
-                AxWindowsMediaPlayerA_5.Ctlcontrols.pause()
+                AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
                 AxWindowsMediaPlayerA_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_6.Visible = False
-                AxWindowsMediaPlayerA_6.Ctlcontrols.pause()
+                AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
             Case 2
                 AxWindowsMediaPlayerB_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerB_2.settings.setMode("loop", True)
@@ -2834,20 +2836,22 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerB_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerB_1.Visible = False
-                AxWindowsMediaPlayerB_1.Ctlcontrols.pause()
+                AxWindowsMediaPlayerB_1.Ctlcontrols.stop()
                 AxWindowsMediaPlayerB_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
+                AxWindowsMediaPlayerB_2.Visible = True
+                AxWindowsMediaPlayerB_2.Ctlcontrols.play()
                 AxWindowsMediaPlayerB_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerB_3.Visible = False
-                AxWindowsMediaPlayerB_3.Ctlcontrols.pause()
+                AxWindowsMediaPlayerB_3.Ctlcontrols.stop()
                 AxWindowsMediaPlayerB_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerB_4.Visible = False
-                AxWindowsMediaPlayerB_4.Ctlcontrols.pause()
+                AxWindowsMediaPlayerB_4.Ctlcontrols.stop()
                 AxWindowsMediaPlayerB_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerB_5.Visible = False
-                AxWindowsMediaPlayerB_5.Ctlcontrols.pause()
+                AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
                 AxWindowsMediaPlayerB_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerB_6.Visible = False
-                AxWindowsMediaPlayerB_6.Ctlcontrols.pause()
+                AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
             Case 3
                 AxWindowsMediaPlayerC_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerC_2.settings.setMode("loop", True)
@@ -2862,20 +2866,22 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerC_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerC_1.Visible = False
-                AxWindowsMediaPlayerC_1.Ctlcontrols.pause()
+                AxWindowsMediaPlayerC_1.Ctlcontrols.stop()
                 AxWindowsMediaPlayerC_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerC_2.Visible = False
-                AxWindowsMediaPlayerC_2.Ctlcontrols.pause()
+                AxWindowsMediaPlayerC_2.Ctlcontrols.stop()
                 AxWindowsMediaPlayerC_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
+                AxWindowsMediaPlayerC_4.Visible = True
+                AxWindowsMediaPlayerC_4.Ctlcontrols.play()
                 AxWindowsMediaPlayerC_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerC_4.Visible = False
-                AxWindowsMediaPlayerC_4.Ctlcontrols.pause()
+                AxWindowsMediaPlayerC_4.Ctlcontrols.stop()
                 AxWindowsMediaPlayerC_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerC_5.Visible = False
-                AxWindowsMediaPlayerC_5.Ctlcontrols.pause()
+                AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
                 AxWindowsMediaPlayerC_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerC_6.Visible = False
-                AxWindowsMediaPlayerC_6.Ctlcontrols.pause()
+                AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
             Case 4
                 AxWindowsMediaPlayerD_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerD_2.settings.setMode("loop", True)
@@ -2890,20 +2896,22 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerD_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerD_1.Visible = False
-                AxWindowsMediaPlayerD_1.Ctlcontrols.pause()
+                AxWindowsMediaPlayerD_1.Ctlcontrols.stop()
                 AxWindowsMediaPlayerD_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerD_2.Visible = False
-                AxWindowsMediaPlayerD_2.Ctlcontrols.pause()
+                AxWindowsMediaPlayerD_2.Ctlcontrols.stop()
                 AxWindowsMediaPlayerD_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerD_3.Visible = False
-                AxWindowsMediaPlayerD_3.Ctlcontrols.pause()
+                AxWindowsMediaPlayerD_3.Ctlcontrols.stop()
                 AxWindowsMediaPlayerD_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
+                AxWindowsMediaPlayerD_4.Visible = True
+                AxWindowsMediaPlayerD_4.Ctlcontrols.play()
                 AxWindowsMediaPlayerD_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerD_5.Visible = False
-                AxWindowsMediaPlayerD_5.Ctlcontrols.pause()
+                AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
                 AxWindowsMediaPlayerD_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerD_6.Visible = False
-                AxWindowsMediaPlayerD_6.Ctlcontrols.pause()
+                AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
             Case 5
                 AxWindowsMediaPlayerE_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerE_2.settings.setMode("loop", True)
@@ -2918,20 +2926,22 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerE_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerE_1.Visible = False
-                AxWindowsMediaPlayerE_1.Ctlcontrols.pause()
+                AxWindowsMediaPlayerE_1.Ctlcontrols.stop()
                 AxWindowsMediaPlayerE_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerE_2.Visible = False
-                AxWindowsMediaPlayerE_2.Ctlcontrols.pause()
+                AxWindowsMediaPlayerE_2.Ctlcontrols.stop()
                 AxWindowsMediaPlayerE_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerE_3.Visible = False
-                AxWindowsMediaPlayerE_3.Ctlcontrols.pause()
+                AxWindowsMediaPlayerE_3.Ctlcontrols.stop()
                 AxWindowsMediaPlayerE_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerE_4.Visible = False
-                AxWindowsMediaPlayerE_4.Ctlcontrols.pause()
+                AxWindowsMediaPlayerE_4.Ctlcontrols.stop()
                 AxWindowsMediaPlayerE_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
+                AxWindowsMediaPlayerE_5.Visible = True
+                AxWindowsMediaPlayerE_5.Ctlcontrols.play()
                 AxWindowsMediaPlayerE_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerE_6.Visible = False
-                AxWindowsMediaPlayerE_6.Ctlcontrols.pause()
+                AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
             Case 6
                 AxWindowsMediaPlayerF_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerF_2.settings.setMode("loop", True)
@@ -2946,20 +2956,22 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerF_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerF_1.Visible = False
-                AxWindowsMediaPlayerF_1.Ctlcontrols.pause()
+                AxWindowsMediaPlayerF_1.Ctlcontrols.stop()
                 AxWindowsMediaPlayerF_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerF_2.Visible = False
-                AxWindowsMediaPlayerF_2.Ctlcontrols.pause()
+                AxWindowsMediaPlayerF_2.Ctlcontrols.stop()
                 AxWindowsMediaPlayerF_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerF_3.Visible = False
-                AxWindowsMediaPlayerF_3.Ctlcontrols.pause()
+                AxWindowsMediaPlayerF_3.Ctlcontrols.stop()
                 AxWindowsMediaPlayerF_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerF_4.Visible = False
-                AxWindowsMediaPlayerF_4.Ctlcontrols.pause()
+                AxWindowsMediaPlayerF_4.Ctlcontrols.stop()
                 AxWindowsMediaPlayerF_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerF_5.Visible = False
-                AxWindowsMediaPlayerF_5.Ctlcontrols.pause()
+                AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
                 AxWindowsMediaPlayerF_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
+                AxWindowsMediaPlayerF_6.Visible = True
+                AxWindowsMediaPlayerF_6.Ctlcontrols.play()
                 'Case 7
                 'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 'AutosizeImage(Application.StartupPath & "\" & list_Pic(n - 1), Pic_7)
