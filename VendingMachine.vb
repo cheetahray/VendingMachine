@@ -171,6 +171,19 @@ Public Class VendingMachine
         Me.ProductName_6 = New System.Windows.Forms.Label()
         Me.ProductName_5 = New System.Windows.Forms.Label()
         Me.ProductName_4 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PIC_3 = New System.Windows.Forms.PictureBox()
+        Me.Btn3 = New System.Windows.Forms.Button()
+        Me.PIC_2 = New System.Windows.Forms.PictureBox()
+        Me.Btn2 = New System.Windows.Forms.Button()
+        Me.PIC_1 = New System.Windows.Forms.PictureBox()
+        Me.Btn1 = New System.Windows.Forms.Button()
+        Me.PIC_6 = New System.Windows.Forms.PictureBox()
+        Me.Btn6 = New System.Windows.Forms.Button()
+        Me.PIC_5 = New System.Windows.Forms.PictureBox()
+        Me.Btn5 = New System.Windows.Forms.Button()
+        Me.PIC_4 = New System.Windows.Forms.PictureBox()
+        Me.Btn4 = New System.Windows.Forms.Button()
         Me.AxWindowsMediaPlayerA_1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AxWindowsMediaPlayerA_2 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AxWindowsMediaPlayerA_3 = New AxWMPLib.AxWindowsMediaPlayer()
@@ -208,20 +221,14 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayerF_5 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AxWindowsMediaPlayerF_6 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AxWindowsMediaPlayer0 = New AxWMPLib.AxWindowsMediaPlayer()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PIC_3 = New System.Windows.Forms.PictureBox()
-        Me.Btn3 = New System.Windows.Forms.Button()
-        Me.PIC_2 = New System.Windows.Forms.PictureBox()
-        Me.Btn2 = New System.Windows.Forms.Button()
-        Me.PIC_1 = New System.Windows.Forms.PictureBox()
-        Me.Btn1 = New System.Windows.Forms.Button()
-        Me.PIC_6 = New System.Windows.Forms.PictureBox()
-        Me.Btn6 = New System.Windows.Forms.Button()
-        Me.PIC_5 = New System.Windows.Forms.PictureBox()
-        Me.Btn5 = New System.Windows.Forms.Button()
-        Me.PIC_4 = New System.Windows.Forms.PictureBox()
-        Me.Btn4 = New System.Windows.Forms.Button()
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PIC_4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayerA_1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayerA_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayerA_3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -259,13 +266,6 @@ Public Class VendingMachine
         CType(Me.AxWindowsMediaPlayerF_5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayerF_6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AxWindowsMediaPlayer0, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PIC_4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ProductName_3
@@ -504,6 +504,136 @@ Public Class VendingMachine
         Me.ProductName_4.Text = "²£«~¦WºÙ"
         Me.ProductName_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.ProductName_4.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(1024, 768)
+        Me.PictureBox1.TabIndex = 1003
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
+        'PIC_3
+        '
+        Me.PIC_3.Location = New System.Drawing.Point(79, 3)
+        Me.PIC_3.Name = "PIC_3"
+        Me.PIC_3.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_3.TabIndex = 1004
+        Me.PIC_3.TabStop = False
+        Me.PIC_3.Visible = False
+        '
+        'Btn3
+        '
+        Me.Btn3.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn3.Location = New System.Drawing.Point(409, 60)
+        Me.Btn3.Name = "Btn3"
+        Me.Btn3.Size = New System.Drawing.Size(50, 106)
+        Me.Btn3.TabIndex = 1005
+        Me.Btn3.UseVisualStyleBackColor = False
+        Me.Btn3.Visible = False
+        '
+        'PIC_2
+        '
+        Me.PIC_2.Location = New System.Drawing.Point(79, 224)
+        Me.PIC_2.Name = "PIC_2"
+        Me.PIC_2.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_2.TabIndex = 1006
+        Me.PIC_2.TabStop = False
+        Me.PIC_2.Visible = False
+        '
+        'Btn2
+        '
+        Me.Btn2.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn2.Location = New System.Drawing.Point(409, 281)
+        Me.Btn2.Name = "Btn2"
+        Me.Btn2.Size = New System.Drawing.Size(50, 106)
+        Me.Btn2.TabIndex = 1007
+        Me.Btn2.UseVisualStyleBackColor = False
+        Me.Btn2.Visible = False
+        '
+        'PIC_1
+        '
+        Me.PIC_1.Location = New System.Drawing.Point(79, 446)
+        Me.PIC_1.Name = "PIC_1"
+        Me.PIC_1.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_1.TabIndex = 1008
+        Me.PIC_1.TabStop = False
+        Me.PIC_1.Visible = False
+        '
+        'Btn1
+        '
+        Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn1.Location = New System.Drawing.Point(409, 506)
+        Me.Btn1.Name = "Btn1"
+        Me.Btn1.Size = New System.Drawing.Size(50, 106)
+        Me.Btn1.TabIndex = 1009
+        Me.Btn1.UseVisualStyleBackColor = False
+        Me.Btn1.Visible = False
+        '
+        'PIC_6
+        '
+        Me.PIC_6.Location = New System.Drawing.Point(563, 3)
+        Me.PIC_6.Name = "PIC_6"
+        Me.PIC_6.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_6.TabIndex = 1010
+        Me.PIC_6.TabStop = False
+        Me.PIC_6.Visible = False
+        '
+        'Btn6
+        '
+        Me.Btn6.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn6.Location = New System.Drawing.Point(892, 58)
+        Me.Btn6.Margin = New System.Windows.Forms.Padding(0)
+        Me.Btn6.Name = "Btn6"
+        Me.Btn6.Size = New System.Drawing.Size(52, 106)
+        Me.Btn6.TabIndex = 1011
+        Me.Btn6.UseVisualStyleBackColor = False
+        Me.Btn6.Visible = False
+        '
+        'PIC_5
+        '
+        Me.PIC_5.Location = New System.Drawing.Point(563, 224)
+        Me.PIC_5.Name = "PIC_5"
+        Me.PIC_5.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_5.TabIndex = 1012
+        Me.PIC_5.TabStop = False
+        Me.PIC_5.Visible = False
+        '
+        'Btn5
+        '
+        Me.Btn5.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn5.Location = New System.Drawing.Point(892, 281)
+        Me.Btn5.Name = "Btn5"
+        Me.Btn5.Size = New System.Drawing.Size(52, 106)
+        Me.Btn5.TabIndex = 1013
+        Me.Btn5.UseVisualStyleBackColor = False
+        Me.Btn5.Visible = False
+        '
+        'PIC_4
+        '
+        Me.PIC_4.Location = New System.Drawing.Point(563, 446)
+        Me.PIC_4.Name = "PIC_4"
+        Me.PIC_4.Size = New System.Drawing.Size(456, 222)
+        Me.PIC_4.TabIndex = 1014
+        Me.PIC_4.TabStop = False
+        Me.PIC_4.Visible = False
+        '
+        'Btn4
+        '
+        Me.Btn4.BackColor = System.Drawing.Color.LimeGreen
+        Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Btn4.Location = New System.Drawing.Point(892, 506)
+        Me.Btn4.Name = "Btn4"
+        Me.Btn4.Size = New System.Drawing.Size(52, 106)
+        Me.Btn4.TabIndex = 1015
+        Me.Btn4.UseVisualStyleBackColor = False
+        Me.Btn4.Visible = False
         '
         'AxWindowsMediaPlayerA_1
         '
@@ -912,136 +1042,6 @@ Public Class VendingMachine
         Me.AxWindowsMediaPlayer0.TabIndex = 1000
         Me.AxWindowsMediaPlayer0.TabStop = False
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1024, 666)
-        Me.PictureBox1.TabIndex = 1003
-        Me.PictureBox1.TabStop = False
-        Me.PictureBox1.Visible = False
-        '
-        'PIC_3
-        '
-        Me.PIC_3.Location = New System.Drawing.Point(79, 3)
-        Me.PIC_3.Name = "PIC_3"
-        Me.PIC_3.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_3.TabIndex = 1004
-        Me.PIC_3.TabStop = False
-        Me.PIC_3.Visible = False
-        '
-        'Btn3
-        '
-        Me.Btn3.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn3.Location = New System.Drawing.Point(409, 60)
-        Me.Btn3.Name = "Btn3"
-        Me.Btn3.Size = New System.Drawing.Size(50, 106)
-        Me.Btn3.TabIndex = 1005
-        Me.Btn3.UseVisualStyleBackColor = False
-        Me.Btn3.Visible = False
-        '
-        'PIC_2
-        '
-        Me.PIC_2.Location = New System.Drawing.Point(79, 224)
-        Me.PIC_2.Name = "PIC_2"
-        Me.PIC_2.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_2.TabIndex = 1006
-        Me.PIC_2.TabStop = False
-        Me.PIC_2.Visible = False
-        '
-        'Btn2
-        '
-        Me.Btn2.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn2.Location = New System.Drawing.Point(409, 281)
-        Me.Btn2.Name = "Btn2"
-        Me.Btn2.Size = New System.Drawing.Size(50, 106)
-        Me.Btn2.TabIndex = 1007
-        Me.Btn2.UseVisualStyleBackColor = False
-        Me.Btn2.Visible = False
-        '
-        'PIC_1
-        '
-        Me.PIC_1.Location = New System.Drawing.Point(79, 446)
-        Me.PIC_1.Name = "PIC_1"
-        Me.PIC_1.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_1.TabIndex = 1008
-        Me.PIC_1.TabStop = False
-        Me.PIC_1.Visible = False
-        '
-        'Btn1
-        '
-        Me.Btn1.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn1.Location = New System.Drawing.Point(409, 506)
-        Me.Btn1.Name = "Btn1"
-        Me.Btn1.Size = New System.Drawing.Size(50, 106)
-        Me.Btn1.TabIndex = 1009
-        Me.Btn1.UseVisualStyleBackColor = False
-        Me.Btn1.Visible = False
-        '
-        'PIC_6
-        '
-        Me.PIC_6.Location = New System.Drawing.Point(563, 3)
-        Me.PIC_6.Name = "PIC_6"
-        Me.PIC_6.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_6.TabIndex = 1010
-        Me.PIC_6.TabStop = False
-        Me.PIC_6.Visible = False
-        '
-        'Btn6
-        '
-        Me.Btn6.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn6.Location = New System.Drawing.Point(892, 58)
-        Me.Btn6.Margin = New System.Windows.Forms.Padding(0)
-        Me.Btn6.Name = "Btn6"
-        Me.Btn6.Size = New System.Drawing.Size(52, 106)
-        Me.Btn6.TabIndex = 1011
-        Me.Btn6.UseVisualStyleBackColor = False
-        Me.Btn6.Visible = False
-        '
-        'PIC_5
-        '
-        Me.PIC_5.Location = New System.Drawing.Point(563, 224)
-        Me.PIC_5.Name = "PIC_5"
-        Me.PIC_5.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_5.TabIndex = 1012
-        Me.PIC_5.TabStop = False
-        Me.PIC_5.Visible = False
-        '
-        'Btn5
-        '
-        Me.Btn5.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn5.Location = New System.Drawing.Point(892, 281)
-        Me.Btn5.Name = "Btn5"
-        Me.Btn5.Size = New System.Drawing.Size(52, 106)
-        Me.Btn5.TabIndex = 1013
-        Me.Btn5.UseVisualStyleBackColor = False
-        Me.Btn5.Visible = False
-        '
-        'PIC_4
-        '
-        Me.PIC_4.Location = New System.Drawing.Point(563, 446)
-        Me.PIC_4.Name = "PIC_4"
-        Me.PIC_4.Size = New System.Drawing.Size(456, 222)
-        Me.PIC_4.TabIndex = 1014
-        Me.PIC_4.TabStop = False
-        Me.PIC_4.Visible = False
-        '
-        'Btn4
-        '
-        Me.Btn4.BackColor = System.Drawing.Color.LimeGreen
-        Me.Btn4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Btn4.Location = New System.Drawing.Point(892, 506)
-        Me.Btn4.Name = "Btn4"
-        Me.Btn4.Size = New System.Drawing.Size(52, 106)
-        Me.Btn4.TabIndex = 1015
-        Me.Btn4.UseVisualStyleBackColor = False
-        Me.Btn4.Visible = False
-        '
         'VendingMachine
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
@@ -1128,6 +1128,13 @@ Public Class VendingMachine
         Me.TopMost = True
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.picOpen, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PIC_4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayerA_1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayerA_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayerA_3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1165,13 +1172,6 @@ Public Class VendingMachine
         CType(Me.AxWindowsMediaPlayerF_5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayerF_6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AxWindowsMediaPlayer0, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PIC_4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
