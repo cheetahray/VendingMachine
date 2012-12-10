@@ -1936,7 +1936,7 @@ Public Class VendingMachine
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
             UdpTimer.Enabled = True
             appobject.Change()
-            PrintDocument1.Print()
+            'PrintDocument1.Print()
             RayStartCase(appobject.ProductNum, False)
             appobject.BackStart()
             CalculateChange(appobject.MoneyAvailable)
@@ -2045,22 +2045,22 @@ Public Class VendingMachine
 
     Private Sub allDisapperStop()
         If AxWindowsMediaPlayerA_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_1.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_1.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerF_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_1.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_1.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_1.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_1.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_1.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_1.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_1.Visible = False
         AxWindowsMediaPlayerB_1.Visible = False
@@ -2069,22 +2069,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_1.Visible = False
         AxWindowsMediaPlayerF_1.Visible = False
         If AxWindowsMediaPlayerF_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_2.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_2.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_2.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_2.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_2.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerA_2.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_2.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_2.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_2.Visible = False
         AxWindowsMediaPlayerB_2.Visible = False
@@ -2093,22 +2093,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_2.Visible = False
         AxWindowsMediaPlayerF_2.Visible = False
         If AxWindowsMediaPlayerF_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_3.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_3.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_3.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_3.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_3.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerA_3.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_3.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_3.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_3.Visible = False
         AxWindowsMediaPlayerB_3.Visible = False
@@ -2117,22 +2117,22 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_3.Visible = False
         AxWindowsMediaPlayerF_3.Visible = False
         If AxWindowsMediaPlayerF_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_4.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_4.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_4.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_4.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_4.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerA_4.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_4.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_4.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_4.Visible = False
         AxWindowsMediaPlayerB_4.Visible = False
@@ -2141,65 +2141,53 @@ Public Class VendingMachine
         AxWindowsMediaPlayerE_4.Visible = False
         AxWindowsMediaPlayerF_4.Visible = False
         If AxWindowsMediaPlayerF_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_5.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_5.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_5.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_5.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_5.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerA_5.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_5.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_5.Visible = False
-        AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
         AxWindowsMediaPlayerB_5.Visible = False
-        AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
         AxWindowsMediaPlayerC_5.Visible = False
-        AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
         AxWindowsMediaPlayerD_5.Visible = False
-        AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
         AxWindowsMediaPlayerE_5.Visible = False
-        AxWindowsMediaPlayerE_5.Ctlcontrols.stop()
         AxWindowsMediaPlayerF_5.Visible = False
-        AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
         If AxWindowsMediaPlayerF_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerF_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerF_6.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerE_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerE_6.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerD_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerD_6.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerC_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerC_6.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerB_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerB_6.Ctlcontrols.pause()
         End If
         If AxWindowsMediaPlayerA_6.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-            AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
+            AxWindowsMediaPlayerA_6.Ctlcontrols.pause()
         End If
         AxWindowsMediaPlayerA_6.Visible = False
-        AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
         AxWindowsMediaPlayerB_6.Visible = False
-        AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
         AxWindowsMediaPlayerC_6.Visible = False
-        AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
         AxWindowsMediaPlayerD_6.Visible = False
-        AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
         AxWindowsMediaPlayerE_6.Visible = False
-        AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
         AxWindowsMediaPlayerF_6.Visible = False
-        AxWindowsMediaPlayerF_6.Ctlcontrols.stop()
     End Sub
 
     Private Sub RotateTimer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RotateTimer.Tick
@@ -2817,19 +2805,19 @@ Public Class VendingMachine
                 AxWindowsMediaPlayerA_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_2.Visible = False
-                AxWindowsMediaPlayerA_2.Ctlcontrols.stop()
+                AxWindowsMediaPlayerA_2.Ctlcontrols.pause()
                 AxWindowsMediaPlayerA_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_3.Visible = False
-                AxWindowsMediaPlayerA_3.Ctlcontrols.stop()
+                AxWindowsMediaPlayerA_3.Ctlcontrols.pause()
                 AxWindowsMediaPlayerA_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_4.Visible = False
-                AxWindowsMediaPlayerA_4.Ctlcontrols.stop()
+                AxWindowsMediaPlayerA_4.Ctlcontrols.pause()
                 AxWindowsMediaPlayerA_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_5.Visible = False
-                AxWindowsMediaPlayerA_5.Ctlcontrols.stop()
+                AxWindowsMediaPlayerA_5.Ctlcontrols.pause()
                 AxWindowsMediaPlayerA_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv" 'Pic_1.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
                 AxWindowsMediaPlayerA_6.Visible = False
-                AxWindowsMediaPlayerA_6.Ctlcontrols.stop()
+                AxWindowsMediaPlayerA_6.Ctlcontrols.pause()
             Case 2
                 AxWindowsMediaPlayerB_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerB_2.settings.setMode("loop", True)
@@ -2846,20 +2834,20 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerB_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerB_1.Visible = False
-                AxWindowsMediaPlayerB_1.Ctlcontrols.stop()
+                AxWindowsMediaPlayerB_1.Ctlcontrols.pause()
                 AxWindowsMediaPlayerB_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerB_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerB_3.Visible = False
-                AxWindowsMediaPlayerB_3.Ctlcontrols.stop()
+                AxWindowsMediaPlayerB_3.Ctlcontrols.pause()
                 AxWindowsMediaPlayerB_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerB_4.Visible = False
-                AxWindowsMediaPlayerB_4.Ctlcontrols.stop()
+                AxWindowsMediaPlayerB_4.Ctlcontrols.pause()
                 AxWindowsMediaPlayerB_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerB_5.Visible = False
-                AxWindowsMediaPlayerB_5.Ctlcontrols.stop()
+                AxWindowsMediaPlayerB_5.Ctlcontrols.pause()
                 AxWindowsMediaPlayerB_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerB_6.Visible = False
-                AxWindowsMediaPlayerB_6.Ctlcontrols.stop()
+                AxWindowsMediaPlayerB_6.Ctlcontrols.pause()
             Case 3
                 AxWindowsMediaPlayerC_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerC_2.settings.setMode("loop", True)
@@ -2874,20 +2862,20 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerC_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerC_1.Visible = False
-                AxWindowsMediaPlayerC_1.Ctlcontrols.stop()
+                AxWindowsMediaPlayerC_1.Ctlcontrols.pause()
                 AxWindowsMediaPlayerC_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerC_2.Visible = False
-                AxWindowsMediaPlayerC_2.Ctlcontrols.stop()
+                AxWindowsMediaPlayerC_2.Ctlcontrols.pause()
                 AxWindowsMediaPlayerC_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerC_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerC_4.Visible = False
-                AxWindowsMediaPlayerC_4.Ctlcontrols.stop()
+                AxWindowsMediaPlayerC_4.Ctlcontrols.pause()
                 AxWindowsMediaPlayerC_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerC_5.Visible = False
-                AxWindowsMediaPlayerC_5.Ctlcontrols.stop()
+                AxWindowsMediaPlayerC_5.Ctlcontrols.pause()
                 AxWindowsMediaPlayerC_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerC_6.Visible = False
-                AxWindowsMediaPlayerC_6.Ctlcontrols.stop()
+                AxWindowsMediaPlayerC_6.Ctlcontrols.pause()
             Case 4
                 AxWindowsMediaPlayerD_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerD_2.settings.setMode("loop", True)
@@ -2902,20 +2890,20 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerD_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerD_1.Visible = False
-                AxWindowsMediaPlayerD_1.Ctlcontrols.stop()
+                AxWindowsMediaPlayerD_1.Ctlcontrols.pause()
                 AxWindowsMediaPlayerD_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerD_2.Visible = False
-                AxWindowsMediaPlayerD_2.Ctlcontrols.stop()
+                AxWindowsMediaPlayerD_2.Ctlcontrols.pause()
                 AxWindowsMediaPlayerD_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerD_3.Visible = False
-                AxWindowsMediaPlayerD_3.Ctlcontrols.stop()
+                AxWindowsMediaPlayerD_3.Ctlcontrols.pause()
                 AxWindowsMediaPlayerD_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerD_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerD_5.Visible = False
-                AxWindowsMediaPlayerD_5.Ctlcontrols.stop()
+                AxWindowsMediaPlayerD_5.Ctlcontrols.pause()
                 AxWindowsMediaPlayerD_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerD_6.Visible = False
-                AxWindowsMediaPlayerD_6.Ctlcontrols.stop()
+                AxWindowsMediaPlayerD_6.Ctlcontrols.pause()
             Case 5
                 AxWindowsMediaPlayerE_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerE_2.settings.setMode("loop", True)
@@ -2930,20 +2918,20 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerE_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerE_1.Visible = False
-                AxWindowsMediaPlayerE_1.Ctlcontrols.stop()
+                AxWindowsMediaPlayerE_1.Ctlcontrols.pause()
                 AxWindowsMediaPlayerE_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerE_2.Visible = False
-                AxWindowsMediaPlayerE_2.Ctlcontrols.stop()
+                AxWindowsMediaPlayerE_2.Ctlcontrols.pause()
                 AxWindowsMediaPlayerE_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerE_3.Visible = False
-                AxWindowsMediaPlayerE_3.Ctlcontrols.stop()
+                AxWindowsMediaPlayerE_3.Ctlcontrols.pause()
                 AxWindowsMediaPlayerE_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerE_4.Visible = False
-                AxWindowsMediaPlayerE_4.Ctlcontrols.stop()
+                AxWindowsMediaPlayerE_4.Ctlcontrols.pause()
                 AxWindowsMediaPlayerE_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerE_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 AxWindowsMediaPlayerE_6.Visible = False
-                AxWindowsMediaPlayerE_6.Ctlcontrols.stop()
+                AxWindowsMediaPlayerE_6.Ctlcontrols.pause()
             Case 6
                 AxWindowsMediaPlayerF_1.settings.setMode("loop", True)
                 AxWindowsMediaPlayerF_2.settings.setMode("loop", True)
@@ -2958,19 +2946,19 @@ Public Class VendingMachine
                 End If
                 AxWindowsMediaPlayerF_1.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "1.wmv"
                 AxWindowsMediaPlayerF_1.Visible = False
-                AxWindowsMediaPlayerF_1.Ctlcontrols.stop()
+                AxWindowsMediaPlayerF_1.Ctlcontrols.pause()
                 AxWindowsMediaPlayerF_2.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "2.wmv"
                 AxWindowsMediaPlayerF_2.Visible = False
-                AxWindowsMediaPlayerF_2.Ctlcontrols.stop()
+                AxWindowsMediaPlayerF_2.Ctlcontrols.pause()
                 AxWindowsMediaPlayerF_3.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "3.wmv"
                 AxWindowsMediaPlayerF_3.Visible = False
-                AxWindowsMediaPlayerF_3.Ctlcontrols.stop()
+                AxWindowsMediaPlayerF_3.Ctlcontrols.pause()
                 AxWindowsMediaPlayerF_4.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "4.wmv"
                 AxWindowsMediaPlayerF_4.Visible = False
-                AxWindowsMediaPlayerF_4.Ctlcontrols.stop()
+                AxWindowsMediaPlayerF_4.Ctlcontrols.pause()
                 AxWindowsMediaPlayerF_5.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "5.wmv"
                 AxWindowsMediaPlayerF_5.Visible = False
-                AxWindowsMediaPlayerF_5.Ctlcontrols.stop()
+                AxWindowsMediaPlayerF_5.Ctlcontrols.pause()
                 AxWindowsMediaPlayerF_6.URL = Application.StartupPath & "\" & list_Pic(n - 1) & "6.wmv"
                 'Case 7
                 'Pic_7.Image = Image.FromFile(Application.StartupPath & "\" & list_Pic(n - 1))
