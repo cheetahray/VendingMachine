@@ -2171,8 +2171,8 @@ Public Class VendingMachine
     End Sub
     Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
-            UdpTimer.Enabled = True
             appobject.Change()
+            UdpTimer.Enabled = True
             PrintDocument1.Print()
             RayStartCase(appobject.ProductNum, False)
             appobject.BackStart()
@@ -2181,7 +2181,6 @@ Public Class VendingMachine
                 SerialPort1.Write("0")
             End If
             AxWindowsMediaPlayer0.Visible = False
-            appobject.SendBytes = "done"
             allContinue()
             RotateTimer.Enabled = True
             PIC_1.Visible = False
@@ -2192,6 +2191,7 @@ Public Class VendingMachine
             PIC_6.Visible = False
             'Me.Show()
             PictureBox1.Visible = False
+            appobject.SendBytes = "done"
         ElseIf (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsPlaying) Then
             AxWindowsMediaPlayer0.Visible = True
             PrepareEndTransaction()

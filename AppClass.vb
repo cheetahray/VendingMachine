@@ -240,16 +240,17 @@ Public NotInheritable Class AppClass
 
     Public Sub PrintImages()
 
-    End Sub
-
-    Public Sub glassMoneyChange()
-
         Dim num As Integer = MoneyAvailable / 50
         MoneyAvailable = 0
         If num <> 0 Then
             SendBytes = "@@" + num.ToString 'MsgBox(num, MsgBoxStyle.Information, "§ä¿ú")
         End If
-        ProductNum = 7
+        
+    End Sub
+
+    Public Sub glassMoneyChange()
+
+        'ProductNum = 7
 
     End Sub
 
