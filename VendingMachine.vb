@@ -2171,8 +2171,8 @@ Public Class VendingMachine
     End Sub
     Private Sub AxWindowsMediaPlayer0_PlayStateChange(ByVal sender As System.Object, ByVal e As AxWMPLib._WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer0.PlayStateChange
         If (AxWindowsMediaPlayer0.playState = WMPLib.WMPPlayState.wmppsMediaEnded) Then
-            appobject.Change()
             UdpTimer.Enabled = True
+            appobject.Change()
             PrintDocument1.Print()
             RayStartCase(appobject.ProductNum, False)
             appobject.BackStart()
